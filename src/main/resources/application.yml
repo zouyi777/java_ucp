@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    name: ucp  #数据库名
+    url: jdbc:mysql://localhost:3306/ucp #url
+    username: root  #用户名
+    password: 123456yy  #密码
+    driver-class-name: com.mysql.jdbc.Driver  #数据库链接驱动
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  #配置映射文件
+  type-aliases-package: com.zyyu.ucp.po #配置实体类
+  type-handlers-package=: com.zyyu.ucp.handler #配置java枚举自动转换存入
+
+server:
+  servlet:
+    context-path: /ucp #统一根路径

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zyyu.ucp.mapper.UserMapper">
+
+    <resultMap type="com.zyyu.ucp.po.UserPo" id="userResultMap">
+        <id property="userId" column="user_id"  />
+        <result property="userName" column="user_name"  />
+        <result property="password" column="user_password"  />
+        <result property="state" column="user_state"  />
+        <result property="nickName" column="user_nickname"  />
+        <result property="idNumber" column="user_id_number"  />
+        <result property="avatar" column="user_avatar"  />
+        <result property="realName" column="user_realname"  />
+        <result property="age" column="user_age"  />
+        <result property="birthday" column="user_birthday"  />
+        <result property="gender" column="user_gender"  />
+        <result property="mobilePhone" column="user_mobile_phone"  />
+        <result property="email" column="user_email"  />
+        <result property="slefWord" column="user_slef_word"  />
+        <result property="createTime" column="create_time"  />
+        <result property="updateTime" column="update_time"  />
+    </resultMap>
+
+    <select id="login" parameterType="String" resultMap="userResultMap">
+        SELECT * FROM tb_user WHERE user_name = #{name} AND user_password = #{password}
+    </select>
+
+    <select id="getAll"  resultMap="userResultMap">
+        SELECT * FROM tb_user
+    </select>
+
+    <insert id="addUser" parameterType="com.zyyu.ucp.po.UserPo">
+        insert into tb_user(user_id,user_name,user_state,user_password,create_time,update_time,user_gender)
+                   values(#{userId},#{userName},#{state},#{password},#{createTime},#{updateTime},#{gender})
+    </insert>
+
+    <update id="updateUser" parameterType="com.zyyu.ucp.po.UserPo" >
+        update tb_user set user_name=#{userName},user_age=#{userAge} where user_id=#{userId}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from tb_user where userid=#{userId}
+    </delete>
+
+</mapper>
