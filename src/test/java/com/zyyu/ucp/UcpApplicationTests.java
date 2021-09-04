@@ -1,5 +1,6 @@
 package com.zyyu.ucp;
 
+import com.zyyu.ucp.common.PageInfo;
 import com.zyyu.ucp.enums.GenderEnum;
 import com.zyyu.ucp.po.UserPo;
 import com.zyyu.ucp.service.UserService;
@@ -8,6 +9,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -18,8 +21,8 @@ class UcpApplicationTests {
 
     @Test
     public void contextLoads() {
-        testLogin();
-//        testAddUser();
+//        testLogin();
+        testGetByPage();
     }
 
     private void testLogin(){
@@ -28,11 +31,28 @@ class UcpApplicationTests {
     }
 
     private void testAddUser(){
-        UserPo userPO = new UserPo();
-        userPO.setUserName("zy1");
-        userPO.setPassword("123456");
-        userPO.setGender(GenderEnum.FEMALE);
-        userService.addUser(userPO);
+        for(int i=0;i<100;i++){
+            UserPo userPO = new UserPo();
+            if(i ==0){
+                userPO.setUserName("zy");
+            }else {
+                userPO.setUserName("zy"+i);
+            }
+            userPO.setPassword("123456");
+            if(i % 2 ==0){
+                userPO.setGender(GenderEnum.MAN);
+            }else{
+                userPO.setGender(GenderEnum.FEMALE);
+            }
+            userService.addUser(userPO);
+        }
+    }
+
+    private void testGetByPage(){
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setCurrentPage(3);
+        pageInfo = userService.getAllByPage(pageInfo);
+        System.out.println(pageInfo);
     }
 
 }

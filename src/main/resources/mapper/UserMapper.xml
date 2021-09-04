@@ -25,8 +25,20 @@
         SELECT * FROM tb_user WHERE user_name = #{name} AND user_password = #{password}
     </select>
 
+    <select id="getByUserId" parameterType="Long" resultMap="userResultMap">
+        SELECT * FROM tb_user WHERE user_id = #{userId}
+    </select>
+
     <select id="getAll"  resultMap="userResultMap">
         SELECT * FROM tb_user
+    </select>
+
+    <select id="getAllByPage" parameterType="Integer" resultMap="userResultMap">
+        SELECT * FROM tb_user limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="getTotalCount"  resultType="Integer">
+        SELECT count(*) FROM tb_user
     </select>
 
     <insert id="addUser" parameterType="com.zyyu.ucp.po.UserPo">
@@ -38,7 +50,7 @@
         update tb_user set user_name=#{userName},user_age=#{userAge} where user_id=#{userId}
     </update>
 
-    <delete id="deleteUser" parameterType="int">
+    <delete id="deleteUser" parameterType="Long">
         delete from tb_user where userid=#{userId}
     </delete>
 
