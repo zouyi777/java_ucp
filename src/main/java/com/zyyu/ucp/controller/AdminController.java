@@ -3,17 +3,16 @@ package com.zyyu.ucp.controller;
 import com.zyyu.ucp.annotation.CurrUser;
 import com.zyyu.ucp.po.UserPo;
 import com.zyyu.ucp.service.UserService;
+import com.zyyu.ucp.utils.SysInfoUtil;
 import com.zyyu.ucp.vo.LoginVo;
 import com.zyyu.ucp.common.Result;
+import com.zyyu.ucp.vo.SystemInfoVo;
 import com.zyyu.ucp.vo.User1Vo;
 import com.zyyu.ucp.vo.UserVo;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/admin")
@@ -32,4 +31,9 @@ public class AdminController extends BaseController {
         return success(userPo);
     }
 
+    @GetMapping(value = "/sys_info")
+    public Result getSysInfo(@CurrUser String userId){
+        SystemInfoVo systemInfoVo = SysInfoUtil.property();
+        return success(systemInfoVo);
+    }
 }
