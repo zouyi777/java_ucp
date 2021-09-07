@@ -1,5 +1,7 @@
 package com.zyyu.ucp.controller;
 
+import com.zyyu.ucp.ServerConfig;
+import com.zyyu.ucp.UcpConfig;
 import com.zyyu.ucp.annotation.CurrUser;
 import com.zyyu.ucp.po.UserPo;
 import com.zyyu.ucp.service.UserService;
@@ -20,6 +22,10 @@ public class AdminController extends BaseController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    private ServerConfig serverConfig;
+    @Autowired
+    private UcpConfig ucpConfig;
 
     @PostMapping(value = "/home")
     public Result admin(@CurrUser String userId,@RequestBody LoginVo loginVO){
@@ -34,6 +40,9 @@ public class AdminController extends BaseController {
     @GetMapping(value = "/sys_info")
     public Result getSysInfo(@CurrUser String userId){
         SystemInfoVo systemInfoVo = SysInfoUtil.property();
+        systemInfoVo.setServerIP(serverConfig.getHost());
+        systemInfoVo.setLocalPort(serverConfig.getServerPort());
+        String  dd =ucpConfig.getDatasourceUrl();
         return success(systemInfoVo);
     }
 }

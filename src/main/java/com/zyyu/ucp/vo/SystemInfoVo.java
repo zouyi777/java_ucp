@@ -10,7 +10,7 @@ public class SystemInfoVo {
      /**域名*/
      private String domain;
      /**端口*/
-     private String localPort;
+     private Integer localPort;
      /**Java的运行环境版本*/
      private String javaVersion;
      /**Java的运行环境供应商*/
@@ -64,11 +64,11 @@ public class SystemInfoVo {
           this.domain = domain;
      }
 
-     public String getLocalPort() {
+     public Integer getLocalPort() {
           return localPort;
      }
 
-     public void setLocalPort(String localPort) {
+     public void setLocalPort(Integer localPort) {
           this.localPort = localPort;
      }
 
