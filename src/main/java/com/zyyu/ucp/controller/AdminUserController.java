@@ -22,4 +22,10 @@ public class AdminUserController extends BaseController {
         return success(pageInfo);
     }
 
+    @GetMapping(value = "/detail")
+    public Result userDetail(@CurrUser String userId){
+        UserPo userPo = userService.getByUserId(Long.valueOf(userId));
+        return success(userPo);
+    }
+
 }

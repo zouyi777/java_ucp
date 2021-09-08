@@ -3,6 +3,8 @@ package com.zyyu.ucp.utils;
 
 import com.zyyu.ucp.vo.SystemInfoVo;
 import org.apache.catalina.util.ServerInfo;
+import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionUtils;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -38,15 +40,5 @@ public class SysInfoUtil {
         systemInfoVo.setAppServer(ServerInfo.getServerInfo());
         systemInfoVo.setDbType("mySql");
         return systemInfoVo;
-    }
-
-    public static void getDbInfo(){
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
-        Connection conn = DriverManager.getConnection(url_nanjing, user_nanjing, password_nanjing);
-
-        DatabaseMetaData metaData = (DatabaseMetaData) conn.getMetaData();
-
-        String version = metaData.getDatabaseProductVersion();//得到数据库版本信息
     }
 }
