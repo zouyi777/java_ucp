@@ -23,7 +23,7 @@ public class AdminUserController extends BaseController {
     }
 
     @GetMapping(value = "/detail")
-    public Result userDetail(@CurrUser String userId){
+    public Result userDetail(@RequestParam String userId){
         UserPo userPo = userService.getByUserId(Long.valueOf(userId));
         return success(userPo);
     }
