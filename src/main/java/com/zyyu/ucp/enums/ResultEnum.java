@@ -12,6 +12,8 @@ public enum ResultEnum {
     PARAM_BLANK(4000, "参数为空"),
     /**数据异常*/
     DATA_BLANK(4001, "数据为空"),
+    /**失败*/
+    FAIL(4002, "失败"),
     /**用户未登录*/
     UNAUTHORIZED(3000,"用户未登录"),
     /**账号不存在或密码错误*/

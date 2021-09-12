@@ -8,11 +8,15 @@ public interface UserMapper {
 
     UserPo login(String name, String password);
 
-    void addUser(UserPo userPo);
+    int addUser(UserPo userPo);
 
     UserPo getByUserId(Long userId);
 
     List<UserPo> getAllByPage(Integer startIndex, Integer pageSize);
 
     Integer getTotalCount();
+
+    int deleteUser(UserPo userPo);
+
+    int updateUser(UserPo userPo);
 }

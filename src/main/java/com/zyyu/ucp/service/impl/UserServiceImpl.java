@@ -1,6 +1,7 @@
 package com.zyyu.ucp.service.impl;
 
 import com.zyyu.ucp.common.PageInfo;
+import com.zyyu.ucp.enums.GenderEnum;
 import com.zyyu.ucp.enums.UserStateEnum;
 import com.zyyu.ucp.po.UserPo;
 import com.zyyu.ucp.mapper.UserMapper;
@@ -10,7 +11,6 @@ import com.zyyu.ucp.utils.UniqueKeyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -25,12 +25,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(UserPo userPo) {
+    public int addUser(UserPo userPo) {
         userPo.setUserId(UniqueKeyUtil.getUniqueKey());
         userPo.setState(UserStateEnum.NORMAL);
         userPo.setCreateTime(DateTimeUtil.getCurDateTime());
         userPo.setUpdateTime(DateTimeUtil.getCurDateTime());
-        userMapper.addUser(userPo);
+        userPo.setGender(GenderEnum.MAN);
+        return userMapper.addUser(userPo);
     }
 
     @Override
@@ -46,5 +47,17 @@ public class UserServiceImpl implements UserService {
         pageInfo.setTotalCount(userMapper.getTotalCount());
         pageInfo.setDataList(userMapper.getAllByPage(pageInfo.getStartIndex(),pageInfo.getPageSize()));
         return pageInfo;
+    }
+
+    @Override
+    public int deleteUser(Long userId) {
+        UserPo userPo =new UserPo();
+        userPo.setUserId(userId);
+        return userMapper.deleteUser(userPo);
+    }
+
+    @Override
+    public int updateUser(UserPo userPo) {
+        return userMapper.updateUser(userPo);
     }
 }

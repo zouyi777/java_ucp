@@ -8,10 +8,14 @@ public interface UserService {
 
     UserPo loginIn(String name, String password);
 
-    void addUser(UserPo userPo);
+    int addUser(UserPo userPo);
 
     UserPo getByUserId(Long userId);
 
     PageInfo getAllByPage(PageInfo pageInfo);
+
+    int deleteUser(Long userId);
+
+    int updateUser(UserPo userPo);
 
 }

@@ -42,16 +42,18 @@
     </select>
 
     <insert id="addUser" parameterType="com.zyyu.ucp.po.UserPo">
-        insert into tb_user(user_id,user_name,user_state,user_password,create_time,update_time,user_gender)
-                   values(#{userId},#{userName},#{state},#{password},#{createTime},#{updateTime},#{gender})
+        INSERT INTO tb_user(user_id,user_name,user_nickname,user_id_number,user_state,user_password,create_time,update_time,user_gender,user_realname,user_mobile_phone)
+               VALUES(#{userId},#{userName},#{nickName},#{idNumber},#{state},#{password},#{createTime},#{updateTime},#{gender},#{realName},#{mobilePhone})
     </insert>
 
     <update id="updateUser" parameterType="com.zyyu.ucp.po.UserPo" >
-        update tb_user set user_name=#{userName},user_age=#{userAge} where user_id=#{userId}
+        UPDATE tb_user SET user_name=#{userName},user_password=#{password},user_nickname=#{nickName},user_id_number=#{idNumber},
+                           user_realname=#{realName},user_mobile_phone=#{mobilePhone}
+        WHERE user_id=#{userId}
     </update>
 
-    <delete id="deleteUser" parameterType="Long">
-        delete from tb_user where userid=#{userId}
+    <delete id="deleteUser" parameterType="com.zyyu.ucp.po.UserPo">
+        DELETE FROM tb_user WHERE user_id=#{userId}
     </delete>
 
 </mapper>

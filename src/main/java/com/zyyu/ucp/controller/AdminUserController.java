@@ -3,6 +3,7 @@ package com.zyyu.ucp.controller;
 import com.zyyu.ucp.annotation.CurrUser;
 import com.zyyu.ucp.common.PageInfo;
 import com.zyyu.ucp.common.Result;
+import com.zyyu.ucp.enums.ResultEnum;
 import com.zyyu.ucp.po.UserPo;
 import com.zyyu.ucp.service.UserService;
 import com.zyyu.ucp.vo.LoginVo;
@@ -26,6 +27,33 @@ public class AdminUserController extends BaseController {
     public Result userDetail(@RequestParam String userId){
         UserPo userPo = userService.getByUserId(Long.valueOf(userId));
         return success(userPo);
+    }
+
+    @GetMapping(value = "/delete")
+    public Result deleteUser(@RequestParam String userId){
+        int result = userService.deleteUser(Long.valueOf(userId));
+        if(result==1){
+            return success();
+        }
+        return fail("删除失败");
+    }
+
+    @PostMapping(value = "/update")
+    public Result updateUser(@CurrUser String userId,@RequestBody UserPo userPo){
+        int result = userService.updateUser(userPo);
+        if(result==1){
+            return success();
+        }
+        return fail("修改失败");
+    }
+
+    @PostMapping(value = "/add")
+    public Result userAdd(@RequestBody UserPo userPo){
+        int result = userService.addUser(userPo);
+        if(result==1){
+            return success();
+        }
+        return fail("新增失败");
     }
 
 }
