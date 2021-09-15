@@ -35,7 +35,8 @@ public class WebConfig extends WebMvcConfigurationSupport {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new JwtInterceptor()).addPathPatterns("/admin/**");
+        registry.addInterceptor(new JwtInterceptor()).addPathPatterns("/admin/**")
+                .excludePathPatterns("/admin/login");
     }
 
     /**

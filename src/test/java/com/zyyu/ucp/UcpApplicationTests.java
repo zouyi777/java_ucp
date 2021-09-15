@@ -4,6 +4,7 @@ import com.zyyu.ucp.common.PageInfo;
 import com.zyyu.ucp.enums.GenderEnum;
 import com.zyyu.ucp.po.UserPo;
 import com.zyyu.ucp.service.UserService;
+import com.zyyu.ucp.utils.UniqueKeyUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,9 @@ class UcpApplicationTests {
     @Test
     public void contextLoads() {
 //        testLogin();
-        testGetByPage();
+//        testGetByPage();
+        Long id =UniqueKeyUtil.getUniqueKey();
+        System.out.println(id);
     }
 
     private void testLogin(){

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zyyu.ucp.mapper.RoleMapper">
+
+    <resultMap type="com.zyyu.ucp.po.RolePo" id="roleResultMap">
+        <id property="id" column="id"  />
+        <result property="roleName" column="role_name"  />
+        <result property="roleCode" column="role_code"  />
+        <result property="description" column="description"  />
+        <result property="rightId" column="right_id"  />
+        <result property="createTime" column="create_time"  />
+        <result property="updateTime" column="update_time"  />
+    </resultMap>
+
+    <select id="getById" parameterType="Long" resultMap="roleResultMap">
+        SELECT * FROM tb_role WHERE id=#{id}
+    </select>
+
+    <select id="getByRoleCode" parameterType="String" resultMap="roleResultMap">
+        SELECT * FROM tb_role WHERE role_code=#{roleCode}
+    </select>
+
+    <select id="getAll"  resultMap="roleResultMap">
+        SELECT * FROM tb_role
+    </select>
+
+    <select id="getTotalCount"  resultType="Integer">
+        SELECT count(*) FROM tb_role
+    </select>
+
+    <insert id="add" parameterType="com.zyyu.ucp.po.RolePo">
+        INSERT INTO tb_role(id,role_name,role_code,description,right_id,create_time,update_time)
+               VALUES(#{id},#{roleName},#{roleCode},#{description},#{rightId},#{createTime},#{updateTime})
+    </insert>
+
+    <update id="update" parameterType="com.zyyu.ucp.po.RolePo" >
+        UPDATE tb_role SET role_name=#{roleName},role_code=#{roleCode},description=#{description},right_id=#{rightId},
+                           create_time=#{createTime},update_time=#{updateTime}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="com.zyyu.ucp.po.RolePo">
+        DELETE FROM tb_role WHERE id=#{id}
+    </delete>
+
+</mapper>

@@ -3,7 +3,7 @@
 <mapper namespace="com.zyyu.ucp.mapper.UserMapper">
 
     <resultMap type="com.zyyu.ucp.po.UserPo" id="userResultMap">
-        <id property="userId" column="user_id"  />
+        <id property="id" column="id"  />
         <result property="userName" column="user_name"  />
         <result property="password" column="user_password"  />
         <result property="state" column="user_state"  />
@@ -11,14 +11,15 @@
         <result property="idNumber" column="user_id_number"  />
         <result property="avatar" column="user_avatar"  />
         <result property="realName" column="user_realname"  />
-        <result property="age" column="user_age"  />
         <result property="birthday" column="user_birthday"  />
         <result property="gender" column="user_gender"  />
         <result property="mobilePhone" column="user_mobile_phone"  />
         <result property="email" column="user_email"  />
+        <result property="address" column="user_address"  />
         <result property="slefWord" column="user_slef_word"  />
         <result property="createTime" column="create_time"  />
         <result property="updateTime" column="update_time"  />
+        <result property="roleId" column="role_id"  />
     </resultMap>
 
     <select id="login" parameterType="String" resultMap="userResultMap">
@@ -26,7 +27,7 @@
     </select>
 
     <select id="getByUserId" parameterType="Long" resultMap="userResultMap">
-        SELECT * FROM tb_user WHERE user_id = #{userId}
+        SELECT * FROM tb_user WHERE id = #{id}
     </select>
 
     <select id="getAll"  resultMap="userResultMap">
@@ -42,18 +43,18 @@
     </select>
 
     <insert id="addUser" parameterType="com.zyyu.ucp.po.UserPo">
-        INSERT INTO tb_user(user_id,user_name,user_nickname,user_id_number,user_state,user_password,create_time,update_time,user_gender,user_realname,user_mobile_phone)
-               VALUES(#{userId},#{userName},#{nickName},#{idNumber},#{state},#{password},#{createTime},#{updateTime},#{gender},#{realName},#{mobilePhone})
+        INSERT INTO tb_user(id,user_name,user_nickname,user_id_number,user_state,user_password,create_time,update_time,user_gender,user_realname,user_mobile_phone,role_id)
+               VALUES(#{id},#{userName},#{nickName},#{idNumber},#{state},#{password},#{createTime},#{updateTime},#{gender},#{realName},#{mobilePhone},#{roleId})
     </insert>
 
     <update id="updateUser" parameterType="com.zyyu.ucp.po.UserPo" >
         UPDATE tb_user SET user_name=#{userName},user_password=#{password},user_nickname=#{nickName},user_id_number=#{idNumber},
                            user_realname=#{realName},user_mobile_phone=#{mobilePhone}
-        WHERE user_id=#{userId}
+        WHERE id=#{id}
     </update>
 
     <delete id="deleteUser" parameterType="com.zyyu.ucp.po.UserPo">
-        DELETE FROM tb_user WHERE user_id=#{userId}
+        DELETE FROM tb_user WHERE id=#{id}
     </delete>
 
 </mapper>

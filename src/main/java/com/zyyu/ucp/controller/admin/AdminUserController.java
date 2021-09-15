@@ -1,12 +1,16 @@
-package com.zyyu.ucp.controller;
+package com.zyyu.ucp.controller.admin;
 
 import com.zyyu.ucp.annotation.CurrUser;
 import com.zyyu.ucp.common.PageInfo;
 import com.zyyu.ucp.common.Result;
+import com.zyyu.ucp.controller.BaseController;
 import com.zyyu.ucp.enums.ResultEnum;
 import com.zyyu.ucp.po.UserPo;
 import com.zyyu.ucp.service.UserService;
 import com.zyyu.ucp.vo.LoginVo;
+import com.zyyu.ucp.vo.UserVo;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +43,9 @@ public class AdminUserController extends BaseController {
     }
 
     @PostMapping(value = "/update")
-    public Result updateUser(@CurrUser String userId,@RequestBody UserPo userPo){
+    public Result updateUser(@CurrUser String userId, @RequestBody UserVo userVo){
+        Mapper dozerMapper = new DozerBeanMapper();
+        UserPo userPo = dozerMapper.map(userVo,UserPo.class);
         int result = userService.updateUser(userPo);
         if(result==1){
             return success();
@@ -48,7 +54,9 @@ public class AdminUserController extends BaseController {
     }
 
     @PostMapping(value = "/add")
-    public Result userAdd(@RequestBody UserPo userPo){
+    public Result userAdd(@RequestBody UserVo userVo){
+        Mapper dozerMapper = new DozerBeanMapper();
+        UserPo userPo = dozerMapper.map(userVo,UserPo.class);
         int result = userService.addUser(userPo);
         if(result==1){
             return success();

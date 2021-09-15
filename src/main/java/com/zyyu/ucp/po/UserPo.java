@@ -9,9 +9,7 @@ import java.util.Date;
 /**
  * 用户
  */
-public class UserPo {
-    /**用户id*/
-    private Long userId;
+public class UserPo extends BasePo{
     /**用户名*/
     private String userName;
     /**密码*/
@@ -26,8 +24,6 @@ public class UserPo {
     private String realName;
     /**头像*/
     private String avatar;
-    /**年龄*/
-    private Integer age;
     /**生日*/
     private Date birthday;
     /**性别*/
@@ -36,20 +32,12 @@ public class UserPo {
     private String mobilePhone;
     /**邮箱*/
     private String email;
+    /**地址*/
+    private String address;
     /**个性签名*/
     private String slefWord;
-    /**创建时间*/
-    private Timestamp createTime;
-    /**更新时间*/
-    private Timestamp updateTime;
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+    /**角色id*/
+    private Long roleId;
 
     public String getUserName() {
         return userName;
@@ -115,14 +103,6 @@ public class UserPo {
         this.avatar = avatar;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     public Date getBirthday() {
         return birthday;
     }
@@ -147,6 +127,14 @@ public class UserPo {
         this.email = email;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getSlefWord() {
         return slefWord;
     }
@@ -155,19 +143,11 @@ public class UserPo {
         this.slefWord = slefWord;
     }
 
-    public Timestamp getCreateTime() {
-        return createTime;
+    public Long getRoleId() {
+        return roleId;
     }
 
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
-    }
-
-    public Timestamp getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 }
