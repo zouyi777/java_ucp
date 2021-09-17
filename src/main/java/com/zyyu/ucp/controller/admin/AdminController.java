@@ -26,7 +26,7 @@ public class AdminController extends BaseController {
 
     @PostMapping(value = "/home")
     public Result admin(@CurrUser String userId,@RequestBody LoginVo loginVO){
-        UserPo userPo = userService.getByUserId(Long.valueOf(userId));
+        UserPo userPo = userService.getById(Long.valueOf(userId));
         return success(userPo);
     }
 

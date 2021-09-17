@@ -7,6 +7,8 @@ import com.zyyu.ucp.common.Result;
 import com.zyyu.ucp.enums.ResultEnum;
 import com.zyyu.ucp.utils.JwtUtil;
 import com.zyyu.ucp.service.UserService;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +22,8 @@ public class AdminLoginController extends BaseController {
 
     @PostMapping(value = "/login")
     public Result login(@RequestBody LoginVo loginVO){
-        UserPo userPO = userService.loginIn(loginVO.getUsername(), loginVO.getPassword());
+        Mapper dozerMapper = new DozerBeanMapper();
+        UserPo userPO = userService.loginIn(dozerMapper.map(loginVO,UserPo.class));
         if(userPO !=null){
             return success(JwtUtil.getToken(String.valueOf(userPO.getId())));
         }else {

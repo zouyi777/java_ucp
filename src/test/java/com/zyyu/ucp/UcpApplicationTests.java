@@ -29,8 +29,8 @@ class UcpApplicationTests {
     }
 
     private void testLogin(){
-        UserPo userPO = userService.loginIn("zy1","123456");
-        System.out.println(userPO.toString());
+//        UserPo userPO = userService.loginIn("zy1","123456");
+//        System.out.println(userPO.toString());
     }
 
     private void testAddUser(){
@@ -47,7 +47,7 @@ class UcpApplicationTests {
             }else{
                 userPO.setGender(GenderEnum.FEMALE);
             }
-            userService.addUser(userPO);
+            userService.add(userPO);
         }
     }
 

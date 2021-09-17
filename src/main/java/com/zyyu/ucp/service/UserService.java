@@ -2,20 +2,13 @@ package com.zyyu.ucp.service;
 
 import com.zyyu.ucp.common.PageInfo;
 import com.zyyu.ucp.po.UserPo;
+import com.zyyu.ucp.vo.LoginVo;
 
 
-public interface UserService {
+public interface UserService extends BaseService<UserPo>{
 
-    UserPo loginIn(String name, String password);
-
-    int addUser(UserPo userPo);
-
-    UserPo getByUserId(Long userId);
+    UserPo loginIn(UserPo userPo);
 
     PageInfo getAllByPage(PageInfo pageInfo);
-
-    int deleteUser(Long userId);
-
-    int updateUser(UserPo userPo);
 
 }

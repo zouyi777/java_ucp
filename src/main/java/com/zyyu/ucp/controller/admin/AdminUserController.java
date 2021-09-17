@@ -29,13 +29,15 @@ public class AdminUserController extends BaseController {
 
     @GetMapping(value = "/detail")
     public Result userDetail(@RequestParam String userId){
-        UserPo userPo = userService.getByUserId(Long.valueOf(userId));
+        UserPo userPo = userService.getById(Long.valueOf(userId));
         return success(userPo);
     }
 
     @GetMapping(value = "/delete")
     public Result deleteUser(@RequestParam String userId){
-        int result = userService.deleteUser(Long.valueOf(userId));
+        UserPo userPo = new UserPo();
+        userPo.setId(Long.valueOf(userId));
+        int result = userService.delete(userPo);
         if(result==1){
             return success();
         }
@@ -46,7 +48,7 @@ public class AdminUserController extends BaseController {
     public Result updateUser(@CurrUser String userId, @RequestBody UserVo userVo){
         Mapper dozerMapper = new DozerBeanMapper();
         UserPo userPo = dozerMapper.map(userVo,UserPo.class);
-        int result = userService.updateUser(userPo);
+        int result = userService.update(userPo);
         if(result==1){
             return success();
         }
@@ -57,7 +59,7 @@ public class AdminUserController extends BaseController {
     public Result userAdd(@RequestBody UserVo userVo){
         Mapper dozerMapper = new DozerBeanMapper();
         UserPo userPo = dozerMapper.map(userVo,UserPo.class);
-        int result = userService.addUser(userPo);
+        int result = userService.add(userPo);
         if(result==1){
             return success();
         }

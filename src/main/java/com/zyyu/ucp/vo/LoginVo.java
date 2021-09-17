@@ -1,9 +1,11 @@
 package com.zyyu.ucp.vo;
 
 import com.zyyu.ucp.enums.GenderEnum;
+import org.dozer.Mapping;
 
 public class LoginVo {
 	/**用户名*/
+	@Mapping("userName")
 	private String username;
 	/**密码*/
 	private String password;

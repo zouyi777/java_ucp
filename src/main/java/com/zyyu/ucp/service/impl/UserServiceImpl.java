@@ -9,6 +9,7 @@ import com.zyyu.ucp.mapper.UserMapper;
 import com.zyyu.ucp.service.UserService;
 import com.zyyu.ucp.utils.DateTimeUtil;
 import com.zyyu.ucp.utils.UniqueKeyUtil;
+import com.zyyu.ucp.vo.LoginVo;
 import com.zyyu.ucp.vo.UserVo;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
@@ -29,25 +30,35 @@ public class UserServiceImpl implements UserService {
     private RoleMapper roleMapper;
 
     @Override
-    public UserPo loginIn(String name, String password) {
+    public UserPo loginIn(UserPo userPo) {
 
-        return userMapper.login(name,password);
+        return userMapper.login(userPo);
     }
 
     @Override
-    public int addUser(UserPo userPo) {
+    public int add(UserPo userPo) {
         userPo.setId(UniqueKeyUtil.getUniqueKey());
         userPo.setState(UserStateEnum.NORMAL);
         userPo.setCreateTime(DateTimeUtil.getCurDateTime());
         userPo.setUpdateTime(DateTimeUtil.getCurDateTime());
         userPo.setGender(GenderEnum.MAN);
         userPo.setRoleId(roleMapper.getByRoleCode("customer").getId());
-        return userMapper.addUser(userPo);
+        return userMapper.add(userPo);
     }
 
     @Override
-    public UserPo getByUserId(Long userId) {
-        return userMapper.getByUserId(userId);
+    public UserPo getById(Long userId) {
+        return userMapper.getById(userId);
+    }
+
+    @Override
+    public List<UserPo> getAll() {
+        return userMapper.getAll();
+    }
+
+    @Override
+    public Integer getTotalCount() {
+        return userMapper.getTotalCount();
     }
 
     @Override
@@ -56,7 +67,7 @@ public class UserServiceImpl implements UserService {
         if(pageInfo ==null){
             pageInfo = new PageInfo();
         }
-        pageInfo.setTotalCount(userMapper.getTotalCount());
+        pageInfo.setTotalCount(getTotalCount());
         List<UserPo> userPoList = userMapper.getAllByPage(pageInfo.getStartIndex(),pageInfo.getPageSize());
         if(userPoList!=null && userPoList.size()>0){
             Mapper dozerMapper = new DozerBeanMapper();
@@ -69,14 +80,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int deleteUser(Long userId) {
-        UserPo userPo =new UserPo();
-        userPo.setId(userId);
-        return userMapper.deleteUser(userPo);
+    public int delete(UserPo userPo) {
+        return userMapper.delete(userPo);
     }
 
     @Override
-    public int updateUser(UserPo userPo) {
-        return userMapper.updateUser(userPo);
+    public int update(UserPo userPo) {
+        return userMapper.update(userPo);
     }
 }
