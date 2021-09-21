@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zyyu.ucp.mapper.AdminMapper">
+
+    <resultMap type="com.zyyu.ucp.po.AdminPo" id="resultMap">
+        <id property="id" column="id"  />
+        <result property="adminName" column="admin_name"  />
+        <result property="adminPassword" column="admin_password"  />
+        <result property="adminState" column="admin_state"  />
+        <result property="roleId" column="role_id"  />
+        <result property="adminMobilePhone" column="admin_mobile_phone"  />
+        <result property="adminEmail" column="admin_email"  />
+        <result property="createTime" column="create_time"  />
+        <result property="updateTime" column="update_time"  />
+    </resultMap>
+
+    <select id="getById" parameterType="Long" resultMap="resultMap">
+        SELECT * FROM tb_admin WHERE id=#{id}
+    </select>
+
+    <select id="getAll"  resultMap="resultMap">
+        SELECT * FROM tb_admin
+    </select>
+
+    <select id="getAllByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMap">
+        SELECT * FROM tb_admin limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="getTotalCount"  resultType="Integer">
+        SELECT count(*) FROM tb_admin
+    </select>
+
+    <insert id="add" parameterType="com.zyyu.ucp.po.AdminPo">
+        INSERT INTO tb_admin(id,admin_name,admin_password,admin_state,role_id,admin_mobile_phone,admin_email,create_time,update_time)
+               VALUES(#{id},#{adminName},#{adminPassword},#{adminState},#{roleId},#{adminMobilePhone},#{adminEmail},#{createTime},#{updateTime})
+    </insert>
+
+    <update id="update" parameterType="com.zyyu.ucp.po.AdminPo" >
+        UPDATE tb_admin SET admin_name=#{adminName},admin_password=#{adminPassword},admin_state=#{adminState},role_id=#{roleId},
+                            admin_mobile_phone=#{adminMobilePhone},admin_email=#{adminEmail},create_time=#{createTime},update_time=#{updateTime}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="com.zyyu.ucp.po.AdminPo">
+        DELETE FROM tb_admin WHERE id=#{id}
+    </delete>
+
+    <select id="adminLogin" parameterType="com.zyyu.ucp.po.AdminPo" resultMap="resultMap">
+        SELECT * FROM tb_admin WHERE admin_name = #{adminName} AND admin_password = #{adminPassword}
+    </select>
+
+</mapper>

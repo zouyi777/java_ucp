@@ -24,8 +24,10 @@ class UcpApplicationTests {
     public void contextLoads() {
 //        testLogin();
 //        testGetByPage();
-        Long id =UniqueKeyUtil.getUniqueKey();
-        System.out.println(id);
+//        Long id =UniqueKeyUtil.getUniqueKey();
+//        System.out.println(id);
+
+        testAddUser();
     }
 
     private void testLogin(){
@@ -47,6 +49,11 @@ class UcpApplicationTests {
             }else{
                 userPO.setGender(GenderEnum.FEMALE);
             }
+            userPO.setNickName("易哥i");
+            userPO.setIdNumber("513002199105122554");
+            userPO.setRealName("邹易");
+            userPO.setMobilePhone("18215626820");
+            userPO.setEmail("18215626820@163.com");
             userService.add(userPO);
         }
     }

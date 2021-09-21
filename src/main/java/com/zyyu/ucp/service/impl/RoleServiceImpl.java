@@ -1,14 +1,17 @@
 package com.zyyu.ucp.service.impl;
 
+import com.zyyu.ucp.common.PageInfo;
 import com.zyyu.ucp.mapper.RoleMapper;
 import com.zyyu.ucp.po.RolePo;
 import com.zyyu.ucp.service.RoleService;
 import com.zyyu.ucp.utils.DateTimeUtil;
 import com.zyyu.ucp.utils.UniqueKeyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RoleServiceImpl implements RoleService {
 
     @Autowired
@@ -31,6 +34,16 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Integer getTotalCount() {
         return roleMapper.getTotalCount();
+    }
+
+    @Override
+    public PageInfo getAllByPage(PageInfo pageInfo) {
+        if(pageInfo ==null){
+            pageInfo = new PageInfo();
+        }
+        pageInfo.setTotalCount(getTotalCount());
+        pageInfo.setDataList(roleMapper.getAllByPage(pageInfo));
+        return pageInfo;
     }
 
     @Override

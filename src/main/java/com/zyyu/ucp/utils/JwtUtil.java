@@ -21,15 +21,19 @@ public class JwtUtil {
      */
     final static long TOKEN_EXP = 1000 * 60 * 20;
 
+    final static String CLAIMS_ROLE="role";
+
+
+
     /**
      * 获取 Token
      * @param userId
      * @return
      */
-    public static String getToken(String userId) {
+    public static String getToken(String userId,String role) {
         return Jwts.builder()
                 .setSubject(userId)
-                .claim("roles", "user")
+                .claim(CLAIMS_ROLE, role)
                 .setIssuedAt(new Date())
                 /*过期时间*/
                 .setExpiration(new Date(System.currentTimeMillis() + TOKEN_EXP))
@@ -40,15 +44,16 @@ public class JwtUtil {
     /**
      * @func 检查token, 只要不正确就会抛出异常
      */
-    public static TokenCheckEnum checkToken(String token){
+    public static TokenCheckEnum checkToken(String token,String role){
         try {
             final Claims claims = Jwts.parser().setSigningKey(base64EncodedSecretKey).parseClaimsJws(token).getBody();
-            return TokenCheckEnum.PASS;
+            if(claims!=null && role.equals(claims.get(CLAIMS_ROLE))){
+                return TokenCheckEnum.PASS;
+            }
         } catch (ExpiredJwtException e1) {
             return TokenCheckEnum.EXPIRED;
-        } catch (Exception e) {
-            return TokenCheckEnum.INVALID;
         }
+        return TokenCheckEnum.INVALID;
     }
 
     /**

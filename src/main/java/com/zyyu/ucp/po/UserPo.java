@@ -1,9 +1,8 @@
 package com.zyyu.ucp.po;
 
 import com.zyyu.ucp.enums.GenderEnum;
-import com.zyyu.ucp.enums.UserStateEnum;
+import com.zyyu.ucp.enums.AccountStateEnum;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -15,7 +14,7 @@ public class UserPo extends BasePo{
     /**密码*/
     private String password;
     /**用户状态*/
-    private UserStateEnum state;
+    private AccountStateEnum state;
     /**昵称*/
     private String nickName;
     /**身份证号码*/
@@ -63,11 +62,11 @@ public class UserPo extends BasePo{
         this.gender = gender;
     }
 
-    public UserStateEnum getState() {
+    public AccountStateEnum getState() {
         return state;
     }
 
-    public void setState(UserStateEnum state) {
+    public void setState(AccountStateEnum state) {
         this.state = state;
     }
 

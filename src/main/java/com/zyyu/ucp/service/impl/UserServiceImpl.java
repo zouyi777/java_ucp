@@ -2,14 +2,13 @@ package com.zyyu.ucp.service.impl;
 
 import com.zyyu.ucp.common.PageInfo;
 import com.zyyu.ucp.enums.GenderEnum;
-import com.zyyu.ucp.enums.UserStateEnum;
-import com.zyyu.ucp.mapper.RoleMapper;
+import com.zyyu.ucp.enums.AccountStateEnum;
 import com.zyyu.ucp.po.UserPo;
 import com.zyyu.ucp.mapper.UserMapper;
+import com.zyyu.ucp.service.RoleService;
 import com.zyyu.ucp.service.UserService;
 import com.zyyu.ucp.utils.DateTimeUtil;
 import com.zyyu.ucp.utils.UniqueKeyUtil;
-import com.zyyu.ucp.vo.LoginVo;
 import com.zyyu.ucp.vo.UserVo;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
@@ -27,7 +26,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Autowired
-    private RoleMapper roleMapper;
+    private RoleService roleService;
 
     @Override
     public UserPo loginIn(UserPo userPo) {
@@ -38,11 +37,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public int add(UserPo userPo) {
         userPo.setId(UniqueKeyUtil.getUniqueKey());
-        userPo.setState(UserStateEnum.NORMAL);
+        userPo.setState(AccountStateEnum.NORMAL);
         userPo.setCreateTime(DateTimeUtil.getCurDateTime());
         userPo.setUpdateTime(DateTimeUtil.getCurDateTime());
         userPo.setGender(GenderEnum.MAN);
-        userPo.setRoleId(roleMapper.getByRoleCode("customer").getId());
+        userPo.setRoleId(roleService.getByRoleCode("customer").getId());
         return userMapper.add(userPo);
     }
 
@@ -68,7 +67,7 @@ public class UserServiceImpl implements UserService {
             pageInfo = new PageInfo();
         }
         pageInfo.setTotalCount(getTotalCount());
-        List<UserPo> userPoList = userMapper.getAllByPage(pageInfo.getStartIndex(),pageInfo.getPageSize());
+        List<UserPo> userPoList = userMapper.getAllByPage(pageInfo);
         if(userPoList!=null && userPoList.size()>0){
             Mapper dozerMapper = new DozerBeanMapper();
             for(UserPo UserPo:userPoList){

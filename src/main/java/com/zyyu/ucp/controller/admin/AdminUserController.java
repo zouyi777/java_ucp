@@ -56,7 +56,7 @@ public class AdminUserController extends BaseController {
     }
 
     @PostMapping(value = "/add")
-    public Result userAdd(@RequestBody UserVo userVo){
+    public Result addUser(@RequestBody UserVo userVo){
         Mapper dozerMapper = new DozerBeanMapper();
         UserPo userPo = dozerMapper.map(userVo,UserPo.class);
         int result = userService.add(userPo);

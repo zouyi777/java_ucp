@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zyyu.ucp.mapper.RoleMapper">
 
-    <resultMap type="com.zyyu.ucp.po.RolePo" id="roleResultMap">
+    <resultMap type="com.zyyu.ucp.po.RolePo" id="resultMap">
         <id property="id" column="id"  />
         <result property="roleName" column="role_name"  />
         <result property="roleCode" column="role_code"  />
@@ -12,16 +12,16 @@
         <result property="updateTime" column="update_time"  />
     </resultMap>
 
-    <select id="getById" parameterType="Long" resultMap="roleResultMap">
+    <select id="getById" parameterType="Long" resultMap="resultMap">
         SELECT * FROM tb_role WHERE id=#{id}
     </select>
 
-    <select id="getByRoleCode" parameterType="String" resultMap="roleResultMap">
-        SELECT * FROM tb_role WHERE role_code=#{roleCode}
+    <select id="getAll"  resultMap="resultMap">
+        SELECT * FROM tb_role
     </select>
 
-    <select id="getAll"  resultMap="roleResultMap">
-        SELECT * FROM tb_role
+    <select id="getAllByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMap">
+        SELECT * FROM tb_role limit #{startIndex},#{pageSize}
     </select>
 
     <select id="getTotalCount"  resultType="Integer">
@@ -42,5 +42,9 @@
     <delete id="delete" parameterType="com.zyyu.ucp.po.RolePo">
         DELETE FROM tb_role WHERE id=#{id}
     </delete>
+
+    <select id="getByRoleCode" parameterType="String" resultMap="resultMap">
+        SELECT * FROM tb_role WHERE role_code=#{roleCode}
+    </select>
 
 </mapper>

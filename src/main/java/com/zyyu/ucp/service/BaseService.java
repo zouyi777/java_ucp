@@ -1,5 +1,7 @@
 package com.zyyu.ucp.service;
 
+import com.zyyu.ucp.common.PageInfo;
+
 import java.util.List;
 
 /**
@@ -19,4 +21,6 @@ public interface BaseService<T> {
     List<T> getAll();
 
     Integer getTotalCount();
+
+    PageInfo getAllByPage(PageInfo pageInfo);
 }

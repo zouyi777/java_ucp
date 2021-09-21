@@ -1,6 +1,5 @@
 package com.zyyu.ucp.vo;
 
-import com.zyyu.ucp.enums.GenderEnum;
 import org.dozer.Mapping;
 
 public class LoginVo {
@@ -9,8 +8,6 @@ public class LoginVo {
 	private String username;
 	/**密码*/
 	private String password;
-	/**性别*/
-	private GenderEnum gender;
 
 
 	public String getUsername() {
@@ -29,11 +26,4 @@ public class LoginVo {
 		this.password = password;
 	}
 
-	public GenderEnum getGender() {
-		return gender;
-	}
-
-	public void setGender(GenderEnum gender) {
-		this.gender = gender;
-	}
 }

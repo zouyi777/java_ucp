@@ -1,12 +1,13 @@
 package com.zyyu.ucp.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zyyu.ucp.constants.Constants;
-import com.zyyu.ucp.enums.TokenCheckEnum;
 import com.zyyu.ucp.common.Result;
+import com.zyyu.ucp.constants.Constants;
 import com.zyyu.ucp.enums.ResultEnum;
+import com.zyyu.ucp.enums.TokenCheckEnum;
 import com.zyyu.ucp.utils.JwtUtil;
 import org.springframework.web.servlet.HandlerInterceptor;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
  * 拦截器
  * @func 拦截token并验证，不通过则抛出异常
  */
-public class JwtInterceptor implements HandlerInterceptor {
+public class AdminJwtInterceptor implements HandlerInterceptor {
+
+    final static String ROLE_ADMINISTRATOR="administrator";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -24,7 +27,7 @@ public class JwtInterceptor implements HandlerInterceptor {
             response.getWriter().print(getResult(ResultEnum.UNAUTHORIZED));
             return false;
         }
-        TokenCheckEnum tokenCheckEnum = JwtUtil.checkToken(token);
+        TokenCheckEnum tokenCheckEnum = JwtUtil.checkToken(token,ROLE_ADMINISTRATOR);
         if(TokenCheckEnum.PASS.equals(tokenCheckEnum)){
             return true;
         }else if(TokenCheckEnum.EXPIRED.equals(tokenCheckEnum)){

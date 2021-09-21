@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zyyu.ucp.mapper.UserMapper">
 
-    <resultMap type="com.zyyu.ucp.po.UserPo" id="userResultMap">
+    <resultMap type="com.zyyu.ucp.po.UserPo" id="resultMap">
         <id property="id" column="id"  />
         <result property="userName" column="user_name"  />
         <result property="password" column="user_password"  />
@@ -22,19 +22,19 @@
         <result property="roleId" column="role_id"  />
     </resultMap>
 
-    <select id="login" parameterType="com.zyyu.ucp.po.UserPo" resultMap="userResultMap">
+    <select id="login" parameterType="com.zyyu.ucp.po.UserPo" resultMap="resultMap">
         SELECT * FROM tb_user WHERE user_name = #{userName} AND user_password = #{password}
     </select>
 
-    <select id="getById" parameterType="Long" resultMap="userResultMap">
+    <select id="getById" parameterType="Long" resultMap="resultMap">
         SELECT * FROM tb_user WHERE id = #{id}
     </select>
 
-    <select id="getAll"  resultMap="userResultMap">
+    <select id="getAll"  resultMap="resultMap">
         SELECT * FROM tb_user
     </select>
 
-    <select id="getAllByPage" parameterType="Integer" resultMap="userResultMap">
+    <select id="getAllByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMap">
         SELECT * FROM tb_user limit #{startIndex},#{pageSize}
     </select>
 

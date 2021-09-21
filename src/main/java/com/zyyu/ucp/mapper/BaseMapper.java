@@ -1,5 +1,6 @@
 package com.zyyu.ucp.mapper;
 
+import com.zyyu.ucp.common.PageInfo;
 import com.zyyu.ucp.po.BasePo;
 import java.util.List;
 
@@ -18,6 +19,8 @@ public interface BaseMapper<T extends BasePo> {
     T getById(Long id);
 
     List<T> getAll();
+
+    List<T> getAllByPage(PageInfo pageInfo);
 
     Integer getTotalCount();
 

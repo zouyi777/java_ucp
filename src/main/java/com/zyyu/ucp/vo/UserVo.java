@@ -1,7 +1,7 @@
 package com.zyyu.ucp.vo;
 
 import com.zyyu.ucp.enums.GenderEnum;
-import com.zyyu.ucp.enums.UserStateEnum;
+import com.zyyu.ucp.enums.AccountStateEnum;
 import org.dozer.Mapping;
 
 import java.util.Date;
@@ -15,7 +15,7 @@ public class UserVo extends BaseVo{
 	/**密码*/
 	private String password;
 	/**用户状态*/
-	private UserStateEnum state;
+	private AccountStateEnum state;
 	/**昵称*/
 	private String nickName;
 	/**身份证号码*/
@@ -71,11 +71,11 @@ public class UserVo extends BaseVo{
 		this.gender = gender;
 	}
 
-	public UserStateEnum getState() {
+	public AccountStateEnum getState() {
 		return state;
 	}
 
-	public void setState(UserStateEnum state) {
+	public void setState(AccountStateEnum state) {
 		this.state = state;
 	}
 
