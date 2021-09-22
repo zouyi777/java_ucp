@@ -10,5 +10,5 @@ import java.lang.annotation.*;
 @Target(ElementType.PARAMETER)// 作用于方法里的参数上
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface CurrUser {
+public @interface CurrAccount {
 }

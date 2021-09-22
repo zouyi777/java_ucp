@@ -19,9 +19,9 @@ public enum ResultEnum {
     /**账号不存在或密码错误*/
     ACCOUNT_NON_EXIST(30001,"账号不存在或密码错误"),
     /**Token过期*/
-    TOKEN_EXPIRED(3002,"令牌过期"),
+    TOKEN_EXPIRED(3002,"登录过期"),
     /**非法Token*/
-    TOKEN_INVALID(3003,"非法令牌");
+    TOKEN_INVALID(3003,"非法访问");
 
     /**状态码*/
     private int code;

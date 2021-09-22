@@ -6,6 +6,7 @@
         <id property="id" column="id"  />
         <result property="adminName" column="admin_name"  />
         <result property="adminPassword" column="admin_password"  />
+        <result property="adminNickName" column="admin_nickname"  />
         <result property="adminState" column="admin_state"  />
         <result property="roleId" column="role_id"  />
         <result property="adminMobilePhone" column="admin_mobile_phone"  />
@@ -31,12 +32,12 @@
     </select>
 
     <insert id="add" parameterType="com.zyyu.ucp.po.AdminPo">
-        INSERT INTO tb_admin(id,admin_name,admin_password,admin_state,role_id,admin_mobile_phone,admin_email,create_time,update_time)
-               VALUES(#{id},#{adminName},#{adminPassword},#{adminState},#{roleId},#{adminMobilePhone},#{adminEmail},#{createTime},#{updateTime})
+        INSERT INTO tb_admin(id,admin_name,admin_password,admin_nickname,admin_state,role_id,admin_mobile_phone,admin_email,create_time,update_time)
+               VALUES(#{id},#{adminName},#{adminPassword},#{adminNickName},#{adminState},#{roleId},#{adminMobilePhone},#{adminEmail},#{createTime},#{updateTime})
     </insert>
 
     <update id="update" parameterType="com.zyyu.ucp.po.AdminPo" >
-        UPDATE tb_admin SET admin_name=#{adminName},admin_password=#{adminPassword},admin_state=#{adminState},role_id=#{roleId},
+        UPDATE tb_admin SET admin_name=#{adminName},admin_password=#{adminPassword},admin_nickname=#{adminNickName},admin_state=#{adminState},role_id=#{roleId},
                             admin_mobile_phone=#{adminMobilePhone},admin_email=#{adminEmail},create_time=#{createTime},update_time=#{updateTime}
         WHERE id=#{id}
     </update>

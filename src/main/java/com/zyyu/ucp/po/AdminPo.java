@@ -9,11 +9,11 @@ import com.zyyu.ucp.enums.AccountStateEnum;
 public class AdminPo extends BasePo{
     private String adminName;
     private String adminPassword;
+    private String adminNickName;
     private AccountStateEnum adminState;
     private Long roleId;
     private Long adminMobilePhone;
     private Long adminEmail;
-
 
     public String getAdminName() {
         return adminName;
@@ -31,6 +31,13 @@ public class AdminPo extends BasePo{
         this.adminPassword = adminPassword;
     }
 
+    public String getAdminNickName() {
+        return adminNickName;
+    }
+
+    public void setAdminNickName(String adminNickName) {
+        this.adminNickName = adminNickName;
+    }
     public AccountStateEnum getAdminState() {
         return adminState;
     }

@@ -2,18 +2,16 @@ package com.zyyu.ucp.controller.admin;
 
 import com.zyyu.ucp.ServerConfig;
 import com.zyyu.ucp.UcpConfig;
-import com.zyyu.ucp.annotation.CurrUser;
+import com.zyyu.ucp.annotation.CurrAccount;
 import com.zyyu.ucp.controller.BaseController;
 import com.zyyu.ucp.enums.ResultEnum;
 import com.zyyu.ucp.po.AdminPo;
 import com.zyyu.ucp.po.RolePo;
-import com.zyyu.ucp.po.UserPo;
 import com.zyyu.ucp.service.AdminService;
 import com.zyyu.ucp.service.RoleService;
 import com.zyyu.ucp.utils.JwtUtil;
 import com.zyyu.ucp.utils.SysInfoUtil;
 import com.zyyu.ucp.vo.AdminLoginVo;
-import com.zyyu.ucp.vo.LoginVo;
 import com.zyyu.ucp.common.Result;
 import com.zyyu.ucp.vo.SystemInfoVo;
 import org.dozer.DozerBeanMapper;
@@ -34,14 +32,14 @@ public class AdminController extends BaseController {
     @Autowired
     private RoleService roleService;
 
-    @PostMapping(value = "/home")
-    public Result admin(@CurrUser String userId,@RequestBody LoginVo loginVO){
-        AdminPo adminPo = adminService.getById(Long.valueOf(userId));
+    @GetMapping(value = "/home")
+    public Result admin(@CurrAccount String adminId){
+        AdminPo adminPo = adminService.getById(Long.valueOf(adminId));
         return success(adminPo);
     }
 
     @GetMapping(value = "/sys_info")
-    public Result getSysInfo(@CurrUser String userId){
+    public Result getSysInfo(){
         SystemInfoVo systemInfoVo = SysInfoUtil.property();
         systemInfoVo.setServerIP(serverConfig.getHost());
         systemInfoVo.setLocalPort(serverConfig.getServerPort());

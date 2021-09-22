@@ -1,6 +1,6 @@
 package com.zyyu.ucp.security;
 
-import com.zyyu.ucp.annotation.CurrUser;
+import com.zyyu.ucp.annotation.CurrAccount;
 import com.zyyu.ucp.constants.Constants;
 import com.zyyu.ucp.utils.JwtUtil;
 import org.springframework.core.MethodParameter;
@@ -24,7 +24,7 @@ public class CurrUserArgumentResolver implements HandlerMethodArgumentResolver {
      */
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
-        if (methodParameter.hasParameterAnnotation(CurrUser.class)) {
+        if (methodParameter.hasParameterAnnotation(CurrAccount.class)) {
             return true;
         }
         return false;

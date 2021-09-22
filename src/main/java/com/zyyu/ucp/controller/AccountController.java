@@ -1,6 +1,6 @@
 package com.zyyu.ucp.controller;
 
-import com.zyyu.ucp.annotation.CurrUser;
+import com.zyyu.ucp.annotation.CurrAccount;
 import com.zyyu.ucp.common.Result;
 import com.zyyu.ucp.po.UserPo;
 import com.zyyu.ucp.service.UserService;
@@ -15,7 +15,7 @@ public class AccountController extends BaseController {
     UserService userService;
 
     @GetMapping(value = "/home")
-    public Result login(@CurrUser String userId){
+    public Result login(@CurrAccount String userId){
         UserPo userPo = userService.getById(Long.valueOf(userId));
         return success(userPo);
     }

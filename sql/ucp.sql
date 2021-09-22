@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2021-09-21 21:56:24
+Date: 2021-09-22 22:27:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,19 +23,20 @@ CREATE TABLE `tb_admin` (
   `id` bigint(20) NOT NULL,
   `admin_name` varchar(30) DEFAULT NULL COMMENT '用户名',
   `admin_password` varchar(128) DEFAULT NULL COMMENT '密码',
-  `admin_state` smallint(6) DEFAULT NULL COMMENT '状态：正常、禁用，对应java的枚举类型',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `role_id` bigint(20) NOT NULL,
+  `admin_nickname` varchar(30) DEFAULT NULL,
   `admin_mobile_phone` varchar(20) DEFAULT NULL COMMENT '手机号码',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `admin_email` varchar(128) DEFAULT NULL COMMENT '邮箱',
+  `admin_state` smallint(6) DEFAULT NULL COMMENT '状态：正常、禁用，对应java的枚举类型',
+  `role_id` bigint(20) unsigned NOT NULL,
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_admin
 -- ----------------------------
-INSERT INTO `tb_admin` VALUES ('1631694462743', 'admin-zy', '123456', '1', '2021-09-13 16:28:48', '2021-09-13 16:28:48', '1631692579832', '18215626820', '185964885@qq.com');
+INSERT INTO `tb_admin` VALUES ('1631694462743', 'admin-zy', '123456', '系统管理员', '18215626820', '2021-09-13 16:28:48', '185964885@qq.com', '1', '1631692579832', '2021-09-13 16:28:48');
 
 -- ----------------------------
 -- Table structure for `tb_right`
