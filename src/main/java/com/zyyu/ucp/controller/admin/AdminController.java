@@ -9,15 +9,21 @@ import com.zyyu.ucp.po.AdminPo;
 import com.zyyu.ucp.po.RolePo;
 import com.zyyu.ucp.service.AdminService;
 import com.zyyu.ucp.service.RoleService;
+import com.zyyu.ucp.service.UserService;
 import com.zyyu.ucp.utils.JwtUtil;
 import com.zyyu.ucp.utils.SysInfoUtil;
 import com.zyyu.ucp.vo.AdminLoginVo;
 import com.zyyu.ucp.common.Result;
+import com.zyyu.ucp.vo.AdminVo;
 import com.zyyu.ucp.vo.SystemInfoVo;
+import com.zyyu.ucp.vo.TopCardVo;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/admin")
@@ -31,6 +37,8 @@ public class AdminController extends BaseController {
     private UcpConfig ucpConfig;
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping(value = "/home")
     public Result admin(@CurrAccount String adminId){
@@ -38,14 +46,30 @@ public class AdminController extends BaseController {
         return success(adminPo);
     }
 
-    @GetMapping(value = "/sys_info")
-    public Result getSysInfo(){
+    @GetMapping(value = "/member_show")
+    public Result memberShow(@CurrAccount String adminId){
+        AdminPo adminPo = adminService.getById(Long.valueOf(adminId));
+        Mapper dozerMapper = new DozerBeanMapper();
+        AdminVo adminVo = dozerMapper.map(adminPo, AdminVo.class);
+        return success(adminVo);
+    }
+
+    @GetMapping(value = "/dashboard")
+    public Result dashboard(){
+        Map<String,Object> map = new HashMap();
+        //顶部统计卡片
+        TopCardVo topCardVo = new TopCardVo();
+        topCardVo.setUserCount(userService.getTotalCount());
+        map.put("topCardVo",topCardVo);;
+        //服务器信息
         SystemInfoVo systemInfoVo = SysInfoUtil.property();
         systemInfoVo.setServerIP(serverConfig.getHost());
         systemInfoVo.setLocalPort(serverConfig.getServerPort());
         String  dd =ucpConfig.getDatasourceUrl();
-        return success(systemInfoVo);
+        map.put("systemInfoVo",systemInfoVo);
+        return success(map);
     }
+
 
     @PostMapping(value = "/login")
     public Result login(@RequestBody AdminLoginVo adminLoginVo){
