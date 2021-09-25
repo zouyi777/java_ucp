@@ -12,5 +12,7 @@ mybatis:
   type-handlers-package=: com.zyyu.ucp.handler #配置java枚举自动转换存入
 
 server:
+  port: 8083
   servlet:
     context-path: /ucp #统一根路径
+

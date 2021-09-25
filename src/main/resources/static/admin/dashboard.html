@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>
+        后台管理系统
+    </title>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="./css/x-admin.css" media="all"/>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css" media="all"/>
+</head>
+<body>
+<style type="text/css">
+    legend {
+        display: block;
+        width: 100px;
+        border-bottom: 0px;
+        font-family: "Microsoft YaHei", "Helvetica Neue";
+    }
+
+    legend a {
+        color: #666;
+    }
+
+    legend a:hover {
+        text-decoration: none;
+    }
+
+    .layui-table {
+        font-family: "Microsoft YaHei", "Helvetica Neue";
+    }
+</style>
+<div class="x-body">
+    <div class="row" style="padding:20px 0">
+        <div class="col-xs-7 col-sm-5 col-md-3">
+            <section class="panel bgys">
+                <div class="symbol bgcolor-blue ">
+                    <i class="fa iconfont"></i>
+                </div>
+                <div class="value tab-menu" bind="1">
+                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="用户总数">
+                        <i class="iconfont " data-icon=""></i>
+                        <h1 id="userCount">0</h1>
+                    </a>
+                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="用户总数">
+                        <i class="iconfont " data-icon=""></i><span>用户总数</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+        <div class="col-xs-7 col-sm-5 col-md-3 ">
+            <section class="panel bgys">
+                <div class="symbol bgcolor-commred">
+                    <i class="fa fa-handshake-o"></i>
+                </div>
+                <div class="value tab-menu" bind="1">
+                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="日活跃数">
+                        <i class="iconfont " data-icon=""></i>
+                        <h1 id="dailyActiveCount">0</h1>
+                    </a>
+                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="日活跃数">
+                        <i class="iconfont " data-icon=""></i><span>日活跃数</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+        <div class="col-xs-7 col-sm-5 col-md-3 ">
+            <section class="panel bgys">
+                <div class="symbol bgcolor-dark-green">
+                    <i class="fa  iconfont"></i>
+                </div>
+                <div class="value tab-menu" bind="1">
+                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="作品总数">
+                        <i class="iconfont " data-icon=""></i>
+                        <h1 id="worksCount">0</h1>
+                    </a>
+                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="作品总数">
+                        <i class="iconfont " data-icon=""></i><span>作品总数</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+        <div class="col-xs-7 col-sm-5 col-md-3 ">
+            <section class="panel bgys">
+                <div class="symbol bgcolor-yellow-green">
+                    <i class="fa fa-cubes iconfont"></i>
+                </div>
+                <div class="value tab-menu" bind="1">
+                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="今日新增">
+                        <i class="iconfont " data-icon=""></i>
+                        <h1 id="noticeCount">0</h1>
+                    </a>
+                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="今日新增">
+                        <i class="iconfont " data-icon=""></i><span>公告总数</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!--相关统计-->
+    <div class="row" style="padding:20px 0">
+        <div class="col-sm-4">
+            <section class="panel">
+                <div class="panel-heading">
+                    一周统计
+                </div>
+                <div class="panel-body">
+                    <div class="echarts" id="main" style="height:300px; height:350px"></div>
+                </div>
+            </section>
+        </div>
+        <div class="col-sm-4">
+            <section class="panel">
+                <div class="panel-heading">
+                    作品类型统计
+                </div>
+                <div class="panel-body">
+                    <div class="echarts" id="area" style="height:300px; height:350px"></div>
+                </div>
+            </section>
+        </div>
+        <div class="col-sm-4">
+            <section class="panel">
+                <div class="panel-heading">
+                    作品年度统计
+                </div>
+                <div class="panel-body">
+                    <div class="echarts" id="years" style="height:300px; height:350px"></div>
+                </div>
+            </section>
+        </div>
+        <div class="col-sm-12" style="margin-top:16px">
+            <section class="panel">
+                <div class="panel-heading">
+                    服务器信息
+                </div>
+                <div class="panel-body">
+                    <table class="table table-border table-bordered table-bg mt-20">
+                        <tbody>
+                        <tr>
+                            <th>用户名</th>
+                            <td id="userName"></td>
+                            <td>服务器计算机名</td>
+                            <td id="computerName"></td>
+                        </tr>
+                        <tr>
+                            <td>服务器ip</td>
+                            <td id="serverIP"></td>
+                            <td>服务器域名 </td>
+                            <td id="domain"></td>
+                        </tr>
+                        <tr>
+                            <td>服务器端口 </td>
+                            <td id="localPort"></td>
+                            <td>Java运行环境版本 </td>
+                            <td id="javaVersion"></td>
+                        </tr>
+                        <tr>
+                            <td>Java运行环境供应商 </td>
+                            <td id="javaVendor"></td>
+                            <td>Java的安装路径 </td>
+                            <td id="javaHome"></td>
+                        </tr>
+                        <tr>
+                            <td>JVM可使用的总内存 </td>
+                            <td id="javaTotalMemory"></td>
+                            <td>JVM可使用的剩余内存 </td>
+                            <td id="javaFreeMemory"></td>
+                        </tr>
+                        <tr>
+                            <td>应用服务器 </td>
+                            <td id="appServer"></td>
+                            <td>数据库类型 </td>
+                            <td id="dbType"></td>
+                        </tr>
+                        <tr>
+                            <td>操作系统 </td>
+                            <td id="os"></td>
+                            <td>操作系统版本 </td>
+                            <td id="osVsersion"></td>
+                        </tr>
+                        <tr>
+                            <td>当前工作目录 </td>
+                            <td id="workDir"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <div class="layui-footer footer footer-demo">
+                <div class="layui-main">
+                    <p> Copyright &copy;2021  All Rights Reserved.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="./lib/layui/layui.js" charset="utf-8"></script>
+<script src="./js/echarts.min.js"></script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/x-layui.js" charset="utf-8"></script>
+<script src="./js/ucp-ajax.js" charset="utf-8"></script>
+<script src="./js/dashboard.js" charset="utf-8"></script>
+</body>
+</html>

@@ -19,6 +19,8 @@ import com.zyyu.ucp.vo.SystemInfoVo;
 import com.zyyu.ucp.vo.TopCardVo;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +30,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/admin")
 public class AdminController extends BaseController {
-
+    private Logger logger = LoggerFactory.getLogger(AdminController.class);
     @Autowired
     private AdminService adminService;
     @Autowired
@@ -76,6 +78,7 @@ public class AdminController extends BaseController {
         Mapper dozerMapper = new DozerBeanMapper();
         AdminPo adminPo = adminService.adminLoginIn(dozerMapper.map(adminLoginVo,AdminPo.class));
         if(adminPo !=null){
+            logger.info("登录成功");
             RolePo rolePo = roleService.getById(adminPo.getRoleId());
             return success(JwtUtil.getToken(String.valueOf(adminPo.getId()),rolePo.getRoleCode()));
         }else {
