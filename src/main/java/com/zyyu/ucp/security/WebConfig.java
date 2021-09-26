@@ -1,12 +1,16 @@
 package com.zyyu.ucp.security;
 
 import com.zyyu.ucp.resolver.CurrUserArgumentResolver;
+import com.zyyu.ucp.utils.FileHandleUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -14,7 +18,7 @@ import java.util.List;
  */
 @Configuration
 public class WebConfig<addResourceHandlers> extends WebMvcConfigurationSupport {
-
+    private Logger logger = LoggerFactory.getLogger(WebConfig.class);
      /**
       * 设置允许跨域
       * @param registry
@@ -57,11 +61,13 @@ public class WebConfig<addResourceHandlers> extends WebMvcConfigurationSupport {
      */
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        String uploadPath = "file:"+ FileHandleUtil.getUploadPath()+File.separator;
         //配置静态资源处理
         registry.addResourceHandler("/res/**")
                 .addResourceLocations("resources/", "static/", "public/","META-INF/resources/")
                 .addResourceLocations("classpath:resources/", "classpath:static/","classpath:public/",
                                       "classpath:META-INF/resources/","classpath:upload/")
-                .addResourceLocations("file:static/");
+                .addResourceLocations(uploadPath);
+        logger.info("uploadPath="+uploadPath);
     }
 }

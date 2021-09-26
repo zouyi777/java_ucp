@@ -24,11 +24,7 @@ public class UpLoadController extends BaseController{
             for (int i = 0; i < files.length; i++) {
                 if (files[i] != null) {
                     //调用上传方法
-                    //文件后缀名
-                    String suffix = files[i].getOriginalFilename().substring(files[i].getOriginalFilename().lastIndexOf("."));
-                    //上传文件名
-                    String filename = UUID.randomUUID() + suffix;
-                    resultPath = "文件存放路径为" + FileHandleUtil.upload(files[i].getInputStream(), "image/", filename);
+                    resultPath = "文件存放路径为:" + FileHandleUtil.upload(files[i]);
                 }
             }
         } catch (Exception e) {

@@ -10,6 +10,7 @@ import com.zyyu.ucp.po.RolePo;
 import com.zyyu.ucp.service.AdminService;
 import com.zyyu.ucp.service.RoleService;
 import com.zyyu.ucp.service.UserService;
+import com.zyyu.ucp.utils.FileHandleUtil;
 import com.zyyu.ucp.utils.JwtUtil;
 import com.zyyu.ucp.utils.SysInfoUtil;
 import com.zyyu.ucp.vo.AdminLoginVo;
@@ -67,7 +68,7 @@ public class AdminController extends BaseController {
         SystemInfoVo systemInfoVo = SysInfoUtil.property();
         systemInfoVo.setServerIP(serverConfig.getHost());
         systemInfoVo.setLocalPort(serverConfig.getServerPort());
-        String  dd =ucpConfig.getDatasourceUrl();
+        systemInfoVo.setFileUploadPath(FileHandleUtil.getUploadPath());
         map.put("systemInfoVo",systemInfoVo);
         return success(map);
     }

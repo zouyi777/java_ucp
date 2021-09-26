@@ -31,6 +31,8 @@ public class SystemInfoVo {
      private String osVsersion;
      /**当前工作目录*/
      private String workDir;
+     /**文件上传目录*/
+     private String fileUploadPath;
 
      public String getUserName() {
           return userName;
@@ -146,5 +148,13 @@ public class SystemInfoVo {
 
      public void setWorkDir(String workDir) {
           this.workDir = workDir;
+     }
+
+     public String getFileUploadPath() {
+          return fileUploadPath;
+     }
+
+     public void setFileUploadPath(String fileUploadPath) {
+          this.fileUploadPath = fileUploadPath;
      }
 }

@@ -1,77 +1,57 @@
 package com.zyyu.ucp.utils;
 
-import org.springframework.util.ResourceUtils;
+import org.springframework.boot.system.ApplicationHome;
 import org.apache.commons.io.FileUtils;
+import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.UUID;
 
 public class FileHandleUtil {
 
-    /** 绝对路径 **/
-    private static String absolutePath = "";
-
-    /** 静态目录 **/
-    private static String staticDir = "static";
-
     /** 文件存放的目录 **/
-    private static String fileDir = "/upload/";
+    private static final  String uploaDir = "upload";
 
     /**
      * 上传单个文件
-     * 最后文件存放路径为：static/upload/image/test.jpg
-     * 文件访问路径为：http://127.0.0.1:8080/upload/image/test.jpg
-     * 该方法返回值为：/upload/image/test.jpg
-     * @param inputStream 文件流
-     * @param path 文件路径，如：image/
-     * @param filename 文件名，如：test.jpg
      * @return 成功：上传后的文件访问路径，失败返回：null
      */
-    public static String upload(InputStream inputStream, String path, String filename) throws FileNotFoundException {
-        System.out.println(ResourceUtils.getURL("classpath:").getPath());
-        File jarfile = new File(ResourceUtils.getURL("classpath:").getPath());
-        System.out.println(jarfile.getParent());
-        //第一次会创建文件夹
-        createDirIfNotExists();
+    public static String upload(MultipartFile uploadFile) throws Exception {
 
-        String resultPath = fileDir + path + filename;
-
-        //存文件
-        File uploadFile = new File(absolutePath, staticDir + resultPath);
-        try {
-            FileUtils.copyInputStreamToFile(inputStream, uploadFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+        //在部署的jar的父目录下新建upload目录（也即使和jar包同级）
+        String saveFilePath = File.separator+"image"+File.separator;
+        File uploadDir = new File(getUploadPath(), saveFilePath);
+        if(!uploadDir.exists()) {
+            uploadDir.mkdirs();
         }
-        String finPath = absolutePath+"/"+staticDir + resultPath;
-        return finPath;
+        //文件后缀名
+        String suffix = uploadFile.getOriginalFilename().substring(uploadFile.getOriginalFilename().lastIndexOf("."));
+        //上传文件名
+        String filename = UUID.randomUUID() + suffix;
+        //存文件
+        File saveFile = new File(uploadDir.getAbsolutePath(), filename);
+        FileUtils.copyInputStreamToFile(uploadFile.getInputStream(), saveFile);
+        return saveFile.getAbsolutePath();
     }
 
     /**
-     * 创建文件夹路径
+     * 获取部署的jar的父目录
+     * @return
      */
-    private static void createDirIfNotExists() {
-        if (!absolutePath.isEmpty()) {return;}
-
-        //获取跟目录
-        File file = null;
-        try {
-            file = new File(ResourceUtils.getURL("classpath:").getPath());
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("获取根目录失败，无法创建上传目录！");
+    public static String getJARootPath(){
+        String jarParentPath = "";
+        ApplicationHome applicationHome = new ApplicationHome(FileHandleUtil.class);
+        if(applicationHome.getSource()!=null){
+            jarParentPath = applicationHome.getSource().getParent();
         }
-        if(!file.exists()) {
-            file = new File("");
-        }
+        return jarParentPath;
+    }
 
-        absolutePath = file.getAbsolutePath();
-
-        File upload = new File(absolutePath, staticDir + fileDir);
-        if(!upload.exists()) {
-            upload.mkdirs();
-        }
+    /**
+     * 获取上传文件目录
+     * @return
+     */
+    public static String getUploadPath(){
+        return getJARootPath()+File.separator + uploaDir;
     }
 
     /**
@@ -80,7 +60,7 @@ public class FileHandleUtil {
      * @return true 删除成功； false 删除失败
      */
     public static boolean delete(String path) {
-        File file = new File(absolutePath, staticDir + path);
+        File file = new File(getUploadPath(), path);
         if (file.exists()) {
             return file.delete();
         }
