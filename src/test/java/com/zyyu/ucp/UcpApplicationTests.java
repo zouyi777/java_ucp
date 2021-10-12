@@ -27,7 +27,7 @@ class UcpApplicationTests {
 //        Long id =UniqueKeyUtil.getUniqueKey();
 //        System.out.println(id);
 
-        testAddUser();
+//        testAddUser();
     }
 
     private void testLogin(){

@@ -8,8 +8,8 @@
     const REQUEST_POST = 'post';
     const DATATYPE = 'json';
     const CONTENTTYPE = 'application/json;charset=UTF-8';
-    const ADMIN_LOGIN_URL = './login-admin.html';
-    const LOGIN_URL = './login-admin.html';
+    const ADMIN_LOGIN_URL = '../login-admin.html';
+    const LOGIN_URL = '../login-admin.html';
 
     let AjaxRequest = function(){
         /**

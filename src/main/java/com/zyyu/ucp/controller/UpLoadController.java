@@ -2,9 +2,8 @@ package com.zyyu.ucp.controller;
 
 import com.zyyu.ucp.common.Result;
 import com.zyyu.ucp.utils.FileHandleUtil;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.stereotype.Controller;
-import org.springframework.util.ResourceUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,7 +14,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/upload")
 public class UpLoadController extends BaseController{
-
+    private Logger logger = LoggerFactory.getLogger(UpLoadController.class);
     @PostMapping("/upload")
     public Result uploads(HttpServletRequest request, MultipartFile[] files) {
         String resultPath=null;
@@ -28,8 +27,7 @@ public class UpLoadController extends BaseController{
                 }
             }
         } catch (Exception e) {
-            //打印错误堆栈信息
-            e.printStackTrace();
+            logger.error("上传失败",e);
             return fail("上传失败");
         }
         return success(resultPath);

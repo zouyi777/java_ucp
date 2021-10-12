@@ -8,7 +8,7 @@ public class PageInfo {
     /**开始位置*/
     private Integer startIndex=0;
     /**每页条数*/
-    private Integer pageSize=10;
+    private Integer pageSize=5;
     /**总条数*/
     private Integer totalCount;
     /**总页数*/

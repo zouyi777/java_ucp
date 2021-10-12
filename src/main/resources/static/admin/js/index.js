@@ -62,7 +62,7 @@ function init(){
 function initEvent() {
 
     $("#admin-info").click(function () {
-        x_admin_show(adminHomeObj.adminNickName,'member-show.html','600','360','400');
+        x_admin_show(adminHomeObj.adminNickName,'user/user-show.html','600','360','400');
     });
 
     //退出

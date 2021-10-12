@@ -238,5 +238,6 @@ function renderSystemInfoVo(systemInfoVo) {
         $("#os").text(systemInfoVo.os);
         $("#osVsersion").text(systemInfoVo.osVsersion);
         $("#workDir").text(systemInfoVo.workDir);
+        $("#fileUploadPath").text(systemInfoVo.fileUploadPath);
     }
 }
