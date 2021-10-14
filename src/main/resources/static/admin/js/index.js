@@ -9,7 +9,7 @@ $(document).ready(function(){
         layer = layui.layer;//弹出层
         //以上模块根据需要引入
     });
-    intTopTime();
+    //intTopTime();
     init();//主页初始化
     initEvent();//初始化事件
 });
