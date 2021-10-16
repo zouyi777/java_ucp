@@ -97,36 +97,86 @@ function renderData(result){
  */
 function initEvent(){
     /**
-     * 穿透到详情
+     * 批量删除
+     */
+    $("#multiDelete").click(function () {
+        layer.confirm('确认要删除吗？', {icon: 3, title: '提示信息'}, function (index) {
+            //捉到所有被选中的，发异步进行删除
+            layer.msg('删除成功', {icon: 1});
+        });
+    });
+    /**
+     * 添加用户弹框
+     */
+    $("#addUser").click(function () {
+        x_admin_show('添加用户','user-add.html','600','500');
+    });
+    /**
+     * 穿透详情
      */
     $(".userItem").bind('click',function () {
         let userId = $(this).attr("data-id");
-        let url = "./user-detail.html";
-        let param = {
-            "userId":userId,
-            "isEdit":false
-        }
-        ucp.common.next(url,param);
+        x_admin_show('张三','user-detail.html','600','500');
     });
-}
 
-
-/**
- * 删除用户
- * @param id
- */
-function deleteUser(userId){
-    let options = {
-        url:'/admin/user/delete?userId='+userId,
-        onSuccess:function (res) {
-            initData(curPage);
-        },
-        onFailure:function (res) {
-            alert(res.message);
+    /**
+     * 用户状态启用或停用
+     */
+    $(".userStartOrStop").bind('click',function () {
+        let $this = $(this);
+        let userId = $this.attr("data-id");
+        let statusEle = $this.parents("tr").find(".td-status span");
+        if(statusEle.hasClass('layui-btn-disabled')){//如果已停用
+            layer.confirm('确认要启用吗？', function (index) {
+                $this.html('<i class="layui-icon">&#xe601;</i>');
+                $this.attr('title','停用');
+                statusEle.removeClass('layui-btn-disabled');
+                statusEle.addClass('layui-btn-normal');
+                layer.msg('已启用!', {icon: 6, time: 1000});
+            });
+        }else if(statusEle.hasClass('layui-btn-normal')){//如果已启用
+            layer.confirm('确认要停用吗？', function (index) {
+                $this.html('<i class="layui-icon">&#xe62f;</i>');
+                $this.attr('title','启用');
+                statusEle.removeClass('layui-btn-normal');
+                statusEle.addClass('layui-btn-disabled');
+                layer.msg('已停用!', {icon: 6, time: 1000});
+            });
         }
-    }
-    ucp.ajaxRequest.get(options);
-    ucp.common.stopPropagationDefault();
+        ucp.common.stopPropagationDefault();
+    });
+
+    /**
+     * 删除用户
+     * @param id
+     */
+    $(".userDlete").bind('click',function () {
+        let userId = $(this).attr("data-id");
+        layer.confirm('确认要删除吗？', {icon: 3, title: '提示信息'}, function (index) {
+            let options = {
+                url:'/admin/user/delete?userId='+userId,
+                onSuccess:function (res) {
+                    layer.msg('已删除!', {icon: 1, time: 1000});
+                    initData(curPage);
+                },
+                onFailure:function (res) {
+                    alert(res.message);
+                }
+            }
+            ucp.ajaxRequest.get(options);
+        });
+        ucp.common.stopPropagationDefault();
+    });
+
+    /**
+     * 修改密码
+     */
+    $(".userModifyPass").bind('click',function () {
+        let userId = $(this).attr("data-id");
+        x_admin_show('修改密码','user-password.html','600','500');
+        ucp.common.stopPropagationDefault();
+    });
+
 }
 
 
