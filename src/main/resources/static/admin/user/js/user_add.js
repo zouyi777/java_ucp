@@ -29,7 +29,7 @@ function commitUserAdd(){
         onSuccess:function (res) {
             alert(res.message);
         },
-        onfailure:function (res) {
+        onFailure:function (res) {
             alert(res.message);
         }
     };

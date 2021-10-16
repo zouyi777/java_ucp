@@ -16,7 +16,7 @@ function initData(){
         onSuccess:function (res) {
             renderData(res.data);
         },
-        onfailure:function (res) {
+        onFailure:function (res) {
             alert(res.message);
         }
     }
@@ -74,7 +74,7 @@ function commitUserEdit(){
         onSuccess:function (res) {
             alert(res.message);
         },
-        onfailure:function (res) {
+        onFailure:function (res) {
             alert(res.message);
         }
     };

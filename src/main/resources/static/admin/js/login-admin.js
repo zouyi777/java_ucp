@@ -20,7 +20,7 @@ function login_admin(){
             localStorage.setItem('auth_token', res.data);
             window.location.href="./index.html";
         },
-        onfailure:function (res) {
+        onFailure:function (res) {
             alert(res.message);
         }
     };

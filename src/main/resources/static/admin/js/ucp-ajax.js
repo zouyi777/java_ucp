@@ -49,11 +49,11 @@
                 }else if(res.code == 3000 || res.code==3002 || res.code == 3003){
                     jumpToLogin(res,options);
                 }else{
-                    options.onfailure(res);
+                    options.onFailure(res);
                 }
             },
             error:function(res){
-                options.onfailure(res);
+                options.onFailure(res);
             }
         });
     }
@@ -77,11 +77,11 @@
                 }else if(res.code == 3000 || res.code==3002 || res.code == 3003){
                     jumpToLogin(res,options);
                 }else{
-                    options.onfailure(res);
+                    options.onFailure(res);
                 }
             },
             error:function(res){
-                options.onfailure(res);
+                options.onFailure(res);
             }
         });
     }

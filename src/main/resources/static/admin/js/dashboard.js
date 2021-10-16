@@ -12,7 +12,7 @@ function init(){
             renderTopCard(res.data.topCardVo);
             renderSystemInfoVo(res.data.systemInfoVo);
         },
-        onfailure:function (res) {
+        onFailure:function (res) {
             alert(res.message);
         }
     }

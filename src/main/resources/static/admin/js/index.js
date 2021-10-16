@@ -52,7 +52,7 @@ function init(){
             $("#logo").attr("src","./images/logo.svg")
             $("#admin-img").attr("src","./images/account.svg")
         },
-        onfailure:function (res) {
+        onFailure:function (res) {
             alert(res.message);
         }
     };
