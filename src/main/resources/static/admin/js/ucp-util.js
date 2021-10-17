@@ -1,7 +1,6 @@
 /**
  * 通用云平台,工具类
  */
-
 (function(exports){
     let Util = function(){
 

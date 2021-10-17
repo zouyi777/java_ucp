@@ -59,6 +59,7 @@ $(document).ready(function(){
 
         initData(curPage);//初始化
     });
+    intEvent();
 });
 /**
  * 从服务器获取初始数据
@@ -89,13 +90,25 @@ function renderData(result){
     var pendingHtml=$("#table_tr_tpl").html();
     var tpledHtml=ucp.listView.tpl(pendingHtml,result.dataList);
     $("#tbody").html(tpledHtml);
-    initEvent();
+    initListItemEvent();
 }
 
 /**
- * 初始化事件
+ * 初始化静态元素的事件
+ * 注意：这种是事件绑定不要写在列表事件中，不然会被多次注册
  */
-function initEvent(){
+function intEvent() {
+    /**
+     * 添加用户弹框
+     */
+    $("#addUser").click(function () {
+        x_admin_show('新增用户','user-add.html','600','500');
+    });
+}
+/**
+ * 初始化列表事件
+ */
+function initListItemEvent(){
     /**
      * 批量删除
      */
@@ -104,12 +117,6 @@ function initEvent(){
             //捉到所有被选中的，发异步进行删除
             layer.msg('删除成功', {icon: 1});
         });
-    });
-    /**
-     * 添加用户弹框
-     */
-    $("#addUser").click(function () {
-        x_admin_show('添加用户','user-add.html','600','500');
     });
     /**
      * 穿透详情

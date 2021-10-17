@@ -3,19 +3,24 @@
  */
 (function(exports){
     const BASEURL = 'http://127.0.0.1:8083/ucp/';
+    const BASEURL_RES = BASEURL+'res/';
+    const BASEURL_RES_ADMIN = BASEURL_RES+'admin/';
+    const ADMIN_LOGIN_URL = BASEURL_RES_ADMIN+'login-admin.html';
+    const LOGIN_URL = BASEURL_RES+'login-admin.html';
+
     const TOKEN_KEY = 'auth_token';
     const REQUEST_GET = 'get';
     const REQUEST_POST = 'post';
     const DATATYPE = 'json';
     const CONTENTTYPE = 'application/json;charset=UTF-8';
-    const ADMIN_LOGIN_URL = '../login-admin.html';
-    const LOGIN_URL = '../login-admin.html';
 
     let AjaxRequest = function(){
         /**
          * 服务端接口基础url
          */
         this.baseUrl = BASEURL;
+        this.baseurlRes = BASEURL_RES;
+        this.baseurlResAdmin = BASEURL_RES_ADMIN;
     }
 
     /**

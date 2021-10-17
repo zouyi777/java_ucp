@@ -9,9 +9,10 @@ $(document).ready(function(){
 });
 
 function login_admin(){
-    var parms = {
+    let pass = $( "input[name='password']").val();
+    let parms = {
         adminName:$( "input[name='username']").val(),
-        adminPassword:$( "input[name='password']").val()
+        adminPassword:ucp.security.encrypt(pass)
     };
     let options = {
         url:'admin/login',

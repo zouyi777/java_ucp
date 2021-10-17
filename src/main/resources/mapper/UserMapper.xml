@@ -35,7 +35,7 @@
     </select>
 
     <select id="getAllByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMap">
-        SELECT * FROM tb_user limit #{startIndex},#{pageSize}
+        SELECT * FROM tb_user order by create_time desc limit #{startIndex},#{pageSize}
     </select>
 
     <select id="getTotalCount"  resultType="Integer">
