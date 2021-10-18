@@ -43,8 +43,8 @@
     </select>
 
     <insert id="add" parameterType="com.zyyu.ucp.po.UserPo">
-        INSERT INTO tb_user(id,user_name,user_nickname,user_id_number,user_state,user_password,create_time,update_time,user_gender,user_realname,user_mobile_phone,role_id)
-               VALUES(#{id},#{userName},#{nickName},#{idNumber},#{state},#{password},#{createTime},#{updateTime},#{gender},#{realName},#{mobilePhone},#{roleId})
+        INSERT INTO tb_user(id,user_name,user_nickname,user_id_number,user_state,user_password,create_time,update_time,user_gender,user_realname,user_mobile_phone,user_email,role_id)
+               VALUES(#{id},#{userName},#{nickName},#{idNumber},#{state},#{password},#{createTime},#{updateTime},#{gender},#{realName},#{mobilePhone},#{email},#{roleId})
     </insert>
 
     <update id="update" parameterType="com.zyyu.ucp.po.UserPo" >
@@ -57,4 +57,15 @@
         DELETE FROM tb_user WHERE id=#{id}
     </delete>
 
+    <select id="getByUserName" parameterType="String" resultMap="resultMap">
+        SELECT * FROM tb_user WHERE user_name = #{userName}
+    </select>
+
+    <select id="getByMobilePhone" parameterType="String" resultMap="resultMap">
+        SELECT * FROM tb_user WHERE user_mobile_phone = #{mobilePhone}
+    </select>
+
+    <select id="getByEmail" parameterType="String" resultMap="resultMap">
+        SELECT * FROM tb_user WHERE user_email = #{email}
+    </select>
 </mapper>

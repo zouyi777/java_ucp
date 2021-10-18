@@ -42,9 +42,14 @@
      */
     AjaxRequest.prototype.get = function(options){
         if(!options) return;
+        let isAsync = true;
+        if(!options.isAsync){
+            isAsync = false;
+        }
         $.ajax({
             type:REQUEST_GET,
             url:this.baseUrl+options.url,
+            async: isAsync,
             headers:{'auth_token': localStorage.getItem(TOKEN_KEY)},
             dataType:DATATYPE,
             contentType:CONTENTTYPE,
@@ -69,9 +74,14 @@
      */
     AjaxRequest.prototype.post = function (options) {
         if(!options) return;
+        let isAsync = true;
+        if(!options.isAsync){
+            isAsync = false;
+        }
         $.ajax({
             type:REQUEST_POST,
             url:this.baseUrl+options.url,
+            async: isAsync,
             headers:{'auth_token': localStorage.getItem(TOKEN_KEY)},
             data:JSON.stringify(options.data),
             dataType:DATATYPE,

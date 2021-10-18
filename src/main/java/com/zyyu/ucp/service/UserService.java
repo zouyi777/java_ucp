@@ -7,4 +7,10 @@ public interface UserService extends BaseService<UserPo>{
 
     UserPo loginIn(UserPo userPo);
 
+    UserPo getByUserName(String userName);
+
+    UserPo getByMobilePhone(String mobilePhone);
+
+    UserPo getByEmail(String email);
+
 }

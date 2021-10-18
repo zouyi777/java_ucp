@@ -87,4 +87,19 @@ public class UserServiceImpl implements UserService {
     public int update(UserPo userPo) {
         return userMapper.update(userPo);
     }
+
+    @Override
+    public UserPo getByUserName(String userName) {
+        return userMapper.getByUserName(userName);
+    }
+
+    @Override
+    public UserPo getByMobilePhone(String mobilePhone) {
+        return userMapper.getByMobilePhone(mobilePhone);
+    }
+
+    @Override
+    public UserPo getByEmail(String email) {
+        return userMapper.getByEmail(email);
+    }
 }

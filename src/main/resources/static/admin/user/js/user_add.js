@@ -9,9 +9,31 @@ $(document).ready(function(){
 
         //自定义验证规则
         form.verify({
+            email: function (value) {
+                let result = hasEmail(value);
+                if(result == true){
+                    return '邮箱已存在';
+                }else if(result != false){
+                    return result;
+                }
+            },
+            phone: function (value) {
+                let result = hasMobilePhone(value);
+                if(result == true){
+                    return '手机号码已存在';
+                }else if(result != false){
+                    return result;
+                }
+            },
             userName: function (value) {
                 if (value.length < 2) {
                     return '用户名至少得2个字符啊';
+                }
+                let result = hasUserName(value);
+                if(result == true){
+                    return '用户名已存在';
+                }else if(result != false){
+                    return result;
                 }
             },
             password: [/(.+){6,12}$/, '密码必须6到12位'],
@@ -56,4 +78,52 @@ function commitUserAdd(parms,callback){
         }
     };
     ucp.ajaxRequest.post(options);
+}
+
+function hasEmail(email){
+    let result='';
+    let options = {
+        url:'/admin/user/hasEmail?email='+email,
+        isAsync:false,//同步请求
+        onSuccess:function (res) {
+            result = res.data;
+        },
+        onFailure:function (res) {
+            result = res.message;
+        }
+    }
+    ucp.ajaxRequest.get(options);
+    return result;
+}
+
+function hasMobilePhone(mobilePhone){
+    let result='';
+    let options = {
+        url:'/admin/user/hasMobilePhone?mobilePhone='+mobilePhone,
+        isAsync:false,//同步请求
+        onSuccess:function (res) {
+            result = res.data;
+        },
+        onFailure:function (res) {
+            result = res.message;
+        }
+    }
+    ucp.ajaxRequest.get(options);
+    return result;
+}
+
+function hasUserName(userName){
+    let result='';
+    let options = {
+        url:'/admin/user/hasUserName?userName='+userName,
+        isAsync:false,//同步请求
+        onSuccess:function (res) {
+            result = res.data;
+        },
+        onFailure:function (res) {
+            result = res.message;
+        }
+    }
+    ucp.ajaxRequest.get(options);
+    return result;
 }
