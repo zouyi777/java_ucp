@@ -60,6 +60,15 @@ public class AdminUserController extends BaseController {
     public Result addUser(@RequestBody UserVo userVo){
         Mapper dozerMapper = new DozerBeanMapper();
         UserPo userPo = dozerMapper.map(userVo,UserPo.class);
+        if(userService.getByEmail(userPo.getEmail())!=null){
+            return fail("邮箱已存在");
+        }
+        if(userService.getByMobilePhone(userPo.getMobilePhone())!=null){
+            return fail("手机号已存在");
+        }
+        if(userService.getByUserName(userPo.getUserName())!=null){
+            return fail("用户名已存在");
+        }
         int result = userService.add(userPo);
         if(result==1){
             return success();
