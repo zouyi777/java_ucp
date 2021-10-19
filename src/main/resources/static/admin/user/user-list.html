@@ -61,6 +61,7 @@
             <th><input type="checkbox" name="" value=""></th>
             <th>ID</th>
             <th >用户名</th>
+            <th >头像</th>
             <th >呢称</th>
             <th >姓名</th>
             <th >手机</th>
@@ -95,6 +96,7 @@
         </td>
         <td><%=obj.userId %></td>
         <td><%=obj.userName %></td>
+        <td><img src="<%=ucp.ajaxRequest.baseurlResImage + obj.avatar %>" width="60" height="30" alt="" layer-index="0"></td>
         <td><% if(obj.nickName){%> <%=obj.nickName %> <% }else{ %> 无 <% } %></td>
         <td><% if(obj.realName){%> <%=obj.realName %> <% }else{ %> 无 <% } %></td>
         <td><% if(obj.mobilePhone){%> <%=obj.mobilePhone %> <% }else{ %> 无 <% } %></td>

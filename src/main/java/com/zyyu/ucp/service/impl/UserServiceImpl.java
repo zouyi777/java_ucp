@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService {
         userPo.setUpdateTime(DateTimeUtil.getCurDateTime());
         userPo.setGender(GenderEnum.MAN);
         userPo.setRoleId(roleService.getByRoleCode("customer").getId());
+        userPo.setAvatar("default-head.png");
         return userMapper.add(userPo);
     }
 

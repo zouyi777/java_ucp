@@ -4,6 +4,7 @@
 (function(exports){
     const BASEURL = 'http://127.0.0.1:8083/ucp/';
     const BASEURL_RES = BASEURL+'res/';
+    const BASEURL_RES_IMAGE = BASEURL_RES+'image/';
     const BASEURL_RES_ADMIN = BASEURL_RES+'admin/';
     const ADMIN_LOGIN_URL = BASEURL_RES_ADMIN+'login-admin.html';
     const LOGIN_URL = BASEURL_RES+'login-admin.html';
@@ -20,6 +21,7 @@
          */
         this.baseUrl = BASEURL;
         this.baseurlRes = BASEURL_RES;
+        this.baseurlResImage = BASEURL_RES_IMAGE;
         this.baseurlResAdmin = BASEURL_RES_ADMIN;
     }
 
