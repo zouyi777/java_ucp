@@ -68,8 +68,12 @@
     <build>
         <plugins>
             <plugin>
+                <!--热部署配置-->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork><!--fork:如果没有该项配置,整个devtools不会起作用（根据个人情况而定，最好加上）-->
+                </configuration>
             </plugin>
         </plugins>
     </build>

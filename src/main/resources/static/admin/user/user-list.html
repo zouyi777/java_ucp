@@ -79,6 +79,9 @@
     </table>
 
     <div id="pageContainer"></div>
+    <div style="height: 100px;">
+        <!--            空白占位元素，不然底部的元素会被挡住-->
+    </div>
 </div>
 <script src="../lib/layui/layui.js" charset="utf-8"></script>
 <script src="../js/x-layui.js" charset="utf-8"></script>
@@ -96,7 +99,11 @@
         </td>
         <td><%=obj.userId %></td>
         <td><%=obj.userName %></td>
-        <td><img src="<%=ucp.ajaxRequest.baseurlResImage + obj.avatar %>" width="60" height="30" alt="" layer-index="0"></td>
+        <td>
+            <a class="user-avatar" title="我的头像" style="height: 60px;width:60px">
+               <img src="<%=ucp.ajaxRequest.baseurlResImage + obj.avatar %>">
+           </a>
+        </td>
         <td><% if(obj.nickName){%> <%=obj.nickName %> <% }else{ %> 无 <% } %></td>
         <td><% if(obj.realName){%> <%=obj.realName %> <% }else{ %> 无 <% } %></td>
         <td><% if(obj.mobilePhone){%> <%=obj.mobilePhone %> <% }else{ %> 无 <% } %></td>

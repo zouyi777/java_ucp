@@ -123,7 +123,7 @@ function initListItemEvent(){
      */
     $(".userItem").bind('click',function () {
         let userId = $(this).attr("data-id");
-        x_admin_show('张三','user-detail.html','600','500');
+        x_admin_show('用户详情','user-detail.html','800','500');
     });
 
     /**

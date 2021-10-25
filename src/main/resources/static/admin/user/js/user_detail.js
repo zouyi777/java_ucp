@@ -2,7 +2,38 @@
  * 初始化
  */
 $(document).ready(function(){
-    initView();
+    layui.use(['form', 'layer'], function () {
+        $ = layui.jquery;
+        var form = layui.form();
+        var layer = layui.layer;
+
+        //自定义验证规则
+        // form.verify({
+        //   nikename: function(value){
+        //     if(value.length < 5){
+        //       return '昵称至少得5个字符啊';
+        //     }
+        //   }
+        //   ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+        //   ,repass: function(value){
+        //       if($('#L_pass').val()!=$('#L_repass').val()){
+        //           return '两次密码不一致';
+        //       }
+        //   }
+        // });
+        //监听提交
+        form.on('submit(save)', function (data) {
+            console.log(data);
+            layer.alert("增加成功", {icon: 6}, function () {
+                // 获得frame索引
+                var index = parent.layer.getFrameIndex(window.name);
+                //关闭当前frame
+                parent.layer.close(index);
+            });
+            return false;
+        });
+    });
+
     initData();
     initEvent();
 });
@@ -33,19 +64,6 @@ function renderData(result){
     $( "input[name='idNumber']").val(result.idNumber);
     $( "input[name='realName']").val(result.realName);
     $( "input[name='mobilePhone']").val(result.mobilePhone);
-}
-
-
-function initView() {
-    let isEdit = ucp.common.getUrlPram().isEdit;
-    if(isEdit){
-        $("#user-detail-title").text("修改用户");
-        $("#user-detail-submit").css("display","block");
-    }else{
-        $("#user-detail-title").text("用户详情");
-        $("#user-detail-submit").css("display","none");
-    }
-
 }
 
 
