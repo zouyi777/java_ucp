@@ -22,7 +22,7 @@
             <img src="http://127.0.0.1:8083/ucp/res/image/default-head.png">
         </a>
     </div>
-    <form class="layui-form">
+    <form class="layui-form" id="detail-form">
         <div class="layui-form-item">
             <label for="userName" class="layui-form-label">用户名</label>
             <div class="layui-input-inline">
@@ -33,8 +33,8 @@
             <label  class="layui-form-label">用户状态</label>
             <div class="layui-inline">
                 <div class="layui-input-inline">
-                    <input disabled type="radio" name="userSate" value="0" checked title="已启用">
-                    <input disabled type="radio" name="userSate" value="1" title="已停用">
+                    <input disabled type="radio" name="userSate" value="0" title="已启用" id="userStateUp">
+                    <input disabled type="radio" name="userSate" value="1" title="已停用" id="userStateDown">
                 </div>
             </div>
         </div>
@@ -66,8 +66,8 @@
             <label  class="layui-form-label">性别</label>
             <div class="layui-inline">
                 <div class="layui-input-inline">
-                    <input disabled type="radio" name="sex" value="0" checked title="男">
-                    <input disabled type="radio" name="sex" value="1" title="女">
+                    <input disabled type="radio" name="sex" value="0" title="男" id="sexMan">
+                    <input disabled type="radio" name="sex" value="1" title="女" id="sexFemale">
                 </div>
             </div>
         </div>
@@ -101,10 +101,10 @@
                         </textarea>
             </div>
         </div>
-        <div class="layui-form-item display-none">
+        <div class="layui-form-item display-none" id="saveView">
             <label for="slefWord" class="layui-form-label">
             </label>
-            <button class="layui-btn" key="set-mine" lay-filter="save" lay-submit>
+            <button class="layui-btn" key="set-mine" lay-filter="save" lay-submit id="saveBtn">
                 保存
             </button>
         </div>
@@ -119,6 +119,7 @@
 <script src="../js/ucp-common.js"></script>
 <script src="../js/ucp-ajax.js"></script>
 <script src="../js/ucp-security.js"></script>
+<script src="../js/ucp-util.js"></script>
 <script src="./js/user_detail.js"></script>
 </body>
 </html>

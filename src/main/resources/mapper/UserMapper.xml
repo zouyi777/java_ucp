@@ -22,6 +22,8 @@
         <result property="roleId" column="role_id"  />
     </resultMap>
 
+
+
     <select id="login" parameterType="com.zyyu.ucp.po.UserPo" resultMap="resultMap">
         SELECT * FROM tb_user WHERE user_name = #{userName} AND user_password = #{password}
     </select>
@@ -50,8 +52,9 @@
     </insert>
 
     <update id="update" parameterType="com.zyyu.ucp.po.UserPo" >
-        UPDATE tb_user SET user_name=#{userName},user_password=#{password},user_nickname=#{nickName},user_id_number=#{idNumber},
-                           user_realname=#{realName},user_mobile_phone=#{mobilePhone}
+        UPDATE tb_user SET user_name=#{userName},user_state=#{state},user_nickname=#{nickName},user_id_number=#{idNumber},
+                           user_realname=#{realName},user_birthday=#{birthday},user_gender=#{gender},user_mobile_phone=#{mobilePhone},
+                           user_email=#{email},user_email=#{email},user_address=#{address},user_slef_word=#{slefWord},update_time=#{updateTime}
         WHERE id=#{id}
     </update>
 

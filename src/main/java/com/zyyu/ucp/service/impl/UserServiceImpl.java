@@ -86,6 +86,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int update(UserPo userPo) {
+        userPo.setUpdateTime(DateTimeUtil.getCurDateTime());
         return userMapper.update(userPo);
     }
 

@@ -1,7 +1,14 @@
+var userId;
+var isEdit;
+
 /**
  * 初始化
  */
 $(document).ready(function(){
+    //初始化一些列表跳转过来的参数
+    userId = ucp.common.getUrlPram().userId;
+    isEdit = ucp.common.getUrlPram().isEdit;
+    //初始化layui模块
     layui.use(['form', 'layer'], function () {
         $ = layui.jquery;
         var form = layui.form();
@@ -22,16 +29,16 @@ $(document).ready(function(){
         //   }
         // });
         //监听提交
-        form.on('submit(save)', function (data) {
-            console.log(data);
-            layer.alert("增加成功", {icon: 6}, function () {
-                // 获得frame索引
-                var index = parent.layer.getFrameIndex(window.name);
-                //关闭当前frame
-                parent.layer.close(index);
-            });
-            return false;
-        });
+        // form.on('submit(save)', function (data) {
+        //     console.log(data);
+        //     layer.alert("增加成功", {icon: 6}, function () {
+        //         // 获得frame索引
+        //         var index = parent.layer.getFrameIndex(window.name);
+        //         //关闭当前frame
+        //         parent.layer.close(index);
+        //     });
+        //     return false;
+        // });
     });
 
     initData();
@@ -41,7 +48,6 @@ $(document).ready(function(){
  * 从服务器获取初始数据
  */
 function initData(){
-    let userId = ucp.common.getUrlPram().userId;
     let options = {
         url:'/admin/user/detail?userId='+userId,
         onSuccess:function (res) {
@@ -58,18 +64,44 @@ function initData(){
  * 模板渲染
  */
 function renderData(result){
-    $( "input[name='userName']").val(result.userName);
-    $( "input[name='password']").val(result.password);
+    if(isEdit){
+        $('#detail-form input').removeAttr('readonly')
+        $('#detail-form input').removeAttr('disabled');
+        $('#detail-form textarea').removeAttr('readonly');
+        $('#saveView').removeClass('display-none');
+    }else{
+        $('#detail-form input').attr('readonly','readonly');
+        $('#detail-form input').attr('readonly','readonly');
+        $('#detail-form input').attr('disabled','disabled');
+        $('#detail-form textarea').attr('readonly','readonly');
+        $('#saveView').addClass('display-none');
+    }
+    $('.userAvtar img').attr('src',ucp.ajaxRequest.baseurlResImage + result.avatar);
+    $( "#userName").val(result.userName);
+    if(result.state == 'NORMAL'){
+        $( "#userStateUp").attr('checked','checked');
+    }else{
+        $( "#userStateDown").attr('checked','checked');
+    }
     $( "input[name='nickName']").val(result.nickName);
     $( "input[name='idNumber']").val(result.idNumber);
     $( "input[name='realName']").val(result.realName);
+    $( "input[name='birthday']").val(ucp.util.formatDate(result.birthday));
+    if(result.gender.index == 10){
+        $("#sexMan").attr('checked','checked');
+    }else{
+        $("#sexFemale").attr('checked','checked');
+    }
     $( "input[name='mobilePhone']").val(result.mobilePhone);
+    $( "input[name='email']").val(result.email);
+    $( "input[name='address']").val(result.address);
+    $( "textarea[name='slefWord']").val(result.slefWord);
 }
 
 
 function initEvent(){
-    /**修改后提交*/
-    $("#userEditBtn").click(function () {
+    ///修改后提交
+    $("#saveBtn").click(function () {
         commitUserEdit();
     });
 }
@@ -78,13 +110,18 @@ function initEvent(){
  */
 function commitUserEdit(){
     var parms = {
-        userId:ucp.common.getUrlPram().userId,
+        userId:userId,
         userName:$( "input[name='userName']").val(),
-        password:$( "input[name='password']").val(),
+        state:1,
         nickName:$( "input[name='nickName']").val(),
         idNumber:$( "input[name='idNumber']").val(),
         realName:$( "input[name='realName']").val(),
+        // birthday:$( "input[name='birthday']").val(),
+        gender:10,
         mobilePhone:$( "input[name='mobilePhone']").val(),
+        email:$( "input[name='email']").val(),
+        address:$( "input[name='address']").val(),
+        slefWord:$( "textarea[name='slefWord']").val(),
     };
     let options = {
         url:'/admin/user/update',

@@ -98,9 +98,7 @@ function renderData(result){
  * 注意：这种是事件绑定不要写在列表事件中，不然会被多次注册
  */
 function intEvent() {
-    /**
-     * 添加用户弹框
-     */
+    //添加用户弹框
     $("#addUser").click(function () {
         x_admin_show('新增用户','user-add.html','600','500');
     });
@@ -109,26 +107,23 @@ function intEvent() {
  * 初始化列表事件
  */
 function initListItemEvent(){
-    /**
-     * 批量删除
-     */
+    //批量删除
     $("#multiDelete").click(function () {
         layer.confirm('确认要删除吗？', {icon: 3, title: '提示信息'}, function (index) {
             //捉到所有被选中的，发异步进行删除
             layer.msg('删除成功', {icon: 1});
         });
     });
-    /**
-     * 穿透详情
-     */
+    //穿透详情
     $(".userItem").bind('click',function () {
-        let userId = $(this).attr("data-id");
+        let param = {
+            "userId":$(this).attr("data-id"),
+            "isEdit":false
+        }
+        ucp.common.setUrlPram(param);
         x_admin_show('用户详情','user-detail.html','800','500');
     });
-
-    /**
-     * 用户状态启用或停用
-     */
+    //用户状态启用或停用
     $(".userStartOrStop").bind('click',function () {
         let $this = $(this);
         let userId = $this.attr("data-id");
@@ -152,11 +147,7 @@ function initListItemEvent(){
         }
         ucp.common.stopPropagationDefault();
     });
-
-    /**
-     * 删除用户
-     * @param id
-     */
+    //删除用户
     $(".userDlete").bind('click',function () {
         let userId = $(this).attr("data-id");
         layer.confirm('确认要删除吗？', {icon: 3, title: '提示信息'}, function (index) {
@@ -174,28 +165,22 @@ function initListItemEvent(){
         });
         ucp.common.stopPropagationDefault();
     });
-
-    /**
-     * 修改密码
-     */
+    //修改密码
     $(".userModifyPass").bind('click',function () {
         let userId = $(this).attr("data-id");
         x_admin_show('修改密码','user-password.html','600','500');
         ucp.common.stopPropagationDefault();
     });
+    //编辑
+    $(".userEdit").bind('click',function () {
+        let param = {
+            "userId":$(this).attr("data-id"),
+            "isEdit":true
+        }
+        ucp.common.setUrlPram(param);
+        x_admin_show('修改用户','user-detail.html','800','500');
+        ucp.common.stopPropagationDefault();
+    });
 
 }
 
-
-/**
- * 编辑
- */
-function toEdit(userId) {
-    let url = "././user_detail.html";
-    let param = {
-        "userId":userId,
-        "isEdit":true
-    }
-    ucp.common.next(url,param);
-    ucp.common.stopPropagationDefault();
-}

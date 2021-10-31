@@ -31,7 +31,9 @@ public class AdminUserController extends BaseController {
     @GetMapping(value = "/detail")
     public Result userDetail(@RequestParam String userId){
         UserPo userPo = userService.getById(Long.valueOf(userId));
-        return success(userPo);
+        Mapper dozMapper = new DozerBeanMapper();
+        UserVo userVo = dozMapper.map(userPo,UserVo.class);
+        return success(userVo);
     }
 
     @GetMapping(value = "/delete")

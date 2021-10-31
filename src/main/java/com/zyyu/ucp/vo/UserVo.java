@@ -12,8 +12,6 @@ public class UserVo extends BaseVo{
 	private String userId;
 	/**用户名*/
 	private String userName;
-	/**密码*/
-	private String password;
 	/**用户状态*/
 	private AccountStateEnum state;
 	/**昵称*/
@@ -36,8 +34,6 @@ public class UserVo extends BaseVo{
 	private String address;
 	/**个性签名*/
 	private String slefWord;
-	/**角色id*/
-	private Long roleId;
 
 	public String getUserId() {
 		return userId;
@@ -53,14 +49,6 @@ public class UserVo extends BaseVo{
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public GenderEnum getGender() {
@@ -149,14 +137,6 @@ public class UserVo extends BaseVo{
 
 	public void setSlefWord(String slefWord) {
 		this.slefWord = slefWord;
-	}
-
-	public Long getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
 	}
 
 }
