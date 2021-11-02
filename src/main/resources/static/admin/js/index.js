@@ -12,6 +12,7 @@ $(document).ready(function(){
     //intTopTime();
     init();//主页初始化
     initEvent();//初始化事件
+    testLog();
 });
 
 function intTopTime() {
@@ -72,4 +73,17 @@ function initEvent() {
     });
 
 
+}
+//测试日志
+function testLog(){
+    let options = {
+        url:'/log/test',
+        onSuccess:function (res) {
+            alert(res.data);
+        },
+        onFailure:function (res) {
+            alert(res.message);
+        }
+    };
+    ucp.ajaxRequest.get(options);
 }
