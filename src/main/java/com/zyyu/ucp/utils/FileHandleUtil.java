@@ -9,7 +9,9 @@ import java.util.UUID;
 public class FileHandleUtil {
 
     /** 文件存放的目录 **/
-    private static final  String uploaDir = "upload";
+    private static final  String uploadDir = "upload";
+    /**日志文件存放目录*/
+    private static final  String logDir = "ucp-log";
 
     /**
      * 上传单个文件
@@ -51,9 +53,16 @@ public class FileHandleUtil {
      * @return
      */
     public static String getUploadPath(){
-        return getJARootPath()+File.separator + uploaDir;
+        return getJARootPath()+File.separator + uploadDir;
     }
 
+    /**
+     * 获取日志文件的存放目录
+     * @return
+     */
+    public static String getLogPath(){
+        return getJARootPath()+File.separator + logDir;
+    }
     /**
      * 删除文件
      * @param path 文件访问的路径upload开始 如： /upload/image/test.jpg

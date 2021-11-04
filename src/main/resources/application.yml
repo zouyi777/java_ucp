@@ -16,7 +16,3 @@ server:
   servlet:
     context-path: /ucp #统一根路径
 
-# 配置日志输出目录
-logging:
-  file:
-    name: ucp_log/ucp.log
