@@ -12,7 +12,7 @@ $(document).ready(function(){
     //intTopTime();
     init();//主页初始化
     initEvent();//初始化事件
-    testLog();
+    // testLog();
 });
 
 function intTopTime() {

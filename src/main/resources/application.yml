@@ -1,7 +1,7 @@
 spring:
   datasource:
     name: ucp  #数据库名
-    url: jdbc:mysql://localhost:3306/ucp #url
+    url: jdbc:mysql://localhost:3306/ucp?useSSL=false #url
     username: root  #用户名
     password: Zy@123456  #密码
     driver-class-name: com.mysql.jdbc.Driver  #数据库链接驱动
@@ -12,7 +12,7 @@ mybatis:
   type-handlers-package=: com.zyyu.ucp.handler #配置java枚举自动转换存入
 
 server:
-  port: 8083
+  port: 8085
   servlet:
     context-path: /ucp #统一根路径
 
