@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+    <mapper namespace="com.zyyu.ucp.mapper.WorksMapper">
+
+    <resultMap type="com.zyyu.ucp.po.WorksPo" id="resultMap">
+        <id property="id" column="id"  />
+        <result property="content" column="content"  />
+        <result property="quote" column="quote"  />
+        <result property="createTime" column="create_time"  />
+        <result property="updateTime" column="update_time"  />
+        <result property="userId" column="user_id"  />
+        <result property="commentId" column="comment_id"  />
+    </resultMap>
+
+    <select id="getById" parameterType="Long" resultMap="resultMap">
+        SELECT * FROM tb_works WHERE id=#{id}
+    </select>
+
+    <select id="getAll"  resultMap="resultMap">
+        SELECT * FROM tb_works
+    </select>
+
+    <select id="getAllByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMap">
+        SELECT * FROM tb_works limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="getTotalCount"  resultType="Integer">
+        SELECT count(*) FROM tb_works
+    </select>
+
+    <insert id="add" parameterType="com.zyyu.ucp.po.WorksPo">
+        INSERT INTO tb_works(id,content,quote,create_time,update_time,user_id,comment_id)
+               VALUES(#{id},#{content},#{quote},#{createTime},#{updateTime},#{userId},#{commentId})
+    </insert>
+
+    <update id="update" parameterType="com.zyyu.ucp.po.WorksPo" >
+        UPDATE tb_works SET content=#{content},quote=#{quote},create_time=#{createTime},update_time=#{updateTime},
+                            user_id=#{userId},comment_id=#{commentId}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="com.zyyu.ucp.po.WorksPo">
+        DELETE FROM tb_works WHERE id=#{id}
+    </delete>
+
+
+</mapper>

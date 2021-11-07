@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2021-10-31 14:53:31
+Date: 2021-11-07 21:11:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -114,3 +114,22 @@ INSERT INTO `tb_user` VALUES ('1635164311473', 'zy3', 'e10adc3949ba59abbe56e057f
 INSERT INTO `tb_user` VALUES ('1635170357883', 'zy4', 'e10adc3949ba59abbe56e057f20f883e', '1', '易哥', '513002099105122554', '张三', 'default-head.png', '2021-10-30', '10', '18215626824', '185964889@qq.com', '成都市新津区', '当停下脚步发现这个世界竟然变得如此陌生', '2021-10-25 21:59:17', '2021-10-25 21:59:17', '1631693611742');
 INSERT INTO `tb_user` VALUES ('1635170389139', 'zy5', 'e10adc3949ba59abbe56e057f20f883e', '1', '易哥', '513002099105122554', '张三', 'default-head.png', null, '10', '18215626825', '185964890@qq.com', '成都市新津区', '当停下脚步发现这个世界竟然变得如此陌生22222222222222222222', '2021-10-25 21:59:49', '2021-10-31 14:47:08', '1631693611742');
 INSERT INTO `tb_user` VALUES ('1635599053697', 'zy6', 'e10adc3949ba59abbe56e057f20f883e', '1', '易哥6', '513002099105122554', '张三', 'default-head.png', null, '10', '18215626826', '185964891@qq.com', '成都市新津区', '111111111111111111111111111', '2021-10-30 21:04:13', '2021-10-31 14:45:17', '1631693611742');
+
+-- ----------------------------
+-- Table structure for `tb_works`
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_works`;
+CREATE TABLE `tb_works` (
+  `id` bigint(20) NOT NULL COMMENT '作品Id',
+  `content` varchar(255) DEFAULT NULL COMMENT '文字内容',
+  `quote` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '引用：图片、视频等',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `user_id` bigint(20) NOT NULL COMMENT '用户Id',
+  `comment_id` bigint(20) DEFAULT NULL COMMENT '评论id',
+  PRIMARY KEY (`id`,`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_works
+-- ----------------------------
