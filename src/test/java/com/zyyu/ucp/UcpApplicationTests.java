@@ -3,7 +3,9 @@ package com.zyyu.ucp;
 import com.zyyu.ucp.common.PageInfo;
 import com.zyyu.ucp.enums.GenderEnum;
 import com.zyyu.ucp.po.UserPo;
+import com.zyyu.ucp.po.WorksPo;
 import com.zyyu.ucp.service.UserService;
+import com.zyyu.ucp.service.WorksService;
 import com.zyyu.ucp.utils.UniqueKeyUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -20,19 +23,14 @@ class UcpApplicationTests {
     @Autowired
     UserService userService;
 
+    @Autowired
+    WorksService worksService;
+
     @Test
     public void contextLoads() {
-//        testLogin();
-//        testGetByPage();
-//        Long id =UniqueKeyUtil.getUniqueKey();
-//        System.out.println(id);
-
-//        testAddUser();
-    }
-
-    private void testLogin(){
-//        UserPo userPO = userService.loginIn("zy1","123456");
-//        System.out.println(userPO.toString());
+        System.out.println("单元测试开始");
+        testAddWorks();
+        System.out.println("单元测试结束");
     }
 
     private void testAddUser(){
@@ -63,6 +61,17 @@ class UcpApplicationTests {
         pageInfo.setCurrentPage(3);
         pageInfo = userService.getAllByPage(pageInfo);
         System.out.println(pageInfo);
+    }
+
+    void testAddWorks(){
+        String[] contentArr={"我是檐上三寸雪，你是人间惊鸿客","城南小陌又逢春，只见梅花不见人","本是青灯不归客，却因浊酒恋红尘"};
+
+        for(int i=0;i<contentArr.length;i++){
+            WorksPo worksPo =new WorksPo();
+            worksPo.setUserId(userService.getAll().get(0).getId());
+            worksPo.setContent(contentArr[i]);
+            worksService.add(worksPo);
+        }
     }
 
 }

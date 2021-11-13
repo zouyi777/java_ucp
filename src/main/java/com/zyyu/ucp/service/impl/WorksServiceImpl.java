@@ -4,10 +4,15 @@ import com.zyyu.ucp.common.PageInfo;
 import com.zyyu.ucp.mapper.WorksMapper;
 import com.zyyu.ucp.po.WorksPo;
 import com.zyyu.ucp.service.WorksService;
+import com.zyyu.ucp.utils.DateTimeUtil;
+import com.zyyu.ucp.utils.UniqueKeyUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class WorksServiceImpl implements WorksService {
 
     @Autowired
@@ -15,6 +20,12 @@ public class WorksServiceImpl implements WorksService {
 
     @Override
     public int add(WorksPo worksPo) {
+        worksPo.setId(UniqueKeyUtil.getUniqueKey());
+        worksPo.setCreateTime(DateTimeUtil.getCurDateTime());
+        worksPo.setUpdateTime(DateTimeUtil.getCurDateTime());
+        if(StringUtils.isEmpty(worksPo.getQuote())){
+            worksPo.setQuote("default-works.png");
+        }
         return worksMapper.add(worksPo);
     }
 

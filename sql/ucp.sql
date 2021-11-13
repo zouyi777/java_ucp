@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2021-11-07 21:11:58
+Date: 2021-11-13 12:51:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -133,3 +133,6 @@ CREATE TABLE `tb_works` (
 -- ----------------------------
 -- Records of tb_works
 -- ----------------------------
+INSERT INTO `tb_works` VALUES ('1636778992522', '我是檐上三寸雪，你是人间惊鸿客', 'default-works.png', '2021-11-13 12:49:52', '2021-11-13 12:49:52', '1635164214642', null);
+INSERT INTO `tb_works` VALUES ('1636778992551', '城南小陌又逢春，只见梅花不见人', 'default-works.png', '2021-11-13 12:49:52', '2021-11-13 12:49:52', '1635164214642', null);
+INSERT INTO `tb_works` VALUES ('1636778992555', '本是青灯不归客，却因浊酒恋红尘', 'default-works.png', '2021-11-13 12:49:52', '2021-11-13 12:49:52', '1635164214642', null);

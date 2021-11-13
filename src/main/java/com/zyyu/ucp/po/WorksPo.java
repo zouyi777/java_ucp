@@ -1,7 +1,7 @@
 package com.zyyu.ucp.po;
 
 /**
- * 权限
+ * 作品
  */
 public class WorksPo extends BasePo{
 

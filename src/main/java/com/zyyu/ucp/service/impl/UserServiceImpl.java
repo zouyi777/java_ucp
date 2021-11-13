@@ -10,6 +10,7 @@ import com.zyyu.ucp.service.UserService;
 import com.zyyu.ucp.utils.DateTimeUtil;
 import com.zyyu.ucp.utils.UniqueKeyUtil;
 import com.zyyu.ucp.vo.UserVo;
+import org.apache.commons.lang3.StringUtils;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,9 @@ public class UserServiceImpl implements UserService {
         userPo.setUpdateTime(DateTimeUtil.getCurDateTime());
         userPo.setGender(GenderEnum.MAN);
         userPo.setRoleId(roleService.getByRoleCode("customer").getId());
-        userPo.setAvatar("default-head.png");
+        if(StringUtils.isEmpty(userPo.getAvatar())){
+            userPo.setAvatar("default-head.png");
+        }
         return userMapper.add(userPo);
     }
 
