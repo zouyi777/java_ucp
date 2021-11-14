@@ -72,10 +72,11 @@ public class UserServiceImpl implements UserService {
         }
         pageInfo.setTotalCount(getTotalCount());
         List<UserPo> userPoList = userMapper.getAllByPage(pageInfo);
+
         if(userPoList!=null && userPoList.size()>0){
             Mapper dozerMapper = new DozerBeanMapper();
-            for(UserPo UserPo:userPoList){
-                userVoList.add(dozerMapper.map(UserPo, UserVo.class));
+            for(UserPo userPo:userPoList){
+                userVoList.add(dozerMapper.map(userPo, UserVo.class));
             }
         }
         pageInfo.setDataList(userVoList);

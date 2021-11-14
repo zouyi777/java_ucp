@@ -8,6 +8,7 @@ public class WorksVo extends BaseVo{
 	private String quote;
 	private Long userId;
 	private Long commentId;
+	private String userName;
 
 	public Long getWorksId() {
 		return worksId;
@@ -48,4 +49,11 @@ public class WorksVo extends BaseVo{
 		this.commentId = commentId;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 }

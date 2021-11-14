@@ -12,6 +12,17 @@
         <result property="commentId" column="comment_id"  />
     </resultMap>
 
+    <resultMap type="com.zyyu.ucp.vo.WorksVo" id="resultMapVo">
+        <id property="worksId" column="id"  />
+        <result property="content" column="content"  />
+        <result property="quote" column="quote"  />
+        <result property="createTime" column="create_time"  />
+        <result property="updateTime" column="update_time"  />
+        <result property="userId" column="user_id"  />
+        <result property="commentId" column="comment_id"  />
+        <result property="userName" column="user_name"  />
+    </resultMap>
+
     <select id="getById" parameterType="Long" resultMap="resultMap">
         SELECT * FROM tb_works WHERE id=#{id}
     </select>
@@ -22,6 +33,13 @@
 
     <select id="getAllByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMap">
         SELECT * FROM tb_works limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="getVoByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMapVo">
+        SELECT w.id,w.content,w.quote,w.create_time,w.update_time,w.user_id,w.comment_id,u.user_name
+        FROM tb_works w,tb_user u
+        WHERE w.user_id = u.id
+        limit #{startIndex},#{pageSize}
     </select>
 
     <select id="getTotalCount"  resultType="Integer">

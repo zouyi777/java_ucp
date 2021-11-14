@@ -29,7 +29,7 @@ class UcpApplicationTests {
     @Test
     public void contextLoads() {
         System.out.println("单元测试开始");
-        testAddWorks();
+        testWorks_getVoByPage();
         System.out.println("单元测试结束");
     }
 
@@ -72,6 +72,12 @@ class UcpApplicationTests {
             worksPo.setContent(contentArr[i]);
             worksService.add(worksPo);
         }
+    }
+
+    void testWorks_getVoByPage(){
+        PageInfo pageInfo =new PageInfo();
+        pageInfo = worksService.getAllByPage(pageInfo);
+        System.out.println(pageInfo);
     }
 
 }

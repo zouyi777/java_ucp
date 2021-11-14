@@ -2,14 +2,20 @@ package com.zyyu.ucp.service.impl;
 
 import com.zyyu.ucp.common.PageInfo;
 import com.zyyu.ucp.mapper.WorksMapper;
+import com.zyyu.ucp.po.UserPo;
 import com.zyyu.ucp.po.WorksPo;
 import com.zyyu.ucp.service.WorksService;
 import com.zyyu.ucp.utils.DateTimeUtil;
 import com.zyyu.ucp.utils.UniqueKeyUtil;
+import com.zyyu.ucp.vo.UserVo;
+import com.zyyu.ucp.vo.WorksVo;
 import org.apache.commons.lang3.StringUtils;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -60,7 +66,8 @@ public class WorksServiceImpl implements WorksService {
             pageInfo = new PageInfo();
         }
         pageInfo.setTotalCount(getTotalCount());
-        List dataList = worksMapper.getAllByPage(pageInfo);
+        List<WorksVo> dataList = worksMapper.getVoByPage(pageInfo);
+
         pageInfo.setDataList(dataList);
         return pageInfo;
     }
