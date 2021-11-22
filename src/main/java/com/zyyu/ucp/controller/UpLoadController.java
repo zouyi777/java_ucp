@@ -14,7 +14,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/upload")
 public class UpLoadController extends BaseController{
+
     private Logger logger = LoggerFactory.getLogger(UpLoadController.class);
+
     @PostMapping("/upload")
     public Result uploads(HttpServletRequest request, MultipartFile[] files) {
         String resultPath=null;
@@ -23,7 +25,7 @@ public class UpLoadController extends BaseController{
             for (int i = 0; i < files.length; i++) {
                 if (files[i] != null) {
                     //调用上传方法
-                    resultPath = "文件存放路径为:" + FileHandleUtil.upload(files[i]);
+                    resultPath = FileHandleUtil.upload(files[i]);
                 }
             }
         } catch (Exception e) {

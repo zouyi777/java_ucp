@@ -32,7 +32,8 @@ public class FileHandleUtil {
         //存文件
         File saveFile = new File(uploadDir.getAbsolutePath(), filename);
         FileUtils.copyInputStreamToFile(uploadFile.getInputStream(), saveFile);
-        return saveFile.getAbsolutePath();
+//        return saveFile.getAbsolutePath();
+        return filename;
     }
 
     /**

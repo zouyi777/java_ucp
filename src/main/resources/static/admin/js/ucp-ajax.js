@@ -102,6 +102,34 @@
             }
         });
     }
+
+    /**
+     *  上传文件专用
+     * @param options
+     */
+    AjaxRequest.prototype.upload = function (options) {
+        if(!options) return;
+        $.ajax({
+            type:REQUEST_POST,
+            url:this.baseUrl+options.url,
+            headers:{'auth_token': localStorage.getItem(TOKEN_KEY)},
+            data:options.formData,
+            processData: false,
+            contentType: false,
+            success:function (res) {
+                if(res.code==2000){
+                    options.onSuccess(res);
+                }else if(res.code == 3000 || res.code==3002 || res.code == 3003){
+                    jumpToLogin(res,options);
+                }else{
+                    options.onFailure(res);
+                }
+            },
+            error:function(res){
+                options.onFailure(res);
+            }
+        });
+    }
     exports.AjaxRequest = AjaxRequest;
 })(window);
 (function(){
