@@ -2,8 +2,9 @@
  * 初始化
  */
 $(document).ready(function(){
-    layui.use(['form', 'layer'], function () {
+    layui.use(['element','form', 'layer'], function () {
         $ = layui.jquery;
+        lement = layui.element();//面包导航
         var form = layui.form();
         var layer = layui.layer;
 
