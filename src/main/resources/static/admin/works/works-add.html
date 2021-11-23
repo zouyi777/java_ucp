@@ -33,8 +33,8 @@
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
             <ul class="layui-tab-title">
                 <li class="layui-this">基本信息</li>
-                <li>状态信息</li>
-                <li>作品内容</li>
+<!--                <li>状态信息</li>-->
+<!--                <li>作品内容</li>-->
             </ul>
 
             <div class="layui-tab-content" >
@@ -59,7 +59,7 @@
                             <span class='x-red'>*</span>作品标题
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" autocomplete="off" value="title" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="content" autocomplete="off" value="" placeholder="空制在80个汉字，160个字符以内"
                                    class="layui-input">
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                             <span class='x-red'>*</span>作者
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="author" autocomplete="off" value="author" placeholder="空制在80个汉字，160个字符以内"
+                            <input type="text" name="userId" autocomplete="off" value="1635164214642" placeholder="空制在80个汉字，160个字符以内"
                                    class="layui-input">
                         </div>
                     </div>
@@ -114,101 +114,101 @@
                         </label>
 
                         <img src="../images" id="pimages" name="pimages" style="width: 400px;height: 200px;"/>
-                        <input id="avatar"   name="image" required="" type="hidden"  value="images">
+                        <input id="avatar"   name="quote" required="" type="hidden"  value="quote">
                     </div>
 
 
 
                     <div class="layui-form-item">
-                        <button class="layui-btn" type="button" lay-filter="add" lay-submit="">
+                        <button class="layui-btn" type="button" lay-filter="add" lay-submit="" id="add-works">
                             保存
                         </button>
                     </div>
                     <!--</form>-->
                     <div style="height:100px;"></div>
                 </div>
-                <div class="layui-tab-item">
-                    <!--  <form class="layui-form layui-form-pane" action="" id="add">-->
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class='x-red'>*</span>状态
-                        </label>
-                        <div class="layui-input-block">
-                            <input type="radio" name="status" value="1" title="显示" checked>
-                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon layui-anim-scaleSpring"></i>
-                                <div>显示</div>
-                            </div>
-                            <input type="radio" name="status" value="0" title="隐藏" >
-                            <div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i>
-                                <div>隐藏</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class='x-red'>*</span>是否置顶
-                        </label>
-                        <div class="layui-input-block">
-                            <input type="radio" name="istop" value="1" title="显示" checked>
-                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon layui-anim-scaleSpring"></i>
-                                <div>置顶</div>
-                            </div>
-                            <input type="radio" name="istop" value="0" title="隐藏" >
-                            <div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i>
-                                <div>不置顶</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class='x-red'>*</span>是否推荐
-                        </label>
-                        <div class="layui-input-block">
-                            <input type="radio" name="isrecommand" value="1" title="显示" checked>
-                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon layui-anim-scaleSpring"></i>
-                                <div>推荐</div>
-                            </div>
-                            <input type="radio" name="isrecommand" value="0" title="隐藏" >
-                            <div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i>
-                                <div>不推荐</div>
-                            </div>
-                        </div>
-                    </div>
+<!--                <div class="layui-tab-item">-->
+<!--                    &lt;!&ndash;  <form class="layui-form layui-form-pane" action="" id="add">&ndash;&gt;-->
+<!--                    <div class="layui-form-item">-->
+<!--                        <label class="layui-form-label">-->
+<!--                            <span class='x-red'>*</span>状态-->
+<!--                        </label>-->
+<!--                        <div class="layui-input-block">-->
+<!--                            <input type="radio" name="status" value="1" title="显示" checked>-->
+<!--                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon layui-anim-scaleSpring"></i>-->
+<!--                                <div>显示</div>-->
+<!--                            </div>-->
+<!--                            <input type="radio" name="status" value="0" title="隐藏" >-->
+<!--                            <div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i>-->
+<!--                                <div>隐藏</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="layui-form-item">-->
+<!--                        <label class="layui-form-label">-->
+<!--                            <span class='x-red'>*</span>是否置顶-->
+<!--                        </label>-->
+<!--                        <div class="layui-input-block">-->
+<!--                            <input type="radio" name="istop" value="1" title="显示" checked>-->
+<!--                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon layui-anim-scaleSpring"></i>-->
+<!--                                <div>置顶</div>-->
+<!--                            </div>-->
+<!--                            <input type="radio" name="istop" value="0" title="隐藏" >-->
+<!--                            <div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i>-->
+<!--                                <div>不置顶</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="layui-form-item">-->
+<!--                        <label class="layui-form-label">-->
+<!--                            <span class='x-red'>*</span>是否推荐-->
+<!--                        </label>-->
+<!--                        <div class="layui-input-block">-->
+<!--                            <input type="radio" name="isrecommand" value="1" title="显示" checked>-->
+<!--                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon layui-anim-scaleSpring"></i>-->
+<!--                                <div>推荐</div>-->
+<!--                            </div>-->
+<!--                            <input type="radio" name="isrecommand" value="0" title="隐藏" >-->
+<!--                            <div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i>-->
+<!--                                <div>不推荐</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <div class="layui-form-item layui-form-text">
-                        <label class="layui-form-label">
-                            <span class='x-red'>*</span>作品简介
-                        </label>
-                        <div class="layui-input-block">
-                            <textarea placeholder="请输入内容" name="abstract" class="layui-textarea">{$art.abstract}</textarea>
-                        </div>
-                    </div>
+<!--                    <div class="layui-form-item layui-form-text">-->
+<!--                        <label class="layui-form-label">-->
+<!--                            <span class='x-red'>*</span>作品简介-->
+<!--                        </label>-->
+<!--                        <div class="layui-input-block">-->
+<!--                            <textarea placeholder="请输入内容" name="abstract" class="layui-textarea">{$art.abstract}</textarea>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <div class="layui-form-item">
-                        <button class="layui-btn"  type="button" lay-filter="add" lay-submit="">
-                            保存
-                        </button>
-                    </div>
-                    <!--</form>-->
-                </div>
-                <div class="layui-tab-item">
-                    <!-- <form class="layui-form layui-form-pane" action="" id="add">-->
-                    <div class="layui-form-item">
-                        <label for="link" class="layui-form-label">
-                            <span class="x-red">*</span>作品内容
-                        </label>
-                        <div class="layui-input-inline">
-                            <textarea  id="content" placeholder="" name="content"></textarea>
-                        </div>
-                    </div>
+<!--                    <div class="layui-form-item">-->
+<!--                        <button class="layui-btn"  type="button" lay-filter="add" lay-submit="">-->
+<!--                            保存-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;</form>&ndash;&gt;-->
+<!--                </div>-->
+<!--                <div class="layui-tab-item">-->
+<!--                    &lt;!&ndash; <form class="layui-form layui-form-pane" action="" id="add">&ndash;&gt;-->
+<!--                    <div class="layui-form-item">-->
+<!--                        <label for="link" class="layui-form-label">-->
+<!--                            <span class="x-red">*</span>作品内容-->
+<!--                        </label>-->
+<!--                        <div class="layui-input-inline">-->
+<!--                            <textarea  id="content" placeholder="" name="content"></textarea>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <div class="layui-form-item">
-                        <button class="layui-btn"  type="button" lay-filter="add" lay-submit="">
-                            保存
-                        </button>
-                    </div>
-                    <!--</form>-->
-                </div>
+<!--                    <div class="layui-form-item">-->
+<!--                        <button class="layui-btn"  type="button" lay-filter="add" lay-submit="">-->
+<!--                            保存-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;</form>&ndash;&gt;-->
+<!--                </div>-->
 
             </div>
 
@@ -236,42 +236,31 @@
 
         //监听提交
         form.on('submit(add)', function(data){
+
             var title=$("input[name='title']").val();
-            //var content=$("textarea[name='content']").val();
 
             var article_category_id=$('#article_category_id option:selected') .val();//所属作品类型
-            //alert(title);
-            //var form=$("#cate_add").serialize();
+
             if(title==""){
                 layer.msg('作品标题不能为空',{icon:5,time:2000});return false;
             }
             if(article_category_id==""){
                 layer.msg('作品类型不能为空',{icon:5,time:2000});return false;
             }
-            /*if(content){
-                layer.msg("作品内容不能为空！",{icon:5,time:2000});return false;
-          }*/
-            var data = data.field;
-            $.ajax({
-                type:"post",
-                url:"",
-                data:data,
-                dataType:"json",
-                success:function(data){
-                    if(data.status==1){
-                        layer.msg(data.info, {icon: 6,time:2000},function () {
-                            window.parent.location.reload();
-                            var index = parent.layer.getFrameIndex(window.name);
-                            parent.layer.close(index);
-                        });
-                        return false;
 
-                    }else{
-                        layer.msg(data.info,{icon:5,time:2000});return false;
-                    }
+            var parms = data.field;
+
+            let options = {
+                url:'admin/works/add',
+                data:parms,
+                onSuccess:function (res) {
+                    layer.msg(res.message,{icon:6});
+                },
+                onFailure:function (res) {
+                    layer.msg(res.message,{icon:5});
                 }
-
-            });
+            };
+            ucp.ajaxRequest.post(options);
 
         });
 
