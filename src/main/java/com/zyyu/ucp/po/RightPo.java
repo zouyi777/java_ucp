@@ -7,6 +7,7 @@ public class RightPo extends BasePo{
 
     private String rightName;
     private String rightRule;
+    private String description;
 
     public String getRightName() {
         return rightName;
@@ -22,5 +23,13 @@ public class RightPo extends BasePo{
 
     public void setRightRule(String rightRule) {
         this.rightRule = rightRule;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

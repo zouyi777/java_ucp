@@ -12,6 +12,25 @@
         <result property="updateTime" column="update_time"  />
     </resultMap>
 
+    <resultMap type="com.zyyu.ucp.vo.RoleVo" id="resultMapVo">
+        <id property="roleId" column="id"  />
+        <result property="roleName" column="role_name"  />
+        <result property="roleCode" column="role_code"  />
+        <result property="description" column="description"  />
+        <result property="rightId" column="right_id"  />
+        <result property="createTime" column="create_time"  />
+        <result property="updateTime" column="update_time"  />
+        <result property="rightName" column="right_name"  />
+    </resultMap>
+
+    <select id="getVoByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMapVo">
+        SELECT tb_role.id,tb_role.role_name,tb_role.role_code,tb_role.description,tb_role.right_id,
+               tb_role.create_time,tb_role.update_time,tb_right.right_name
+        FROM tb_role,tb_right
+        WHERE tb_role.right_id = tb_right.id
+        limit #{startIndex},#{pageSize}
+    </select>
+
     <select id="getById" parameterType="Long" resultMap="resultMap">
         SELECT * FROM tb_role WHERE id=#{id}
     </select>

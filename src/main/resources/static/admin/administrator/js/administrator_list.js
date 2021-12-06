@@ -1,7 +1,7 @@
 var curPage=1;
 var isFirstLoad=true;
 /**
- * 初始化
+ * 初始化j
  */
 $(document).ready(function(){
     layui.use(['laydate', 'element', 'laypage', 'layer'], function () {

@@ -42,7 +42,7 @@ public class RoleServiceImpl implements RoleService {
             pageInfo = new PageInfo();
         }
         pageInfo.setTotalCount(getTotalCount());
-        pageInfo.setDataList(roleMapper.getAllByPage(pageInfo));
+        pageInfo.setDataList(roleMapper.getVoByPage(pageInfo));
         return pageInfo;
     }
 

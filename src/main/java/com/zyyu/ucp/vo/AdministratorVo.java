@@ -15,9 +15,10 @@ public class AdministratorVo extends BaseVo{
     private String adminName;
     private String adminNickName;
     private AccountStateEnum adminState;
-    private Long roleId;
     private Long adminMobilePhone;
     private Long adminEmail;
+    private Long roleId;
+    private String roleName;
 
     public String getAdminId() {
         return adminId;
@@ -72,6 +73,14 @@ public class AdministratorVo extends BaseVo{
 
     public void setAdminEmail(Long adminEmail) {
         this.adminEmail = adminEmail;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
 }

@@ -15,6 +15,28 @@
         <result property="updateTime" column="update_time"  />
     </resultMap>
 
+    <resultMap type="com.zyyu.ucp.vo.AdministratorVo" id="resultMapVo">
+        <id property="adminId" column="id"  />
+        <result property="adminName" column="admin_name"  />
+        <result property="adminNickName" column="admin_nickname"  />
+        <result property="adminState" column="admin_state"  />
+        <result property="adminMobilePhone" column="admin_mobile_phone"  />
+        <result property="adminEmail" column="admin_email"  />
+        <result property="createTime" column="create_time"  />
+        <result property="updateTime" column="update_time"  />
+        <result property="roleId" column="role_id"  />
+        <result property="roleName" column="role_name"  />
+    </resultMap>
+
+
+    <select id="getVoByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMapVo">
+        SELECT tb_admin.id,tb_admin.admin_name,tb_admin.admin_nickname,tb_admin.admin_state,tb_admin.admin_mobile_phone,
+               tb_admin.admin_email,tb_admin.create_time,tb_admin.update_time,tb_admin.role_id,tb_role.role_name
+        FROM tb_admin,tb_role
+        WHERE tb_admin.role_id = tb_role.id
+        limit #{startIndex},#{pageSize}
+    </select>
+
     <select id="getById" parameterType="Long" resultMap="resultMap">
         SELECT * FROM tb_admin WHERE id=#{id}
     </select>
@@ -26,6 +48,7 @@
     <select id="getAllByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMap">
         SELECT * FROM tb_admin limit #{startIndex},#{pageSize}
     </select>
+
 
     <select id="getTotalCount"  resultType="Integer">
         SELECT count(*) FROM tb_admin

@@ -56,19 +56,12 @@ public class AdministratorServiceImpl implements AdministratorService {
 
     @Override
     public PageInfo getAllByPage(PageInfo pageInfo) {
-        List<AdministratorVo> administratorVoList = new ArrayList<>();
+
         if(pageInfo==null){
             pageInfo = new PageInfo();
         }
         pageInfo.setTotalCount(getTotalCount());
-        List<AdministratorPo> administratorPoList = administratorMapper.getAllByPage(pageInfo);
-
-        if(administratorPoList!=null && administratorPoList.size()>0){
-            Mapper dozerMapper = new DozerBeanMapper();
-            for(AdministratorPo administratorPo:administratorPoList){
-                administratorVoList.add(dozerMapper.map(administratorPo, AdministratorVo.class));
-            }
-        }
+        List<AdministratorVo> administratorVoList = administratorMapper.getVoByPage(pageInfo);
 
         pageInfo.setDataList(administratorVoList);
         return pageInfo;

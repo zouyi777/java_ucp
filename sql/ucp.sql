@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : localhost
 Source Server Version : 50720
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : ucp
 
 Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2021-11-22 22:25:10
+Date: 2021-12-06 16:33:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -46,6 +46,7 @@ CREATE TABLE `tb_right` (
   `id` bigint(20) NOT NULL,
   `right_name` varchar(30) NOT NULL,
   `right_rule` varchar(128) NOT NULL,
+  `description` varchar(128) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
@@ -54,8 +55,8 @@ CREATE TABLE `tb_right` (
 -- ----------------------------
 -- Records of tb_right
 -- ----------------------------
-INSERT INTO `tb_right` VALUES ('1631691997514', '系统管理权限', '/admin', '2021-09-13 16:28:48', '2021-09-13 16:28:48');
-INSERT INTO `tb_right` VALUES ('1631693379969', '普通用户权限', '/', '2021-09-13 16:28:48', '2021-09-13 16:28:48');
+INSERT INTO `tb_right` VALUES ('1631691997514', '系统管理', '/admin', '对系统所有功能拥有增删改查', '2021-09-13 16:28:48', '2021-09-13 16:28:48');
+INSERT INTO `tb_right` VALUES ('1631693379969', '普通用户', '/', '只能对前台相关功能增删改查', '2021-09-13 16:28:48', '2021-09-13 16:28:48');
 
 -- ----------------------------
 -- Table structure for `tb_role`
@@ -75,8 +76,8 @@ CREATE TABLE `tb_role` (
 -- ----------------------------
 -- Records of tb_role
 -- ----------------------------
-INSERT INTO `tb_role` VALUES ('1631692579832', '超级管理员', 'administrator', '拥有最高权限', '1631691997514', '2021-09-13 16:28:48', '2021-09-13 16:28:48');
-INSERT INTO `tb_role` VALUES ('1631693611742', '普通用户', 'customer', '拥有普通用户权限', '1631693379969', '2021-09-13 16:28:48', '2021-09-13 16:28:48');
+INSERT INTO `tb_role` VALUES ('1631692579832', '超级管理员', 'administrator', '系统所有功能管理', '1631691997514', '2021-09-13 16:28:48', '2021-09-13 16:28:48');
+INSERT INTO `tb_role` VALUES ('1631693611742', '普通用户', 'customer', '前台普通用户', '1631693379969', '2021-09-13 16:28:48', '2021-09-13 16:28:48');
 
 -- ----------------------------
 -- Table structure for `tb_user`
@@ -133,6 +134,4 @@ CREATE TABLE `tb_works` (
 -- ----------------------------
 -- Records of tb_works
 -- ----------------------------
-INSERT INTO `tb_works` VALUES ('1636778992522', '我是檐上三寸雪，你是人间惊鸿客', 'default-works.png', '2021-11-13 12:49:52', '2021-11-13 12:49:52', '1635164214642', null);
-INSERT INTO `tb_works` VALUES ('1636778992551', '城南小陌又逢春，只见梅花不见人', 'default-works.png', '2021-11-13 12:49:52', '2021-11-13 12:49:52', '1635164214642', null);
-INSERT INTO `tb_works` VALUES ('1636778992555', '本是青灯不归客，却因浊酒恋红尘', 'default-works.png', '2021-11-13 12:49:52', '2021-11-13 12:49:52', '1635164214642', null);
+INSERT INTO `tb_works` VALUES ('1637724944489', '<p>三生有幸遇见你，纵使悲凉也是情</p>', 'd567558d-556c-4c71-8ce4-22c2d6d3af50.jpg', '2021-11-24 11:35:44', '2021-11-24 11:35:44', '1635164214642', null);

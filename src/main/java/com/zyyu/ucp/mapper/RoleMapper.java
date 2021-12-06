@@ -1,6 +1,10 @@
 package com.zyyu.ucp.mapper;
 
+import com.zyyu.ucp.common.PageInfo;
 import com.zyyu.ucp.po.RolePo;
+import com.zyyu.ucp.vo.RoleVo;
+
+import java.util.List;
 
 public interface RoleMapper extends BaseMapper<RolePo> {
 
@@ -10,4 +14,12 @@ public interface RoleMapper extends BaseMapper<RolePo> {
      * @return
      */
     RolePo getByRoleCode(String roleCode);
+
+
+    /**
+     * 分页查询返回Vo
+     * @param pageInfo
+     * @return
+     */
+    List<RoleVo> getVoByPage(PageInfo pageInfo);
 }

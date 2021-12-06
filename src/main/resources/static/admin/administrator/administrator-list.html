@@ -17,7 +17,7 @@
 <div class="x-nav">
             <span class="layui-breadcrumb">
               <a><cite>首页</cite></a>
-              <a><cite>管理设置</cite></a>
+              <a><cite>管理人员</cite></a>
               <a><cite>管理员列表</cite></a>
             </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
@@ -25,7 +25,7 @@
                                                                         style="line-height:30px">ဂ</i></a>
 </div>
 <div class="x-body">
-    <form class="layui-form x-center" action="" style="width:80%">
+    <form class="layui-form x-center" action="" style="width:80%;display: none">
         <div class="layui-form-pane" style="margin-top: 15px;">
             <div class="layui-form-item">
                 <label class="layui-form-label">日期范围</label>
@@ -45,11 +45,10 @@
             </div>
         </div>
     </form>
-    <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>
-        <button class="layui-btn" oid="addAdmin"><i class="layui-icon">&#xe608;</i>添加
-        </button>
-        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">66</span> 条</span>
+    <xblock style = "height: 40px">
+<!--        <button class="layui-btn layui-btn-danger"><i class="layui-icon">&#xe640;</i>批量删除</button>-->
+<!--        <button class="layui-btn" oid="addAdmin"><i class="layui-icon">&#xe608;</i>添加</button>-->
+        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge" id="totalCount">0</span> 条</span>
     </xblock>
     <table class="layui-table">
         <thead>
@@ -71,7 +70,7 @@
         </tbody>
     </table>
 
-    <div id="page"></div>
+    <div id="pageContainer"></div>
 </div>
 <script src="../lib/layui/layui.js" charset="utf-8"></script>
 <script src="../js/x-layui.js" charset="utf-8"></script>
@@ -90,7 +89,7 @@
         <td><% if(obj.adminNickName){%> <%=obj.adminNickName %> <% }else{ %> 无 <% } %></td>
         <td><% if(obj.adminMobilePhone){%> <%=obj.adminMobilePhone %> <% }else{ %> 无 <% } %></td>
         <td><% if(obj.adminEmail){%> <%=obj.adminEmail %> <% }else{ %> 无 <% } %></td>
-        <td><%=obj.roleId %></td>
+        <td><%=obj.roleName %></td>
         <td><%= ucp.util.formatDate(obj.createTime) %></td>
         <td class="td-status"><span class="layui-btn layui-btn-normal ">已启用</span></td>
         <td class="td-manage">
