@@ -20,20 +20,19 @@
         <!--        springboot相关-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <!--        spring-boot-starter-xxx:官方提供-->
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <!--        mybatis数据库相关-->
+        <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
-            <!--        xxx-spring-boot-starter:非官方提供-->
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.2.0</version>
         </dependency>
-        <!--        mysql数据库相关-->
+        <!--        mysql数据库连接相关-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -68,11 +67,13 @@
             <artifactId>jjwt</artifactId>
             <version>0.9.1</version>
         </dependency>
+        <!--        dozer 相关-->
         <dependency>
             <groupId>net.sf.dozer</groupId>
             <artifactId>dozer</artifactId>
             <version>5.5.1</version>
         </dependency>
+        <!--        commons-io 相关-->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
