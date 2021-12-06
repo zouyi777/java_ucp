@@ -25,15 +25,9 @@
 </div>
 <div class="x-body">
 
-    <xblock style="height: 40px">
-<!--        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>-->
-<!--        <button class="layui-btn"><i class="layui-icon">&#xe608;</i>添加</button>-->
-        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge" id="totalCount">0</span> 条</span>
-    </xblock>
     <table class="layui-table">
         <thead>
         <tr>
-            <th><input type="checkbox" name="" value=""></th>
             <th>ID</th>
             <th>角色名</th>
             <th>拥有权限</th>
@@ -59,7 +53,6 @@
     <% for(var i=0;i < this.length;i++){ %>
     <% var obj = this[i]; %>
     <tr data-id="<%=obj.roleId %>" class="roleItem">
-        <td><input type="checkbox" value="1" name=""></td>
         <td><%=obj.roleId %></td>
         <td><%=obj.roleName %></td>
         <td><%=obj.rightName %></td>

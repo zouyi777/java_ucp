@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : localhost
 Source Server Version : 50720
-Source Host           : localhost:3306
+Source Host           : 127.0.0.1:3306
 Source Database       : ucp
 
 Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2021-12-06 16:33:19
+Date: 2021-12-06 21:03:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -76,7 +76,7 @@ CREATE TABLE `tb_role` (
 -- ----------------------------
 -- Records of tb_role
 -- ----------------------------
-INSERT INTO `tb_role` VALUES ('1631692579832', '超级管理员', 'administrator', '系统所有功能管理', '1631691997514', '2021-09-13 16:28:48', '2021-09-13 16:28:48');
+INSERT INTO `tb_role` VALUES ('1631692579832', '超级管理员', 'administrator', '对系统所有功能管理', '1631691997514', '2021-09-13 16:28:48', '2021-09-13 16:28:48');
 INSERT INTO `tb_role` VALUES ('1631693611742', '普通用户', 'customer', '前台普通用户', '1631693379969', '2021-09-13 16:28:48', '2021-09-13 16:28:48');
 
 -- ----------------------------

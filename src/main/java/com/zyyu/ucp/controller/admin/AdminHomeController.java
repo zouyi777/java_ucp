@@ -64,12 +64,7 @@ public class AdminHomeController extends BaseController {
         TopCardVo topCardVo = new TopCardVo();
         topCardVo.setUserCount(userService.getTotalCount());
         map.put("topCardVo",topCardVo);;
-        //服务器信息
-        SystemInfoVo systemInfoVo = SysInfoUtil.property();
-        systemInfoVo.setServerIP(serverConfig.getHost());
-        systemInfoVo.setLocalPort(serverConfig.getServerPort());
-        systemInfoVo.setFileUploadPath(FileHandleUtil.getUploadPath());
-        map.put("systemInfoVo",systemInfoVo);
+
         return success(map);
     }
 
@@ -85,5 +80,18 @@ public class AdminHomeController extends BaseController {
         }else {
             return fail(ResultEnum.ACCOUNT_NON_EXIST);
         }
+    }
+
+    @GetMapping(value = "/sys_info")
+    public Result sysInfo(){
+        Map<String,Object> map = new HashMap();
+        //服务器信息
+        SystemInfoVo systemInfoVo = SysInfoUtil.property();
+        systemInfoVo.setServerIP(serverConfig.getHost());
+        systemInfoVo.setLocalPort(serverConfig.getServerPort());
+        systemInfoVo.setFileUploadPath(FileHandleUtil.getUploadPath());
+        systemInfoVo.setLogDir(FileHandleUtil.getLogPath());
+        map.put("systemInfoVo",systemInfoVo);
+        return success(map);
     }
 }

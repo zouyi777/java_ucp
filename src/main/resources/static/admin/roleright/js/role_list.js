@@ -57,7 +57,6 @@ function initData(curPage){
  * 模板渲染
  */
 function renderData(result){
-    $("#totalCount").text(result.totalCount);
     var pendingHtml=$("#table_tr_tpl").html();
     var tpledHtml=ucp.listView.tpl(pendingHtml,result.dataList);
     $("#tbody").html(tpledHtml);

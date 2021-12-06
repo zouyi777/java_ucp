@@ -25,35 +25,10 @@
                                                                         style="line-height:30px">ဂ</i></a>
 </div>
 <div class="x-body">
-    <form class="layui-form x-center" action="" style="width:80%;display: none">
-        <div class="layui-form-pane" style="margin-top: 15px;">
-            <div class="layui-form-item">
-                <label class="layui-form-label">日期范围</label>
-                <div class="layui-input-inline">
-                    <input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
-                </div>
-                <div class="layui-input-inline">
-                    <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
-                </div>
-                <div class="layui-input-inline">
-                    <input type="text" name="adminname" placeholder="请输入登录名" autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-input-inline" style="width:80px">
-                    <button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </form>
-    <xblock style = "height: 40px">
-<!--        <button class="layui-btn layui-btn-danger"><i class="layui-icon">&#xe640;</i>批量删除</button>-->
-<!--        <button class="layui-btn" oid="addAdmin"><i class="layui-icon">&#xe608;</i>添加</button>-->
-        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge" id="totalCount">0</span> 条</span>
-    </xblock>
+
     <table class="layui-table">
         <thead>
         <tr>
-            <th><input type="checkbox" name="" value=""></th>
             <th>ID</th>
             <th>登录名</th>
             <th>昵称</th>
@@ -83,7 +58,6 @@
     <% for(var i=0;i < this.length;i++){ %>
     <% var obj = this[i]; %>
     <tr data-id="<%=obj.adminId %>" class="adminItem">
-        <td><input type="checkbox" value="1" name=""></td>
         <td><%=obj.adminId %></td>
         <td><%=obj.adminName %></td>
         <td><% if(obj.adminNickName){%> <%=obj.adminNickName %> <% }else{ %> 无 <% } %></td>
@@ -91,19 +65,13 @@
         <td><% if(obj.adminEmail){%> <%=obj.adminEmail %> <% }else{ %> 无 <% } %></td>
         <td><%=obj.roleName %></td>
         <td><%= ucp.util.formatDate(obj.createTime) %></td>
-        <td class="td-status"><span class="layui-btn layui-btn-normal ">已启用</span></td>
+        <td class="td-status"><span class="layui-btn layui-btn-normal " style="cursor: auto;">已启用</span></td>
         <td class="td-manage">
-            <a style="text-decoration:none" href="javascript:;" title="停用" data-id="<%=obj.adminId %>" class="adminStartOrStop">
-                <i class="layui-icon">&#xe601;</i>
-            </a>
             <a title="编辑" href="javascript:;" style="text-decoration:none" data-id="<%=obj.adminId %>" class="ml-5 adminEdit">
                 <i class="layui-icon">&#xe642;</i>
             </a>
             <a style="text-decoration:none" href="javascript:;" title="修改密码" data-id="<%=obj.adminId %>" class="adminModifyPass">
                 <i class="layui-icon">&#xe631;</i>
-            </a>
-            <a title="删除" href="javascript:;" style="text-decoration:none" data-id="<%=obj.adminId %>" class="adminDlete">
-                <i class="layui-icon">&#xe640;</i>
             </a>
         </td>
     </tr>

@@ -33,17 +33,6 @@ public class AdministratorController extends BaseController {
         return success(administratorVo);
     }
 
-    @GetMapping(value = "/delete")
-    public Result delete(@RequestParam String adminiId){
-        AdministratorPo administratorPo = new AdministratorPo();
-        administratorPo.setId(Long.valueOf(adminiId));
-        int result = administratorService.delete(administratorPo);
-        if(result==1){
-            return success();
-        }
-        return fail("删除失败");
-    }
-
     @PostMapping(value = "/update")
     public Result update(@RequestBody AdministratorVo administratorVo){
         Mapper dozerMapper = new DozerBeanMapper();
@@ -53,18 +42,6 @@ public class AdministratorController extends BaseController {
             return success();
         }
         return fail("修改失败");
-    }
-
-    @PostMapping(value = "/add")
-    public Result add(@RequestBody AdministratorVo administratorVo){
-        Mapper dozerMapper = new DozerBeanMapper();
-        AdministratorPo administratorPo = dozerMapper.map(administratorVo,AdministratorPo.class);
-
-        int result = administratorService.add(administratorPo);
-        if(result==1){
-            return success();
-        }
-        return fail("新增失败");
     }
 
 }

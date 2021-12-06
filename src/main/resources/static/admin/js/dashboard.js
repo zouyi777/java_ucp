@@ -10,7 +10,6 @@ function init(){
         url:'/admin/dashboard',
         onSuccess:function (res) {
             renderTopCard(res.data.topCardVo);
-            renderSystemInfoVo(res.data.systemInfoVo);
         },
         onFailure:function (res) {
             alert(res.message);
@@ -219,25 +218,4 @@ function renderWorksStatistics() {
     };
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
-}
-
-function renderSystemInfoVo(systemInfoVo) {
-    if(systemInfoVo){
-        $("#userName").text(systemInfoVo.userName);
-        $("#computerName").text(systemInfoVo.computerName);
-        $("#serverIP").text(systemInfoVo.serverIP);
-        $("#domain").text(systemInfoVo.domain);
-        $("#localPort").text(systemInfoVo.localPort);
-        $("#javaVersion").text(systemInfoVo.javaVersion);
-        $("#javaVendor").text(systemInfoVo.javaVendor);
-        $("#javaHome").text(systemInfoVo.javaHome);
-        $("#javaTotalMemory").text(systemInfoVo.javaTotalMemory);
-        $("#javaFreeMemory").text(systemInfoVo.javaFreeMemory);
-        $("#appServer").text(systemInfoVo.appServer);
-        $("#dbType").text(systemInfoVo.dbType);
-        $("#os").text(systemInfoVo.os);
-        $("#osVsersion").text(systemInfoVo.osVsersion);
-        $("#workDir").text(systemInfoVo.workDir);
-        $("#fileUploadPath").text(systemInfoVo.fileUploadPath);
-    }
 }

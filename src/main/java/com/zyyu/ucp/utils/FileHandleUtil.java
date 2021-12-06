@@ -11,7 +11,7 @@ public class FileHandleUtil {
     /** 文件存放的目录 **/
     private static final  String uploadDir = "upload";
     /**日志文件存放目录*/
-    private static final  String logDir = "ucp-log";
+    private static final  String logDir = "ucplog";
 
     /**
      * 上传单个文件

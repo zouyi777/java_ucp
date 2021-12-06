@@ -33,6 +33,8 @@ public class SystemInfoVo {
      private String workDir;
      /**文件上传目录*/
      private String fileUploadPath;
+     /**日志存放目录*/
+     private String logDir;
 
      public String getUserName() {
           return userName;
@@ -156,5 +158,13 @@ public class SystemInfoVo {
 
      public void setFileUploadPath(String fileUploadPath) {
           this.fileUploadPath = fileUploadPath;
+     }
+
+     public String getLogDir() {
+          return logDir;
+     }
+
+     public void setLogDir(String logDir) {
+          this.logDir = logDir;
      }
 }
