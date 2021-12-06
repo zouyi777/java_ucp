@@ -1,14 +1,14 @@
-package com.zyyu.ucp.vo;
+package com.zyyu.ucp.po;
 
 
 import com.zyyu.ucp.enums.AccountStateEnum;
-import com.zyyu.ucp.po.BasePo;
 
 /**
  * 管理员
  */
-public class AdminVo extends BaseVo{
+public class AdministratorPo extends BasePo{
     private String adminName;
+    private String adminPassword;
     private String adminNickName;
     private AccountStateEnum adminState;
     private Long roleId;
@@ -21,6 +21,14 @@ public class AdminVo extends BaseVo{
 
     public void setAdminName(String adminName) {
         this.adminName = adminName;
+    }
+
+    public String getAdminPassword() {
+        return adminPassword;
+    }
+
+    public void setAdminPassword(String adminPassword) {
+        this.adminPassword = adminPassword;
     }
 
     public String getAdminNickName() {

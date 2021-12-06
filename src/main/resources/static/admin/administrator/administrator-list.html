@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        后台管理系统
+    </title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../css/x-admin.css" media="all">
+</head>
+<body>
+<div class="x-nav">
+            <span class="layui-breadcrumb">
+              <a><cite>首页</cite></a>
+              <a><cite>管理设置</cite></a>
+              <a><cite>管理员列表</cite></a>
+            </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon"
+                                                                        style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <form class="layui-form x-center" action="" style="width:80%">
+        <div class="layui-form-pane" style="margin-top: 15px;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">日期范围</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
+                </div>
+                <div class="layui-input-inline">
+                    <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
+                </div>
+                <div class="layui-input-inline">
+                    <input type="text" name="adminname" placeholder="请输入登录名" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-input-inline" style="width:80px">
+                    <button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <xblock>
+        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>
+        <button class="layui-btn" oid="addAdmin"><i class="layui-icon">&#xe608;</i>添加
+        </button>
+        <span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">66</span> 条</span>
+    </xblock>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th><input type="checkbox" name="" value=""></th>
+            <th>ID</th>
+            <th>登录名</th>
+            <th>昵称</th>
+            <th>手机</th>
+            <th>邮箱</th>
+            <th>角色</th>
+            <th>注册时间</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+
+    <div id="page"></div>
+</div>
+<script src="../lib/layui/layui.js" charset="utf-8"></script>
+<script src="../js/x-layui.js" charset="utf-8"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/ucp-listview.js"></script>
+<script src="../js/ucp-util.js"></script>
+<script src="../js/ucp-common.js"></script>
+<script src="../js/ucp-ajax.js"></script>
+<script type="text/html" id="table_tr_tpl">
+    <% for(var i=0;i < this.length;i++){ %>
+    <% var obj = this[i]; %>
+    <tr data-id="<%=obj.adminId %>" class="adminItem">
+        <td><input type="checkbox" value="1" name=""></td>
+        <td><%=obj.adminId %></td>
+        <td><%=obj.adminName %></td>
+        <td><% if(obj.adminNickName){%> <%=obj.adminNickName %> <% }else{ %> 无 <% } %></td>
+        <td><% if(obj.adminMobilePhone){%> <%=obj.adminMobilePhone %> <% }else{ %> 无 <% } %></td>
+        <td><% if(obj.adminEmail){%> <%=obj.adminEmail %> <% }else{ %> 无 <% } %></td>
+        <td><%=obj.roleId %></td>
+        <td><%= ucp.util.formatDate(obj.createTime) %></td>
+        <td class="td-status"><span class="layui-btn layui-btn-normal ">已启用</span></td>
+        <td class="td-manage">
+            <a style="text-decoration:none" href="javascript:;" title="停用" data-id="<%=obj.adminId %>" class="adminStartOrStop">
+                <i class="layui-icon">&#xe601;</i>
+            </a>
+            <a title="编辑" href="javascript:;" style="text-decoration:none" data-id="<%=obj.adminId %>" class="ml-5 adminEdit">
+                <i class="layui-icon">&#xe642;</i>
+            </a>
+            <a style="text-decoration:none" href="javascript:;" title="修改密码" data-id="<%=obj.adminId %>" class="adminModifyPass">
+                <i class="layui-icon">&#xe631;</i>
+            </a>
+            <a title="删除" href="javascript:;" style="text-decoration:none" data-id="<%=obj.adminId %>" class="adminDlete">
+                <i class="layui-icon">&#xe640;</i>
+            </a>
+        </td>
+    </tr>
+    <% } %>
+</script>
+<script src="./js/administrator_list.js"></script>
+</body>
+</html>

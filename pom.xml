@@ -24,10 +24,12 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <!--        spring-boot-starter-xxx:官方提供-->
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
+            <!--        xxx-spring-boot-starter:非官方提供-->
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.2.0</version>
         </dependency>

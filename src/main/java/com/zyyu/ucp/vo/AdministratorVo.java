@@ -1,19 +1,31 @@
-package com.zyyu.ucp.po;
+package com.zyyu.ucp.vo;
 
 
 import com.zyyu.ucp.enums.AccountStateEnum;
+import com.zyyu.ucp.po.BasePo;
+import org.dozer.Mapping;
 
 /**
  * 管理员
  */
-public class AdminPo extends BasePo{
+public class AdministratorVo extends BaseVo{
+
+    @Mapping("id")
+    private String adminId;
     private String adminName;
-    private String adminPassword;
     private String adminNickName;
     private AccountStateEnum adminState;
     private Long roleId;
     private Long adminMobilePhone;
     private Long adminEmail;
+
+    public String getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(String adminId) {
+        this.adminId = adminId;
+    }
 
     public String getAdminName() {
         return adminName;
@@ -21,14 +33,6 @@ public class AdminPo extends BasePo{
 
     public void setAdminName(String adminName) {
         this.adminName = adminName;
-    }
-
-    public String getAdminPassword() {
-        return adminPassword;
-    }
-
-    public void setAdminPassword(String adminPassword) {
-        this.adminPassword = adminPassword;
     }
 
     public String getAdminNickName() {
