@@ -1,8 +1,7 @@
-package com.zyyu.ucp.controller.admin;
+package com.zyyu.ucp.controller;
 
 
 import com.zyyu.ucp.common.Result;
-import com.zyyu.ucp.controller.BaseController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -10,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/log")
-public class LogTestController extends BaseController {
-    private Logger logger = LoggerFactory.getLogger(LogTestController.class);
+public class TestLogController extends BaseController {
+    private Logger logger = LoggerFactory.getLogger(TestLogController.class);
 
 
     @GetMapping(value = "/test")

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/multi_thread")
-public class MultiThreadTestController extends BaseController {
+public class TestMultiThreadController extends BaseController {
 
     // 初始化票数10
     private int ticket = 10;
