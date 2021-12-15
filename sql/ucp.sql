@@ -3,17 +3,34 @@ Navicat MySQL Data Transfer
 
 Source Server         : localhost
 Source Server Version : 50720
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : ucp
 
 Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2021-12-06 21:03:02
+Date: 2021-12-15 17:23:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `tb_account`
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_account`;
+CREATE TABLE `tb_account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `balance` float DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_account
+-- ----------------------------
+INSERT INTO `tb_account` VALUES ('1', 'andy', '200');
+INSERT INTO `tb_account` VALUES ('2', 'lucy', '200');
 
 -- ----------------------------
 -- Table structure for `tb_admin`
@@ -76,7 +93,7 @@ CREATE TABLE `tb_role` (
 -- ----------------------------
 -- Records of tb_role
 -- ----------------------------
-INSERT INTO `tb_role` VALUES ('1631692579832', '超级管理员', 'administrator', '对系统所有功能管理', '1631691997514', '2021-09-13 16:28:48', '2021-09-13 16:28:48');
+INSERT INTO `tb_role` VALUES ('1631692579832', '超级管理员', 'administrator', '系统所有功能管理', '1631691997514', '2021-09-13 16:28:48', '2021-09-13 16:28:48');
 INSERT INTO `tb_role` VALUES ('1631693611742', '普通用户', 'customer', '前台普通用户', '1631693379969', '2021-09-13 16:28:48', '2021-09-13 16:28:48');
 
 -- ----------------------------

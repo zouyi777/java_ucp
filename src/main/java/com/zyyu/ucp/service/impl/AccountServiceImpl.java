@@ -12,6 +12,11 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     private AccountMapper accountMapper;
 
+    /***测试普通变量是否支持事务回滚****/
+    private int jackBlance = 300;
+    private int tomBlance = 300;
+    /***测试普通变量是否支持事务回滚****/
+
 
     @Override
     @Transactional
@@ -21,4 +26,23 @@ public class AccountServiceImpl implements AccountService {
 //        accountMapper.moveIn(inner, money); //转入
         accountMapper.moveOut(outter, money); //转出
     }
+
+
+    /**
+     * 经过测试，Transactional无法控制普通变量实现回滚
+     */
+    @Override
+    @Transactional
+    public void transferVar() {
+        jackBlance = jackBlance -50;
+        int i = 1/0;
+        tomBlance = tomBlance +50;
+
+    }
+
+    @Override
+    public String getTransferedVar() {
+        return "jackBlance="+jackBlance+";  tomBlance="+tomBlance;
+    }
+
 }

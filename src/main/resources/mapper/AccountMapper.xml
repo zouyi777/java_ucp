@@ -4,14 +4,14 @@
 
     <!-- 转入 -->
     <update id="moveIn" >
-        update tbl_account
+        update tb_account
         set balance = balance + #{money }
         where id= #{id,jdbcType=INTEGER}
     </update>
 
     <!-- 转出 -->
     <update id="moveOut" >
-        update tbl_account
+        update tb_account
         set balance = balance - #{money }
         where id= #{id,jdbcType=INTEGER}
     </update>
