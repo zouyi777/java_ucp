@@ -6,6 +6,7 @@ import com.zyyu.ucp.constants.Constants;
 import com.zyyu.ucp.enums.ResultEnum;
 import com.zyyu.ucp.enums.TokenCheckEnum;
 import com.zyyu.ucp.utils.JwtUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,12 +19,14 @@ import javax.servlet.http.HttpServletResponse;
 public class AdminJwtInterceptor implements HandlerInterceptor {
 
     final static String ROLE_ADMINISTRATOR="administrator";
+    final static String STRING_NULL = "null";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         response.setCharacterEncoding(Constants.UTF8);
         String token = request.getHeader(Constants.AUTH_TOKEN);
-        if (token == null || "null".equals(token)) {
+
+        if (StringUtils.isEmpty(token) || STRING_NULL.equalsIgnoreCase(token)) {
             response.getWriter().print(getResult(ResultEnum.UNAUTHORIZED));
             return false;
         }
