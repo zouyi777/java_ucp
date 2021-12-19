@@ -4,6 +4,9 @@ import com.zyyu.ucp.annotation.CurrAccount;
 import com.zyyu.ucp.common.Result;
 import com.zyyu.ucp.po.UserPo;
 import com.zyyu.ucp.service.UserService;
+import com.zyyu.ucp.vo.UserVo;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +21,11 @@ public class AccountController extends BaseController {
     @Autowired
     UserService userService;
 
-    @GetMapping(value = "/home")
+    @GetMapping(value = "/info")
     public Result login(@CurrAccount String userId){
         UserPo userPo = userService.getById(Long.valueOf(userId));
-        return success(userPo);
+        Mapper dozMapper = new DozerBeanMapper();
+        UserVo userVo = dozMapper.map(userPo,UserVo.class);
+        return success(userVo);
     }
 }
