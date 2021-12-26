@@ -1,9 +1,12 @@
 package com.zyyu.ucp;
 
 import com.zyyu.ucp.common.PageInfo;
+import com.zyyu.ucp.enums.CorpusCatgoryEnum;
 import com.zyyu.ucp.enums.GenderEnum;
+import com.zyyu.ucp.po.CorpusPo;
 import com.zyyu.ucp.po.UserPo;
 import com.zyyu.ucp.po.WorksPo;
+import com.zyyu.ucp.service.CorpusService;
 import com.zyyu.ucp.service.UserService;
 import com.zyyu.ucp.service.WorksService;
 import com.zyyu.ucp.utils.UniqueKeyUtil;
@@ -26,10 +29,13 @@ class UcpApplicationTests {
     @Autowired
     WorksService worksService;
 
+    @Autowired
+    CorpusService corpusService;
+
     @Test
     public void contextLoads() {
         System.out.println("单元测试开始");
-        testWorks_getVoByPage();
+        testCorpus_getVoByPage();
         System.out.println("单元测试结束");
     }
 
@@ -77,6 +83,24 @@ class UcpApplicationTests {
     void testWorks_getVoByPage(){
         PageInfo pageInfo =new PageInfo();
         pageInfo = worksService.getAllByPage(pageInfo);
+        System.out.println(pageInfo);
+    }
+
+    void testAddCorpus(){
+        String[] contentArr={"我是檐上三寸雪，你是人间惊鸿客","城南小陌又逢春，只见梅花不见人","本是青灯不归客，却因浊酒恋红尘"};
+
+        for(int i=0;i<contentArr.length;i++){
+            CorpusPo corpusPo =new CorpusPo();
+            corpusPo.setDonateId(userService.getAll().get(0).getId());
+            corpusPo.setContent(contentArr[i]);
+            corpusPo.setCatgoryEnum(CorpusCatgoryEnum.ANCIENT_POETRY);
+            corpusService.add(corpusPo);
+        }
+    }
+
+    void testCorpus_getVoByPage(){
+        PageInfo pageInfo =new PageInfo();
+        pageInfo = corpusService.getAllByPage(pageInfo);
         System.out.println(pageInfo);
     }
 

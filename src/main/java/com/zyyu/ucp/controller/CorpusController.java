@@ -1,0 +1,25 @@
+package com.zyyu.ucp.controller;
+
+import com.zyyu.ucp.common.PageInfo;
+import com.zyyu.ucp.common.Result;
+import com.zyyu.ucp.service.CorpusService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/corpus")
+public class CorpusController extends BaseController {
+
+    private Logger logger = LoggerFactory.getLogger(CorpusController.class);
+
+    @Autowired
+    CorpusService corpusService;
+
+    @PostMapping(value = "/list")
+    public Result list(@RequestBody PageInfo pageInfo){
+        pageInfo = corpusService.getAllByPage(pageInfo);
+        return success(pageInfo);
+    }
+}

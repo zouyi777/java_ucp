@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : localhost
 Source Server Version : 50720
-Source Host           : localhost:3306
+Source Host           : 127.0.0.1:3306
 Source Database       : ucp
 
 Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2021-12-15 17:23:20
+Date: 2021-12-26 18:09:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -54,6 +54,27 @@ CREATE TABLE `tb_admin` (
 -- Records of tb_admin
 -- ----------------------------
 INSERT INTO `tb_admin` VALUES ('1631694462743', 'admin-zy', 'e10adc3949ba59abbe56e057f20f883e', '系统管理员', '18215626820', '2021-09-13 16:28:48', '185964885@qq.com', '1', '1631692579832', '2021-09-13 16:28:48');
+
+-- ----------------------------
+-- Table structure for `tb_corpus`
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_corpus`;
+CREATE TABLE `tb_corpus` (
+  `id` bigint(20) NOT NULL,
+  `content` varchar(255) DEFAULT '' COMMENT '内容',
+  `catgory` smallint(6) DEFAULT NULL COMMENT '语料种类',
+  `donate_id` bigint(20) DEFAULT NULL COMMENT '上传人id',
+  `create_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_corpus
+-- ----------------------------
+INSERT INTO `tb_corpus` VALUES ('1640440948320', '我是檐上三寸雪，你是人间惊鸿客', '2', '1635164214642', '2021-12-25 22:02:28', '2021-12-25 22:02:28');
+INSERT INTO `tb_corpus` VALUES ('1640440948328', '城南小陌又逢春，只见梅花不见人', '2', '1635164214642', '2021-12-25 22:02:28', '2021-12-25 22:02:28');
+INSERT INTO `tb_corpus` VALUES ('1640440948343', '本是青灯不归客，却因浊酒恋红尘', '2', '1635164214642', '2021-12-25 22:02:28', '2021-12-25 22:02:28');
 
 -- ----------------------------
 -- Table structure for `tb_right`
@@ -151,4 +172,4 @@ CREATE TABLE `tb_works` (
 -- ----------------------------
 -- Records of tb_works
 -- ----------------------------
-INSERT INTO `tb_works` VALUES ('1637724944489', '<p>三生有幸遇见你，纵使悲凉也是情</p>', 'd567558d-556c-4c71-8ce4-22c2d6d3af50.jpg', '2021-11-24 11:35:44', '2021-11-24 11:35:44', '1635164214642', null);
+INSERT INTO `tb_works` VALUES ('1637724944489', '三生有幸遇见你，纵使悲凉也是情', 'd567558d-556c-4c71-8ce4-22c2d6d3af50.jpg', '2021-11-24 11:35:44', '2021-11-24 11:35:44', '1635164214642', null);

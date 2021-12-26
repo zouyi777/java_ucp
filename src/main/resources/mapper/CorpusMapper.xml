@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+    <mapper namespace="com.zyyu.ucp.mapper.CorpusMapper">
+
+    <resultMap type="com.zyyu.ucp.po.CorpusPo" id="resultMap">
+        <id property="id" column="id"  />
+        <result property="content" column="content"  />
+        <result property="catgory" column="catgory"  />
+        <result property="donateId" column="donate_id"  />
+        <result property="createTime" column="create_time"  />
+        <result property="updateTime" column="update_time"  />
+    </resultMap>
+
+    <resultMap type="com.zyyu.ucp.vo.CorpusVo" id="resultMapVo">
+        <id property="corpusId" column="id"  />
+        <result property="content" column="content"  />
+        <result property="catgory" column="catgory"  />
+        <result property="donateId" column="donate_id"  />
+        <result property="donateName" column="user_name"  />
+        <result property="createTime" column="create_time"  />
+        <result property="updateTime" column="update_time"  />
+    </resultMap>
+
+    <select id="getById" parameterType="Long" resultMap="resultMap">
+        SELECT * FROM tb_corpus WHERE id=#{id}
+    </select>
+
+    <select id="getAll"  resultMap="resultMap">
+        SELECT * FROM tb_corpus
+    </select>
+
+    <select id="getAllByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMap">
+        SELECT * FROM tb_corpus limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="getVoByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMapVo">
+        SELECT c.id,c.content,c.catgory,c.donate_id,c.create_time,c.update_time,u.user_name
+        FROM tb_corpus c,tb_user u
+        WHERE c.donate_id = u.id
+        limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="getTotalCount"  resultType="Integer">
+        SELECT count(*) FROM tb_corpus
+    </select>
+
+    <insert id="add" parameterType="com.zyyu.ucp.po.CorpusPo">
+        INSERT INTO tb_corpus(id,content,catgory,donate_id,create_time,update_time)
+               VALUES(#{id},#{content},#{catgory},#{donateId},#{createTime},#{updateTime})
+    </insert>
+
+    <update id="update" parameterType="com.zyyu.ucp.po.CorpusPo" >
+        UPDATE tb_corpus SET content=#{content},catgory=#{catgory},donate_id=#{donateId},create_time=#{createTime},update_time=#{updateTime}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="com.zyyu.ucp.po.CorpusPo">
+        DELETE FROM tb_corpus WHERE id=#{id}
+    </delete>
+
+</mapper>
