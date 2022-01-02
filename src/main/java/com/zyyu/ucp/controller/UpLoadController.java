@@ -3,6 +3,7 @@ package com.zyyu.ucp.controller;
 import com.zyyu.ucp.ServerConfig;
 import com.zyyu.ucp.common.Result;
 import com.zyyu.ucp.utils.FileHandleUtil;
+import com.zyyu.ucp.vo.UploadVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,17 +28,21 @@ public class UpLoadController extends BaseController{
 
     @PostMapping("/upload")
     public Result uploads(HttpServletRequest request, MultipartFile[] files) {
-        String resultPath=null;
+        UploadVo uploadVo=new UploadVo();
         try {
             //遍历文件数组执行上传
             for (int i = 0; i < files.length; i++) {
                 if (files[i] != null) {
+
                     //调用上传方法
-                    resultPath = FileHandleUtil.upload(files[i]);
+                    String resultPath = FileHandleUtil.upload(files[i]);
+                    uploadVo.setSrcPath(resultPath);
+
                     String contentType = files[i].getContentType();
                     //图片
                     if(contentType.indexOf(FILE_TYPE_IMAGE)>-1){
-                        resultPath = FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),resultPath);
+                        String displayUrl = FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),resultPath);
+                        uploadVo.setDisplayUrl(displayUrl);
                     }
                 }
             }
@@ -45,7 +50,7 @@ public class UpLoadController extends BaseController{
             logger.error("上传失败",e);
             return fail("上传失败");
         }
-        return success(resultPath);
+        return success(uploadVo);
     }
 
     /**

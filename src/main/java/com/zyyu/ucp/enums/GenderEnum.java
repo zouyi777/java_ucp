@@ -33,7 +33,7 @@ public enum GenderEnum {
         this.otherName = otherName;
     }
 
-    private GenderEnum(Integer  index,String otherName){
+    GenderEnum(Integer  index,String otherName){
        this.index = index;
        this.otherName = otherName;
     }
