@@ -12,7 +12,14 @@ public class UcpConfig {
     @Value("${spring.datasource.url}")
     private String datasourceUrl;
 
+    @Value("${server.servlet.context-path}")
+    private String rootPath;
+
     public String getDatasourceUrl() {
         return datasourceUrl;
+    }
+
+    public String getRootPath(){
+        return rootPath;
     }
 }

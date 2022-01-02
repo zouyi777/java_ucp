@@ -1,5 +1,6 @@
 package com.zyyu.ucp.utils;
 
+import com.zyyu.ucp.security.WebConfig;
 import org.springframework.boot.system.ApplicationHome;
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -82,5 +83,16 @@ public class FileHandleUtil {
             return file.delete();
         }
         return false;
+    }
+
+    /**
+     * 获取图片完整的url路径
+     * @param baseUrl
+     * @param path
+     * @return
+     */
+    public static String getImageWholeUrl(String baseUrl,String path){
+        String wholePath = baseUrl + WebConfig.STATIC_RES_ROOT_PATH+"/"+ imageDir+"/"+path;
+        return wholePath;
     }
 }

@@ -9,10 +9,9 @@ import com.zyyu.ucp.mapper.UserMapper;
 import com.zyyu.ucp.service.RoleService;
 import com.zyyu.ucp.service.UserService;
 import com.zyyu.ucp.utils.DateTimeUtil;
-import com.zyyu.ucp.utils.FilePathUtil;
+import com.zyyu.ucp.utils.FileHandleUtil;
 import com.zyyu.ucp.utils.UniqueKeyUtil;
 import com.zyyu.ucp.vo.UserVo;
-import org.apache.catalina.User;
 import org.apache.commons.lang3.StringUtils;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
@@ -38,7 +37,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserPo loginIn(UserPo userPo) {
         UserPo uerPo = userMapper.login(userPo);
-        uerPo.setAvatar(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),userPo.getAvatar()));
+        uerPo.setAvatar(FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),userPo.getAvatar()));
         return uerPo;
     }
 
@@ -59,7 +58,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserPo getById(Long userId) {
         UserPo userPo = userMapper.getById(userId);
-        userPo.setAvatar(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),userPo.getAvatar()));
+        userPo.setAvatar(FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),userPo.getAvatar()));
         return userPo;
     }
 
@@ -67,7 +66,7 @@ public class UserServiceImpl implements UserService {
     public List<UserPo> getAll() {
         List<UserPo> list = userMapper.getAll();
         for(UserPo userPo:list){
-            userPo.setAvatar(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),userPo.getAvatar()));
+            userPo.setAvatar(FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),userPo.getAvatar()));
         }
         return list;
     }
@@ -90,7 +89,7 @@ public class UserServiceImpl implements UserService {
             Mapper dozerMapper = new DozerBeanMapper();
             for(UserPo userPo:userPoList){
                 UserVo userVo = dozerMapper.map(userPo, UserVo.class);
-                userVo.setAvatar(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),userVo.getAvatar()));
+                userVo.setAvatar(FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),userVo.getAvatar()));
                 userVoList.add(userVo);
             }
         }
@@ -112,21 +111,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserPo getByUserName(String userName) {
         UserPo userPo = userMapper.getByUserName(userName);
-        userPo.setAvatar(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),userPo.getAvatar()));
+        userPo.setAvatar(FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),userPo.getAvatar()));
         return userPo;
     }
 
     @Override
     public UserPo getByMobilePhone(String mobilePhone) {
         UserPo userPo = userMapper.getByMobilePhone(mobilePhone);
-        userPo.setAvatar(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),userPo.getAvatar()));
+        userPo.setAvatar(FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),userPo.getAvatar()));
         return userPo;
     }
 
     @Override
     public UserPo getByEmail(String email) {
         UserPo userPo = userMapper.getByEmail(email);
-        userPo.setAvatar(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),userPo.getAvatar()));
+        userPo.setAvatar(FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),userPo.getAvatar()));
         return userPo;
     }
 }

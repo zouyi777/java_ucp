@@ -3,21 +3,16 @@ package com.zyyu.ucp.service.impl;
 import com.zyyu.ucp.ServerConfig;
 import com.zyyu.ucp.common.PageInfo;
 import com.zyyu.ucp.mapper.WorksMapper;
-import com.zyyu.ucp.po.UserPo;
 import com.zyyu.ucp.po.WorksPo;
 import com.zyyu.ucp.service.WorksService;
 import com.zyyu.ucp.utils.DateTimeUtil;
-import com.zyyu.ucp.utils.FilePathUtil;
+import com.zyyu.ucp.utils.FileHandleUtil;
 import com.zyyu.ucp.utils.UniqueKeyUtil;
-import com.zyyu.ucp.vo.UserVo;
 import com.zyyu.ucp.vo.WorksVo;
 import org.apache.commons.lang3.StringUtils;
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -53,7 +48,7 @@ public class WorksServiceImpl implements WorksService {
     @Override
     public WorksPo getById(Long id) {
         WorksPo worksPo = worksMapper.getById(id);
-        worksPo.setQuote(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),worksPo.getQuote()));
+        worksPo.setQuote(FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),worksPo.getQuote()));
         return worksPo;
     }
 
@@ -61,7 +56,7 @@ public class WorksServiceImpl implements WorksService {
     public List<WorksPo> getAll() {
         List<WorksPo> list = worksMapper.getAll();
         for(WorksPo worksPo:list){
-            worksPo.setQuote(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),worksPo.getQuote()));
+            worksPo.setQuote(FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),worksPo.getQuote()));
         }
         return list;
     }
@@ -79,7 +74,7 @@ public class WorksServiceImpl implements WorksService {
         pageInfo.setTotalCount(getTotalCount());
         List<WorksVo> dataList = worksMapper.getVoByPage(pageInfo);
         for(WorksVo worksVo:dataList){
-            worksVo.setQuote(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),worksVo.getQuote()));
+            worksVo.setQuote(FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),worksVo.getQuote()));
         }
         pageInfo.setDataList(dataList);
         return pageInfo;

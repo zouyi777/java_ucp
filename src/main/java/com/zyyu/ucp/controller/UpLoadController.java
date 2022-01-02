@@ -3,7 +3,6 @@ package com.zyyu.ucp.controller;
 import com.zyyu.ucp.ServerConfig;
 import com.zyyu.ucp.common.Result;
 import com.zyyu.ucp.utils.FileHandleUtil;
-import com.zyyu.ucp.utils.FilePathUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,7 @@ public class UpLoadController extends BaseController{
                     String contentType = files[i].getContentType();
                     //图片
                     if(contentType.indexOf(FILE_TYPE_IMAGE)>-1){
-                        resultPath = FilePathUtil.getImageWholePath(serverConfig.getHostPort(),resultPath);
+                        resultPath = FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),resultPath);
                     }
                 }
             }
