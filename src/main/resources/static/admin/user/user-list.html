@@ -101,7 +101,7 @@
         <td><%=obj.userName %></td>
         <td>
             <a class="user-avatar" title="我的头像" style="height: 60px;width:60px">
-               <img src="<%=ucp.ajaxRequest.baseurlResImage + obj.avatar %>">
+               <img src="<%=obj.avatar %>">
            </a>
         </td>
         <td><% if(obj.nickName){%> <%=obj.nickName %> <% }else{ %> 无 <% } %></td>

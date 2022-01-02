@@ -160,7 +160,7 @@
                 //关闭进度条
                 layer.closeAll('loading');
                 //展示缩略图
-                $("#pimages").attr('src',ucp.ajaxRequest.baseurlResImage + res.data);
+                $("#pimages").attr('src',res.data);
                 $("#avatar").val(res.data);
                 $(".imgs").show();
             },

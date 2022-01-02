@@ -1,11 +1,13 @@
 package com.zyyu.ucp.service.impl;
 
+import com.zyyu.ucp.ServerConfig;
 import com.zyyu.ucp.common.PageInfo;
 import com.zyyu.ucp.mapper.WorksMapper;
 import com.zyyu.ucp.po.UserPo;
 import com.zyyu.ucp.po.WorksPo;
 import com.zyyu.ucp.service.WorksService;
 import com.zyyu.ucp.utils.DateTimeUtil;
+import com.zyyu.ucp.utils.FilePathUtil;
 import com.zyyu.ucp.utils.UniqueKeyUtil;
 import com.zyyu.ucp.vo.UserVo;
 import com.zyyu.ucp.vo.WorksVo;
@@ -20,6 +22,9 @@ import java.util.List;
 
 @Service
 public class WorksServiceImpl implements WorksService {
+
+    @Autowired
+    private ServerConfig serverConfig;
 
     @Autowired
     private WorksMapper worksMapper;
@@ -47,12 +52,18 @@ public class WorksServiceImpl implements WorksService {
 
     @Override
     public WorksPo getById(Long id) {
-        return worksMapper.getById(id);
+        WorksPo worksPo = worksMapper.getById(id);
+        worksPo.setQuote(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),worksPo.getQuote()));
+        return worksPo;
     }
 
     @Override
     public List<WorksPo> getAll() {
-        return worksMapper.getAll();
+        List<WorksPo> list = worksMapper.getAll();
+        for(WorksPo worksPo:list){
+            worksPo.setQuote(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),worksPo.getQuote()));
+        }
+        return list;
     }
 
     @Override
@@ -67,7 +78,9 @@ public class WorksServiceImpl implements WorksService {
         }
         pageInfo.setTotalCount(getTotalCount());
         List<WorksVo> dataList = worksMapper.getVoByPage(pageInfo);
-
+        for(WorksVo worksVo:dataList){
+            worksVo.setQuote(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),worksVo.getQuote()));
+        }
         pageInfo.setDataList(dataList);
         return pageInfo;
     }

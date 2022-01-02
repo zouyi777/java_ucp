@@ -1,5 +1,6 @@
 package com.zyyu.ucp.service.impl;
 
+import com.zyyu.ucp.ServerConfig;
 import com.zyyu.ucp.common.PageInfo;
 import com.zyyu.ucp.enums.GenderEnum;
 import com.zyyu.ucp.enums.AccountStateEnum;
@@ -8,8 +9,10 @@ import com.zyyu.ucp.mapper.UserMapper;
 import com.zyyu.ucp.service.RoleService;
 import com.zyyu.ucp.service.UserService;
 import com.zyyu.ucp.utils.DateTimeUtil;
+import com.zyyu.ucp.utils.FilePathUtil;
 import com.zyyu.ucp.utils.UniqueKeyUtil;
 import com.zyyu.ucp.vo.UserVo;
+import org.apache.catalina.User;
 import org.apache.commons.lang3.StringUtils;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
@@ -29,10 +32,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleService roleService;
 
+    @Autowired
+    private ServerConfig serverConfig;
+
     @Override
     public UserPo loginIn(UserPo userPo) {
-
-        return userMapper.login(userPo);
+        UserPo uerPo = userMapper.login(userPo);
+        uerPo.setAvatar(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),userPo.getAvatar()));
+        return uerPo;
     }
 
     @Override
@@ -51,12 +58,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserPo getById(Long userId) {
-        return userMapper.getById(userId);
+        UserPo userPo = userMapper.getById(userId);
+        userPo.setAvatar(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),userPo.getAvatar()));
+        return userPo;
     }
 
     @Override
     public List<UserPo> getAll() {
-        return userMapper.getAll();
+        List<UserPo> list = userMapper.getAll();
+        for(UserPo userPo:list){
+            userPo.setAvatar(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),userPo.getAvatar()));
+        }
+        return list;
     }
 
     @Override
@@ -66,7 +79,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public PageInfo getAllByPage(PageInfo pageInfo) {
-        List userVoList = new ArrayList<>();
+        List<UserVo> userVoList = new ArrayList<>();
         if(pageInfo ==null){
             pageInfo = new PageInfo();
         }
@@ -76,7 +89,9 @@ public class UserServiceImpl implements UserService {
         if(userPoList!=null && userPoList.size()>0){
             Mapper dozerMapper = new DozerBeanMapper();
             for(UserPo userPo:userPoList){
-                userVoList.add(dozerMapper.map(userPo, UserVo.class));
+                UserVo userVo = dozerMapper.map(userPo, UserVo.class);
+                userVo.setAvatar(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),userVo.getAvatar()));
+                userVoList.add(userVo);
             }
         }
         pageInfo.setDataList(userVoList);
@@ -96,16 +111,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserPo getByUserName(String userName) {
-        return userMapper.getByUserName(userName);
+        UserPo userPo = userMapper.getByUserName(userName);
+        userPo.setAvatar(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),userPo.getAvatar()));
+        return userPo;
     }
 
     @Override
     public UserPo getByMobilePhone(String mobilePhone) {
-        return userMapper.getByMobilePhone(mobilePhone);
+        UserPo userPo = userMapper.getByMobilePhone(mobilePhone);
+        userPo.setAvatar(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),userPo.getAvatar()));
+        return userPo;
     }
 
     @Override
     public UserPo getByEmail(String email) {
-        return userMapper.getByEmail(email);
+        UserPo userPo = userMapper.getByEmail(email);
+        userPo.setAvatar(FilePathUtil.getImageWholePath(serverConfig.getHostPort(),userPo.getAvatar()));
+        return userPo;
     }
 }

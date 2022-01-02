@@ -8,10 +8,17 @@ import java.util.UUID;
 
 public class FileHandleUtil {
 
-    /** 文件存放的目录 **/
-    private static final  String uploadDir = "upload";
+    /** 文件（包括图片）存放的根目录 **/
+    public static final  String uploadDir = "upload";
+
+    /** 图片存放的目录 **/
+    public static final  String imageDir = "image";
+
+    /** 其他文件存放的目录 **/
+    public static final  String fileDir = "comfile";
+
     /**日志文件存放目录*/
-    private static final  String logDir = "ucplog";
+    public static final  String logDir = "ucplog";
 
     /**
      * 上传单个文件
@@ -20,7 +27,7 @@ public class FileHandleUtil {
     public static String upload(MultipartFile uploadFile) throws Exception {
 
         //在部署的jar的父目录下新建upload目录（也即使和jar包同级）
-        String saveFilePath = File.separator+"image"+File.separator;
+        String saveFilePath = File.separator+imageDir+File.separator;
         File uploadDir = new File(getUploadPath(), saveFilePath);
         if(!uploadDir.exists()) {
             uploadDir.mkdirs();

@@ -22,7 +22,7 @@ public class AccountController extends BaseController {
     UserService userService;
 
     @GetMapping(value = "/info")
-    public Result login(@CurrAccount String userId){
+    public Result info(@CurrAccount String userId){
         UserPo userPo = userService.getById(Long.valueOf(userId));
         Mapper dozMapper = new DozerBeanMapper();
         UserVo userVo = dozMapper.map(userPo,UserVo.class);

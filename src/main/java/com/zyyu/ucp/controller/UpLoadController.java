@@ -1,9 +1,12 @@
 package com.zyyu.ucp.controller;
 
+import com.zyyu.ucp.ServerConfig;
 import com.zyyu.ucp.common.Result;
 import com.zyyu.ucp.utils.FileHandleUtil;
+import com.zyyu.ucp.utils.FilePathUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,6 +20,12 @@ public class UpLoadController extends BaseController{
 
     private Logger logger = LoggerFactory.getLogger(UpLoadController.class);
 
+    /**图片文件类型*/
+    private static final String FILE_TYPE_IMAGE = "image";
+
+    @Autowired
+    private ServerConfig serverConfig;
+
     @PostMapping("/upload")
     public Result uploads(HttpServletRequest request, MultipartFile[] files) {
         String resultPath=null;
@@ -26,6 +35,11 @@ public class UpLoadController extends BaseController{
                 if (files[i] != null) {
                     //调用上传方法
                     resultPath = FileHandleUtil.upload(files[i]);
+                    String contentType = files[i].getContentType();
+                    //图片
+                    if(contentType.indexOf(FILE_TYPE_IMAGE)>-1){
+                        resultPath = FilePathUtil.getImageWholePath(serverConfig.getHostPort(),resultPath);
+                    }
                 }
             }
         } catch (Exception e) {

@@ -20,7 +20,7 @@ public class ServerConfig implements ApplicationListener<WebServerInitializedEve
         return serverPort;
     }
 
-    public String getUrl() {
+    public String getHostPort() {
         InetAddress address = null;
         try {
             address = InetAddress.getLocalHost();

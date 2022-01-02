@@ -76,7 +76,7 @@ function renderData(result){
         $('#detail-form textarea').attr('readonly','readonly');
         $('#saveView').addClass('display-none');
     }
-    $('.userAvtar img').attr('src',ucp.ajaxRequest.baseurlResImage + result.avatar);
+    $('.userAvtar img').attr('src',result.avatar);
     $( "#userName").val(result.userName);
     if(result.state == 'NORMAL'){
         $( "#userStateUp").attr('checked','checked');

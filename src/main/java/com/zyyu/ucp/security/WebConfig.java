@@ -18,7 +18,12 @@ import java.util.List;
  */
 @Configuration
 public class WebConfig<addResourceHandlers> extends WebMvcConfigurationSupport {
+
     private Logger logger = LoggerFactory.getLogger(WebConfig.class);
+
+    /** 静态资源访问根路径 **/
+    public static final  String STATIC_RES_ROOT_PATH = "/res";
+
      /**
       * 设置允许跨域
       * @param registry
@@ -63,7 +68,7 @@ public class WebConfig<addResourceHandlers> extends WebMvcConfigurationSupport {
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         String uploadPath = "file:"+ FileHandleUtil.getUploadPath()+File.separator;
         //配置静态资源处理
-        registry.addResourceHandler("/res/**")
+        registry.addResourceHandler(STATIC_RES_ROOT_PATH+"/**")
                 .addResourceLocations("resources/", "static/", "public/","META-INF/resources/")
                 .addResourceLocations("classpath:resources/", "classpath:static/","classpath:public/",
                                       "classpath:META-INF/resources/","classpath:upload/")
