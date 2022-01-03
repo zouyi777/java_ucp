@@ -62,4 +62,9 @@ public class CorpusServiceImpl implements CorpusService {
         pageInfo.setDataList(dataList);
         return pageInfo;
     }
+
+    @Override
+    public CorpusVo getVoByContent(CorpusVo corpusVo) {
+        return corpusMapper.getVoByContent(corpusVo);
+    }
 }

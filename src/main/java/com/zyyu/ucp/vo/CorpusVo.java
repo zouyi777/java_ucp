@@ -1,12 +1,14 @@
 package com.zyyu.ucp.vo;
 
 import com.zyyu.ucp.enums.CorpusCatgoryEnum;
+import org.dozer.Mapping;
 
 /**
  * 语料Vo
  */
 public class CorpusVo extends BaseVo{
 
+	@Mapping("id")
 	private Long corpusId;
 	private String content;
 	private CorpusCatgoryEnum catgory;

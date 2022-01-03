@@ -10,4 +10,6 @@ public interface CorpusMapper extends BaseMapper<CorpusPo>{
 
     List<CorpusVo> getVoByPage(PageInfo pageInfo);
 
+    CorpusVo getVoByContent(CorpusVo corpusVo);
+
 }

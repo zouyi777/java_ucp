@@ -21,19 +21,19 @@ public enum CorpusCatgoryEnum {
     /**俗语*/
     POPULAR_SAYING(5,"俗语");
 
-    private int code;
+    private Integer code;
 
     private String otherName;
 
-    CorpusCatgoryEnum(int code,String otherName){
+    CorpusCatgoryEnum(Integer code, String otherName){
           this.code = code;
           this.otherName = otherName;
     }
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 
@@ -46,10 +46,10 @@ public enum CorpusCatgoryEnum {
     }
 
     @JsonCreator
-    public static CorpusCatgoryEnum valueOf(Integer index){
+    public static CorpusCatgoryEnum valueOf(Integer code){
         CorpusCatgoryEnum[] values= CorpusCatgoryEnum.values();
         for(CorpusCatgoryEnum corpusCatgoryEnum :values){
-            if(Integer.valueOf(corpusCatgoryEnum.ordinal()).equals(index)){
+            if(corpusCatgoryEnum.getCode().equals(code)){
                 return corpusCatgoryEnum;
             }
         }

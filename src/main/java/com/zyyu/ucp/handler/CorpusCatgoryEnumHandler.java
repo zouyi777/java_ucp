@@ -34,7 +34,7 @@ public class CorpusCatgoryEnumHandler implements TypeHandler<CorpusCatgoryEnum> 
 
     @Override
     public void setParameter(PreparedStatement ps, int i, CorpusCatgoryEnum corpusCatgoryEnum, JdbcType jdbcType) throws SQLException {
-        ps.setByte(i, (byte) corpusCatgoryEnum.ordinal());
+        ps.setByte(i, (byte) corpusCatgoryEnum.getCode().intValue());
     }
 
 }

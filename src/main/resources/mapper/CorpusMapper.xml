@@ -44,6 +44,10 @@
         SELECT count(*) FROM tb_corpus
     </select>
 
+    <select id="getVoByContent" parameterType="com.zyyu.ucp.vo.CorpusVo" resultMap="resultMapVo">
+        SELECT * FROM tb_corpus where tb_corpus.content = #{content}
+    </select>
+
     <insert id="add" parameterType="com.zyyu.ucp.po.CorpusPo">
         INSERT INTO tb_corpus(id,content,catgory,donate_id,create_time,update_time)
                VALUES(#{id},#{content},#{catgory},#{donateId},#{createTime},#{updateTime})

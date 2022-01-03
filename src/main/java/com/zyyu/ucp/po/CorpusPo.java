@@ -19,12 +19,12 @@ public class CorpusPo extends BasePo{
         this.content = content;
     }
 
-    public CorpusCatgoryEnum getCatgoryEnum() {
+    public CorpusCatgoryEnum getCatgory() {
         return catgory;
     }
 
-    public void setCatgoryEnum(CorpusCatgoryEnum catgoryEnum) {
-        this.catgory = catgoryEnum;
+    public void setCatgory(CorpusCatgoryEnum catgory) {
+        this.catgory = catgory;
     }
 
     public Long getDonateId() {

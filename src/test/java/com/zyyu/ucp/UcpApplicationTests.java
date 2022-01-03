@@ -93,7 +93,7 @@ class UcpApplicationTests {
             CorpusPo corpusPo =new CorpusPo();
             corpusPo.setDonateId(userService.getAll().get(0).getId());
             corpusPo.setContent(contentArr[i]);
-            corpusPo.setCatgoryEnum(CorpusCatgoryEnum.ANCIENT_POETRY);
+            corpusPo.setCatgory(CorpusCatgoryEnum.ANCIENT_POETRY);
             corpusService.add(corpusPo);
         }
     }
