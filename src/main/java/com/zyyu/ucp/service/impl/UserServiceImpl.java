@@ -111,21 +111,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserPo getByUserName(String userName) {
         UserPo userPo = userMapper.getByUserName(userName);
-        userPo.setAvatar(FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),userPo.getAvatar()));
         return userPo;
     }
 
     @Override
     public UserPo getByMobilePhone(String mobilePhone) {
         UserPo userPo = userMapper.getByMobilePhone(mobilePhone);
-        userPo.setAvatar(FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),userPo.getAvatar()));
         return userPo;
     }
 
     @Override
     public UserPo getByEmail(String email) {
         UserPo userPo = userMapper.getByEmail(email);
-        userPo.setAvatar(FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),userPo.getAvatar()));
         return userPo;
     }
 }
