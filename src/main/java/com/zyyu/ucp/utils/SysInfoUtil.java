@@ -1,14 +1,9 @@
 package com.zyyu.ucp.utils;
 
 
-import com.zyyu.ucp.vo.SystemInfoVo;
+import com.zyyu.ucp.model.vo.SystemInfoVo;
 import org.apache.catalina.util.ServerInfo;
-import org.apache.ibatis.session.SqlSession;
-import org.mybatis.spring.SqlSessionUtils;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
 import java.util.Map;
 import java.util.Properties;
 

@@ -1,6 +1,6 @@
 package com.zyyu.ucp.service;
 
-import com.zyyu.ucp.common.PageInfo;
+import com.zyyu.ucp.model.PageInfo;
 
 import java.util.List;
 

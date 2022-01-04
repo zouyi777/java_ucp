@@ -1,7 +1,7 @@
 package com.zyyu.ucp.controller.admin;
 
-import com.zyyu.ucp.common.PageInfo;
-import com.zyyu.ucp.common.Result;
+import com.zyyu.ucp.model.PageInfo;
+import com.zyyu.ucp.model.Result;
 import com.zyyu.ucp.controller.BaseController;
 import com.zyyu.ucp.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;

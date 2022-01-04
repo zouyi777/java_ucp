@@ -1,7 +1,5 @@
 package com.zyyu.ucp.test;
 
-import com.zyyu.ucp.vo.UserVo;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

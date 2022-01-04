@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
     <mapper namespace="com.zyyu.ucp.mapper.WorksMapper">
 
-    <resultMap type="com.zyyu.ucp.po.WorksPo" id="resultMap">
+    <resultMap type="com.zyyu.ucp.model.po.WorksPo" id="resultMap">
         <id property="id" column="id"  />
         <result property="content" column="content"  />
         <result property="quote" column="quote"  />
@@ -12,7 +12,7 @@
         <result property="commentId" column="comment_id"  />
     </resultMap>
 
-    <resultMap type="com.zyyu.ucp.vo.WorksVo" id="resultMapVo">
+    <resultMap type="com.zyyu.ucp.model.vo.WorksVo" id="resultMapVo">
         <id property="worksId" column="id"  />
         <result property="content" column="content"  />
         <result property="quote" column="quote"  />
@@ -31,11 +31,11 @@
         SELECT * FROM tb_works
     </select>
 
-    <select id="getAllByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMap">
+    <select id="getAllByPage" parameterType="com.zyyu.ucp.model.PageInfo" resultMap="resultMap">
         SELECT * FROM tb_works limit #{startIndex},#{pageSize}
     </select>
 
-    <select id="getVoByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMapVo">
+    <select id="getVoByPage" parameterType="com.zyyu.ucp.model.PageInfo" resultMap="resultMapVo">
         SELECT w.id,w.content,w.quote,w.create_time,w.update_time,w.user_id,w.comment_id,u.user_name
         FROM tb_works w,tb_user u
         WHERE w.user_id = u.id
@@ -46,18 +46,18 @@
         SELECT count(*) FROM tb_works
     </select>
 
-    <insert id="add" parameterType="com.zyyu.ucp.po.WorksPo">
+    <insert id="add" parameterType="com.zyyu.ucp.model.po.WorksPo">
         INSERT INTO tb_works(id,content,quote,create_time,update_time,user_id,comment_id)
                VALUES(#{id},#{content},#{quote},#{createTime},#{updateTime},#{userId},#{commentId})
     </insert>
 
-    <update id="update" parameterType="com.zyyu.ucp.po.WorksPo" >
+    <update id="update" parameterType="com.zyyu.ucp.model.po.WorksPo" >
         UPDATE tb_works SET content=#{content},quote=#{quote},create_time=#{createTime},update_time=#{updateTime},
                             user_id=#{userId},comment_id=#{commentId}
         WHERE id=#{id}
     </update>
 
-    <delete id="delete" parameterType="com.zyyu.ucp.po.WorksPo">
+    <delete id="delete" parameterType="com.zyyu.ucp.model.po.WorksPo">
         DELETE FROM tb_works WHERE id=#{id}
     </delete>
 

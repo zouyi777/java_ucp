@@ -8,8 +8,8 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml  #配置映射文件
-  type-aliases-package: com.zyyu.ucp.po #配置实体类
-  type-handlers-package=: com.zyyu.ucp.handler #配置java枚举自动转换存入
+  type-aliases-package: com.zyyu.ucp.model.po #配置实体类
+  type-handlers-package=: com.zyyu.ucp.enums.handler #配置java枚举自动转换存入
 
 server:
   port: 8085

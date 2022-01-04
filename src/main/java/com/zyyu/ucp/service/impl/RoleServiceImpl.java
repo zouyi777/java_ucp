@@ -1,8 +1,8 @@
 package com.zyyu.ucp.service.impl;
 
-import com.zyyu.ucp.common.PageInfo;
+import com.zyyu.ucp.model.PageInfo;
 import com.zyyu.ucp.mapper.RoleMapper;
-import com.zyyu.ucp.po.RolePo;
+import com.zyyu.ucp.model.po.RolePo;
 import com.zyyu.ucp.service.RoleService;
 import com.zyyu.ucp.utils.DateTimeUtil;
 import com.zyyu.ucp.utils.UniqueKeyUtil;

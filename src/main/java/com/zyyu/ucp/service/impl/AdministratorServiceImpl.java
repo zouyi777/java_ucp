@@ -1,16 +1,13 @@
 package com.zyyu.ucp.service.impl;
 
-import com.zyyu.ucp.common.PageInfo;
+import com.zyyu.ucp.model.PageInfo;
 import com.zyyu.ucp.mapper.AdministratorMapper;
-import com.zyyu.ucp.po.AdministratorPo;
+import com.zyyu.ucp.model.po.AdministratorPo;
 import com.zyyu.ucp.service.AdministratorService;
-import com.zyyu.ucp.vo.AdministratorVo;
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
+import com.zyyu.ucp.model.vo.AdministratorVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

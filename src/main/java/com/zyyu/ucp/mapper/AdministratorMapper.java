@@ -1,8 +1,8 @@
 package com.zyyu.ucp.mapper;
 
-import com.zyyu.ucp.common.PageInfo;
-import com.zyyu.ucp.po.AdministratorPo;
-import com.zyyu.ucp.vo.AdministratorVo;
+import com.zyyu.ucp.model.PageInfo;
+import com.zyyu.ucp.model.po.AdministratorPo;
+import com.zyyu.ucp.model.vo.AdministratorVo;
 
 import java.util.List;
 

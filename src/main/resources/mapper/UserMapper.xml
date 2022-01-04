@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zyyu.ucp.mapper.UserMapper">
 
-    <resultMap type="com.zyyu.ucp.po.UserPo" id="resultMap">
+    <resultMap type="com.zyyu.ucp.model.po.UserPo" id="resultMap">
         <id property="id" column="id"  />
         <result property="userName" column="user_name"  />
         <result property="password" column="user_password"  />
@@ -24,7 +24,7 @@
 
 
 
-    <select id="login" parameterType="com.zyyu.ucp.po.UserPo" resultMap="resultMap">
+    <select id="login" parameterType="com.zyyu.ucp.model.po.UserPo" resultMap="resultMap">
         SELECT * FROM tb_user WHERE user_name = #{userName} AND user_password = #{password}
     </select>
 
@@ -36,7 +36,7 @@
         SELECT * FROM tb_user
     </select>
 
-    <select id="getAllByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMap">
+    <select id="getAllByPage" parameterType="com.zyyu.ucp.model.PageInfo" resultMap="resultMap">
         SELECT * FROM tb_user order by create_time desc limit #{startIndex},#{pageSize}
     </select>
 
@@ -44,21 +44,21 @@
         SELECT count(*) FROM tb_user
     </select>
 
-    <insert id="add" parameterType="com.zyyu.ucp.po.UserPo">
+    <insert id="add" parameterType="com.zyyu.ucp.model.po.UserPo">
         INSERT INTO tb_user(id,user_name,user_nickname,user_id_number,user_state,user_password,create_time,update_time,user_gender,user_realname,
                             user_mobile_phone,user_email,user_avatar,role_id)
                VALUES(#{id},#{userName},#{nickName},#{idNumber},#{state},#{password},#{createTime},#{updateTime},#{gender},#{realName},
                       #{mobilePhone},#{email},#{avatar},#{roleId})
     </insert>
 
-    <update id="update" parameterType="com.zyyu.ucp.po.UserPo" >
+    <update id="update" parameterType="com.zyyu.ucp.model.po.UserPo" >
         UPDATE tb_user SET user_name=#{userName},user_state=#{state},user_nickname=#{nickName},user_id_number=#{idNumber},
                            user_realname=#{realName},user_birthday=#{birthday},user_gender=#{gender},user_mobile_phone=#{mobilePhone},
                            user_email=#{email},user_email=#{email},user_address=#{address},user_slef_word=#{slefWord},update_time=#{updateTime}
         WHERE id=#{id}
     </update>
 
-    <delete id="delete" parameterType="com.zyyu.ucp.po.UserPo">
+    <delete id="delete" parameterType="com.zyyu.ucp.model.po.UserPo">
         DELETE FROM tb_user WHERE id=#{id}
     </delete>
 

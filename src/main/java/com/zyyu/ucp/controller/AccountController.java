@@ -1,10 +1,10 @@
 package com.zyyu.ucp.controller;
 
 import com.zyyu.ucp.annotation.CurrAccount;
-import com.zyyu.ucp.common.Result;
-import com.zyyu.ucp.po.UserPo;
+import com.zyyu.ucp.model.Result;
+import com.zyyu.ucp.model.po.UserPo;
 import com.zyyu.ucp.service.UserService;
-import com.zyyu.ucp.vo.UserVo;
+import com.zyyu.ucp.model.vo.UserVo;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.slf4j.Logger;

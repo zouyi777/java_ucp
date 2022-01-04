@@ -1,8 +1,8 @@
 package com.zyyu.ucp.service.impl;
 
-import com.zyyu.ucp.common.PageInfo;
+import com.zyyu.ucp.model.PageInfo;
 import com.zyyu.ucp.mapper.RightMapper;
-import com.zyyu.ucp.po.RightPo;
+import com.zyyu.ucp.model.po.RightPo;
 import com.zyyu.ucp.service.RightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

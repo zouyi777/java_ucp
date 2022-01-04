@@ -1,6 +1,6 @@
 package com.zyyu.ucp.controller;
 
-import com.zyyu.ucp.common.Result;
+import com.zyyu.ucp.model.Result;
 import com.zyyu.ucp.enums.ResultEnum;
 
 public class BaseController {

@@ -1,17 +1,17 @@
 package com.zyyu.ucp.service.impl;
 
 import com.zyyu.ucp.ServerConfig;
-import com.zyyu.ucp.common.PageInfo;
+import com.zyyu.ucp.model.PageInfo;
 import com.zyyu.ucp.enums.GenderEnum;
 import com.zyyu.ucp.enums.AccountStateEnum;
-import com.zyyu.ucp.po.UserPo;
+import com.zyyu.ucp.model.po.UserPo;
 import com.zyyu.ucp.mapper.UserMapper;
 import com.zyyu.ucp.service.RoleService;
 import com.zyyu.ucp.service.UserService;
 import com.zyyu.ucp.utils.DateTimeUtil;
 import com.zyyu.ucp.utils.FileHandleUtil;
 import com.zyyu.ucp.utils.UniqueKeyUtil;
-import com.zyyu.ucp.vo.UserVo;
+import com.zyyu.ucp.model.vo.UserVo;
 import org.apache.commons.lang3.StringUtils;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;

@@ -1,10 +1,10 @@
 package com.zyyu.ucp.controller;
 
-import com.zyyu.ucp.po.RolePo;
-import com.zyyu.ucp.po.UserPo;
+import com.zyyu.ucp.model.po.RolePo;
+import com.zyyu.ucp.model.po.UserPo;
 import com.zyyu.ucp.service.RoleService;
-import com.zyyu.ucp.vo.LoginVo;
-import com.zyyu.ucp.common.Result;
+import com.zyyu.ucp.model.vo.LoginVo;
+import com.zyyu.ucp.model.Result;
 import com.zyyu.ucp.enums.ResultEnum;
 import com.zyyu.ucp.utils.JwtUtil;
 import com.zyyu.ucp.service.UserService;

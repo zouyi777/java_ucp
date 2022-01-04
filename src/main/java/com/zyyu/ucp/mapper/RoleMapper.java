@@ -1,8 +1,8 @@
 package com.zyyu.ucp.mapper;
 
-import com.zyyu.ucp.common.PageInfo;
-import com.zyyu.ucp.po.RolePo;
-import com.zyyu.ucp.vo.RoleVo;
+import com.zyyu.ucp.model.PageInfo;
+import com.zyyu.ucp.model.po.RolePo;
+import com.zyyu.ucp.model.vo.RoleVo;
 
 import java.util.List;
 

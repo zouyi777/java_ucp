@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+欢迎访问UCP
+</body>
+<script>
+
+    //1、闭包
+    // function user() {
+    //     var name = 'zouyi';
+    //
+    //     // return function () {
+    //     //     return name;
+    //     // }
+    //
+    //     return{
+    //         getUserName:function () {
+    //             return name;
+    //         }
+    //     }
+    //
+    // };
+
+    //2、嵌套函数
+    //  function getUser() {
+    //
+    //      var userName = '嵌套函数';
+    //
+    //      function getUserName() {
+    //          return userName;
+    //      }
+    //
+    //      // var User={
+    //      //     userName:'嵌套函数1',
+    //      //     getUserName:function () {
+    //      //         return this.userName;
+    //      //     }
+    //      // }
+    //      // return User;
+    //      return getUserName()
+    //  }
+    //  // alert(getUser().getUserName());
+    // alert(getUser())
+
+    //3、匿名函数
+    // (function (num) {
+    //
+    //      alert("匿名函数"+num);
+    //
+    //      //匿名函数嵌套匿名函数
+    //     (function (num1) {
+    //         alert("匿名函数嵌套匿名函数"+num1);
+    //     })(num)
+    //
+    // })(1);
+    //4、匿名函数传对象
+    // (function (exports) {
+    //     var userName = 'zouyi';
+
+    //       // Constructor:构造函数
+    //     var User = function () {
+    //
+    //     };
+    //     User.prototype.getUserName =function(){
+    //          return userName;
+    //     };
+    //     exports.User = User;
+    // })(window)
+    // alert(new User().getUserName());
+    //5、构造函数
+    var nameStr,passStr;
+    function User(name,pass) {
+        nameStr = name;
+        passStr = pass;
+    }
+
+    User.age = 10;
+    User.getUserName = function () {
+        return nameStr;
+    };
+    User.getPass = function(){
+        return passStr;
+    }
+    User('hahah','123456');
+    alert(User.getUserName()+':'+User.getPass()+':'+User.age)
+</script>
+</html>

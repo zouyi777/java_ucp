@@ -1,23 +1,19 @@
 package com.zyyu.ucp;
 
-import com.zyyu.ucp.common.PageInfo;
+import com.zyyu.ucp.model.PageInfo;
 import com.zyyu.ucp.enums.CorpusCatgoryEnum;
 import com.zyyu.ucp.enums.GenderEnum;
-import com.zyyu.ucp.po.CorpusPo;
-import com.zyyu.ucp.po.UserPo;
-import com.zyyu.ucp.po.WorksPo;
+import com.zyyu.ucp.model.po.CorpusPo;
+import com.zyyu.ucp.model.po.UserPo;
+import com.zyyu.ucp.model.po.WorksPo;
 import com.zyyu.ucp.service.CorpusService;
 import com.zyyu.ucp.service.UserService;
 import com.zyyu.ucp.service.WorksService;
-import com.zyyu.ucp.utils.UniqueKeyUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

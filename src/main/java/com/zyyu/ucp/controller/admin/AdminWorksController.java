@@ -1,11 +1,11 @@
 package com.zyyu.ucp.controller.admin;
 
-import com.zyyu.ucp.common.PageInfo;
-import com.zyyu.ucp.common.Result;
+import com.zyyu.ucp.model.PageInfo;
+import com.zyyu.ucp.model.Result;
 import com.zyyu.ucp.controller.BaseController;
-import com.zyyu.ucp.po.WorksPo;
+import com.zyyu.ucp.model.po.WorksPo;
 import com.zyyu.ucp.service.WorksService;
-import com.zyyu.ucp.vo.WorksVo;
+import com.zyyu.ucp.model.vo.WorksVo;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;

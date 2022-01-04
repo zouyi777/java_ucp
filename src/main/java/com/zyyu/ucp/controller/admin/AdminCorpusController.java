@@ -1,15 +1,13 @@
 package com.zyyu.ucp.controller.admin;
 
-import com.zyyu.ucp.common.PageInfo;
-import com.zyyu.ucp.common.Result;
+import com.zyyu.ucp.model.PageInfo;
+import com.zyyu.ucp.model.Result;
 import com.zyyu.ucp.controller.BaseController;
 import com.zyyu.ucp.enums.CorpusCatgoryEnum;
 import com.zyyu.ucp.enums.ResultEnum;
-import com.zyyu.ucp.po.CorpusPo;
-import com.zyyu.ucp.po.UserPo;
+import com.zyyu.ucp.model.po.CorpusPo;
 import com.zyyu.ucp.service.CorpusService;
-import com.zyyu.ucp.service.WorksService;
-import com.zyyu.ucp.vo.CorpusVo;
+import com.zyyu.ucp.model.vo.CorpusVo;
 import org.apache.commons.lang3.StringUtils;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;

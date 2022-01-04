@@ -1,9 +1,9 @@
 package com.zyyu.ucp.controller;
 
 import com.zyyu.ucp.ServerConfig;
-import com.zyyu.ucp.common.Result;
+import com.zyyu.ucp.model.Result;
 import com.zyyu.ucp.utils.FileHandleUtil;
-import com.zyyu.ucp.vo.UploadVo;
+import com.zyyu.ucp.model.vo.UploadVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

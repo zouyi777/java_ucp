@@ -1,14 +1,14 @@
 package com.zyyu.ucp.service.impl;
 
 import com.zyyu.ucp.ServerConfig;
-import com.zyyu.ucp.common.PageInfo;
+import com.zyyu.ucp.model.PageInfo;
 import com.zyyu.ucp.mapper.WorksMapper;
-import com.zyyu.ucp.po.WorksPo;
+import com.zyyu.ucp.model.po.WorksPo;
 import com.zyyu.ucp.service.WorksService;
 import com.zyyu.ucp.utils.DateTimeUtil;
 import com.zyyu.ucp.utils.FileHandleUtil;
 import com.zyyu.ucp.utils.UniqueKeyUtil;
-import com.zyyu.ucp.vo.WorksVo;
+import com.zyyu.ucp.model.vo.WorksVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

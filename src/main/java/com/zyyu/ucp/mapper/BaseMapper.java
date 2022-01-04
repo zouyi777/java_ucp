@@ -1,7 +1,7 @@
 package com.zyyu.ucp.mapper;
 
-import com.zyyu.ucp.common.PageInfo;
-import com.zyyu.ucp.po.BasePo;
+import com.zyyu.ucp.model.PageInfo;
+import com.zyyu.ucp.model.po.BasePo;
 import java.util.List;
 
 /**

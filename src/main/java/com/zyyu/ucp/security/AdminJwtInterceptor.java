@@ -1,7 +1,7 @@
 package com.zyyu.ucp.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zyyu.ucp.common.Result;
+import com.zyyu.ucp.model.Result;
 import com.zyyu.ucp.constants.Constants;
 import com.zyyu.ucp.enums.ResultEnum;
 import com.zyyu.ucp.enums.TokenCheckEnum;

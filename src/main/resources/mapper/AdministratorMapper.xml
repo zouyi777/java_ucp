@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zyyu.ucp.mapper.AdministratorMapper">
 
-    <resultMap type="com.zyyu.ucp.po.AdministratorPo" id="resultMap">
+    <resultMap type="com.zyyu.ucp.model.po.AdministratorPo" id="resultMap">
         <id property="id" column="id"  />
         <result property="adminName" column="admin_name"  />
         <result property="adminPassword" column="admin_password"  />
@@ -15,7 +15,7 @@
         <result property="updateTime" column="update_time"  />
     </resultMap>
 
-    <resultMap type="com.zyyu.ucp.vo.AdministratorVo" id="resultMapVo">
+    <resultMap type="com.zyyu.ucp.model.vo.AdministratorVo" id="resultMapVo">
         <id property="adminId" column="id"  />
         <result property="adminName" column="admin_name"  />
         <result property="adminNickName" column="admin_nickname"  />
@@ -29,7 +29,7 @@
     </resultMap>
 
 
-    <select id="getVoByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMapVo">
+    <select id="getVoByPage" parameterType="com.zyyu.ucp.model.PageInfo" resultMap="resultMapVo">
         SELECT tb_admin.id,tb_admin.admin_name,tb_admin.admin_nickname,tb_admin.admin_state,tb_admin.admin_mobile_phone,
                tb_admin.admin_email,tb_admin.create_time,tb_admin.update_time,tb_admin.role_id,tb_role.role_name
         FROM tb_admin,tb_role
@@ -45,7 +45,7 @@
         SELECT * FROM tb_admin
     </select>
 
-    <select id="getAllByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMap">
+    <select id="getAllByPage" parameterType="com.zyyu.ucp.model.PageInfo" resultMap="resultMap">
         SELECT * FROM tb_admin limit #{startIndex},#{pageSize}
     </select>
 
@@ -54,22 +54,22 @@
         SELECT count(*) FROM tb_admin
     </select>
 
-    <insert id="add" parameterType="com.zyyu.ucp.po.AdministratorPo">
+    <insert id="add" parameterType="com.zyyu.ucp.model.po.AdministratorPo">
         INSERT INTO tb_admin(id,admin_name,admin_password,admin_nickname,admin_state,role_id,admin_mobile_phone,admin_email,create_time,update_time)
                VALUES(#{id},#{adminName},#{adminPassword},#{adminNickName},#{adminState},#{roleId},#{adminMobilePhone},#{adminEmail},#{createTime},#{updateTime})
     </insert>
 
-    <update id="update" parameterType="com.zyyu.ucp.po.AdministratorPo" >
+    <update id="update" parameterType="com.zyyu.ucp.model.po.AdministratorPo" >
         UPDATE tb_admin SET admin_name=#{adminName},admin_password=#{adminPassword},admin_nickname=#{adminNickName},admin_state=#{adminState},role_id=#{roleId},
                             admin_mobile_phone=#{adminMobilePhone},admin_email=#{adminEmail},create_time=#{createTime},update_time=#{updateTime}
         WHERE id=#{id}
     </update>
 
-    <delete id="delete" parameterType="com.zyyu.ucp.po.AdministratorPo">
+    <delete id="delete" parameterType="com.zyyu.ucp.model.po.AdministratorPo">
         DELETE FROM tb_admin WHERE id=#{id}
     </delete>
 
-    <select id="adminLogin" parameterType="com.zyyu.ucp.po.AdministratorPo" resultMap="resultMap">
+    <select id="adminLogin" parameterType="com.zyyu.ucp.model.po.AdministratorPo" resultMap="resultMap">
         SELECT * FROM tb_admin WHERE admin_name = #{adminName} AND admin_password = #{adminPassword}
     </select>
 

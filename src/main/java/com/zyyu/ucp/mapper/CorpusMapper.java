@@ -1,8 +1,8 @@
 package com.zyyu.ucp.mapper;
 
-import com.zyyu.ucp.common.PageInfo;
-import com.zyyu.ucp.po.CorpusPo;
-import com.zyyu.ucp.vo.CorpusVo;
+import com.zyyu.ucp.model.PageInfo;
+import com.zyyu.ucp.model.po.CorpusPo;
+import com.zyyu.ucp.model.vo.CorpusVo;
 
 import java.util.List;
 

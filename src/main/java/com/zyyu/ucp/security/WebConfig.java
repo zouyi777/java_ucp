@@ -1,6 +1,6 @@
 package com.zyyu.ucp.security;
 
-import com.zyyu.ucp.resolver.CurrUserArgumentResolver;
+import com.zyyu.ucp.annotation.resolver.CurrUserArgumentResolver;
 import com.zyyu.ucp.utils.FileHandleUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

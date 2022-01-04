@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zyyu.ucp.mapper.RightMapper">
 
-    <resultMap type="com.zyyu.ucp.po.RightPo" id="resultMap">
+    <resultMap type="com.zyyu.ucp.model.po.RightPo" id="resultMap">
         <id property="id" column="id"  />
         <result property="rightName" column="right_name"  />
         <result property="rightRule" column="right_rule"  />
@@ -20,7 +20,7 @@
         SELECT * FROM tb_right
     </select>
 
-    <select id="getAllByPage" parameterType="com.zyyu.ucp.common.PageInfo" resultMap="resultMap">
+    <select id="getAllByPage" parameterType="com.zyyu.ucp.model.PageInfo" resultMap="resultMap">
         SELECT * FROM tb_right limit #{startIndex},#{pageSize}
     </select>
 
@@ -28,17 +28,17 @@
         SELECT count(*) FROM tb_right
     </select>
 
-    <insert id="add" parameterType="com.zyyu.ucp.po.RightPo">
+    <insert id="add" parameterType="com.zyyu.ucp.model.po.RightPo">
         INSERT INTO tb_right(id,right_name,right_rule,description,create_time,update_time)
                VALUES(#{id},#{rightName},#{rightRule},#{description},#{createTime},#{updateTime})
     </insert>
 
-    <update id="update" parameterType="com.zyyu.ucp.po.RightPo" >
+    <update id="update" parameterType="com.zyyu.ucp.model.po.RightPo" >
         UPDATE tb_right SET right_name=#{rightName},right_rule=#{rightRule},description=#{description},create_time=#{createTime},update_time=#{updateTime}
         WHERE id=#{id}
     </update>
 
-    <delete id="delete" parameterType="com.zyyu.ucp.po.RightPo">
+    <delete id="delete" parameterType="com.zyyu.ucp.model.po.RightPo">
         DELETE FROM tb_right WHERE id=#{id}
     </delete>
 
