@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * 性别类型枚举
- * @JsonFormat(shape = JsonFormat.Shape.OBJECT) 解决JSON格式返回前端的只有name的问题
+ * @JsonFormat(shape = JsonFormat.Shape.OBJECT) 将枚举序列化成对象，解决JSON格式返回前端的只有name的问题
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum GenderEnum {
