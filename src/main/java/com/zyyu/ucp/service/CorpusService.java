@@ -7,4 +7,6 @@ import com.zyyu.ucp.model.vo.CorpusVo;
 public interface CorpusService extends BaseService<CorpusPo>{
 
       CorpusVo getVoByContent(CorpusVo corpusVo);
+
+      CorpusVo getVoByContentMD5(CorpusVo corpusVo);
 }

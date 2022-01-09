@@ -22,8 +22,10 @@ $(document).ready(function () {
             if(content == ''){
                 layer.msg("语料内容不能为空！",{icon:5,time:2000});return false;
             }
-            if(isContentExit(content)){
-                layer.msg("此语料已存在！",{icon:5,time:2000});
+            let exitContent= isContentExit(content);
+            if(exitContent){
+                let exitContent =
+                layer.msg("此语料已存在！"+exitContent.getcontent,{icon:5,time:2000});
                 return false;
             }
 

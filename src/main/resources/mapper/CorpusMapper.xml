@@ -48,6 +48,10 @@
         SELECT * FROM tb_corpus where tb_corpus.content = #{content}
     </select>
 
+    <select id="getVoByContentMD5" parameterType="com.zyyu.ucp.model.vo.CorpusVo" resultMap="resultMapVo">
+        SELECT * FROM tb_corpus where tb_corpus.content_md5 = #{contentMD5}
+    </select>
+
     <insert id="add" parameterType="com.zyyu.ucp.model.po.CorpusPo">
         INSERT INTO tb_corpus(id,content,catgory,donate_id,create_time,update_time)
                VALUES(#{id},#{content},#{catgory},#{donateId},#{createTime},#{updateTime})

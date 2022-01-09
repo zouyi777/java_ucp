@@ -67,4 +67,9 @@ public class CorpusServiceImpl implements CorpusService {
     public CorpusVo getVoByContent(CorpusVo corpusVo) {
         return corpusMapper.getVoByContent(corpusVo);
     }
+
+    @Override
+    public CorpusVo getVoByContentMD5(CorpusVo corpusVo) {
+        return corpusMapper.getVoByContentMD5(corpusVo);
+    }
 }

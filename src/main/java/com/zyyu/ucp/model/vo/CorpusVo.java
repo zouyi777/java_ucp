@@ -11,6 +11,7 @@ public class CorpusVo extends BaseVo{
 	@Mapping("id")
 	private Long corpusId;
 	private String content;
+	private String contentMD5;
 	private CorpusCatgoryEnum catgory;
 	private Long donateId;
 	private String donateName;
@@ -31,6 +32,13 @@ public class CorpusVo extends BaseVo{
 		this.content = content;
 	}
 
+	public String getContentMD5() {
+		return contentMD5;
+	}
+
+	public void setContentMD5(String contentMD5) {
+		this.contentMD5 = contentMD5;
+	}
 	public CorpusCatgoryEnum getCatgory() {
 		return catgory;
 	}

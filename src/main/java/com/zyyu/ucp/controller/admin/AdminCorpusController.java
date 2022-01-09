@@ -8,6 +8,8 @@ import com.zyyu.ucp.enums.ResultEnum;
 import com.zyyu.ucp.model.po.CorpusPo;
 import com.zyyu.ucp.service.CorpusService;
 import com.zyyu.ucp.model.vo.CorpusVo;
+import com.zyyu.ucp.utils.MD5Util;
+import com.zyyu.ucp.utils.StringUcpUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
@@ -59,8 +61,18 @@ public class AdminCorpusController extends BaseController {
 
     @PostMapping(value = "/add")
     public Result addCorpus(@RequestBody CorpusVo corpusVo){
+        String content = corpusVo.getContent();
+        if(StringUtils.isEmpty(content)){
+            return fail(ResultEnum.PARAM_BLANK);
+        }
+        //去掉空格所有标点符号
+        content = StringUcpUtil.getPureString(content);
+        if(StringUtils.isEmpty(content)){
+            return fail(ResultEnum.PARAM_BLANK);
+        }
+        corpusVo.setContentMD5(MD5Util.getMD5(content));
 
-        if(corpusService.getVoByContent(corpusVo)!=null){
+        if(corpusService.getVoByContentMD5(corpusVo)!=null){
             return fail("此语料已存在！");
         }
 
@@ -84,15 +96,25 @@ public class AdminCorpusController extends BaseController {
         return success(values);
     }
 
+    /**
+     * 校验语料是否存在
+     * @param content
+     * @return
+     */
     @GetMapping(value = "/isContentExit")
     public Result isContentExit(@RequestParam String content){
 
         if(StringUtils.isNotEmpty(content)){
+            //去掉空格所有标点符号
+            content = StringUcpUtil.getPureString(content);
+            if(StringUtils.isEmpty(content)){
+                return fail(ResultEnum.PARAM_BLANK);
+            }
 
             CorpusVo paramCorpus = new CorpusVo();
-            paramCorpus.setContent(content);
+            paramCorpus.setContentMD5(MD5Util.getMD5(content));
 
-            CorpusVo corpusVo = corpusService.getVoByContent(paramCorpus);
+            CorpusVo corpusVo = corpusService.getVoByContentMD5(paramCorpus);
             if(corpusVo==null){
                 return success(false);
             }

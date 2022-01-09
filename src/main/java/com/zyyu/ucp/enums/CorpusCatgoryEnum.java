@@ -13,13 +13,15 @@ public enum CorpusCatgoryEnum {
     /**短句*/
     SHORT_SENTENCE(1,"短句"),
     /**古诗词*/
-    ANCIENT_POETRY(2,"古诗词"),
+    POETRY(2,"诗词"),
     /**成语*/
     IDIOM(3,"成语"),
     /**名人名言*/
     FAMOUS_QUOTES(4,"名人名言"),
     /**俗语*/
-    POPULAR_SAYING(5,"俗语");
+    POPULAR_SAYING(5,"俗语"),
+    /**歌词*/
+    LYRIC(6,"歌词");
 
     private Integer code;
 

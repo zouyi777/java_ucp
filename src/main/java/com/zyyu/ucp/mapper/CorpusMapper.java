@@ -12,4 +12,6 @@ public interface CorpusMapper extends BaseMapper<CorpusPo>{
 
     CorpusVo getVoByContent(CorpusVo corpusVo);
 
+    CorpusVo getVoByContentMD5(CorpusVo corpusVo);
+
 }

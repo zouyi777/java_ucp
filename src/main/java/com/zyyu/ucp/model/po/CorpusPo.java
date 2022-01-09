@@ -8,6 +8,7 @@ import com.zyyu.ucp.enums.CorpusCatgoryEnum;
 public class CorpusPo extends BasePo{
 
     private String content;
+    private String contentMD5;
     private CorpusCatgoryEnum catgory;
     private Long donateId;
 
@@ -19,6 +20,13 @@ public class CorpusPo extends BasePo{
         this.content = content;
     }
 
+    public String getContentMD5() {
+        return contentMD5;
+    }
+
+    public void setContentMD5(String contentMD5) {
+        this.contentMD5 = contentMD5;
+    }
     public CorpusCatgoryEnum getCatgory() {
         return catgory;
     }
