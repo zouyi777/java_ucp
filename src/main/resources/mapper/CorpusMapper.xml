@@ -5,6 +5,7 @@
     <resultMap type="com.zyyu.ucp.model.po.CorpusPo" id="resultMap">
         <id property="id" column="id"  />
         <result property="content" column="content"  />
+        <result property="contentMD5" column="content_md5"  />
         <result property="catgory" column="catgory"  />
         <result property="donateId" column="donate_id"  />
         <result property="createTime" column="create_time"  />
@@ -14,6 +15,7 @@
     <resultMap type="com.zyyu.ucp.model.vo.CorpusVo" id="resultMapVo">
         <id property="corpusId" column="id"  />
         <result property="content" column="content"  />
+        <result property="contentMD5" column="content_md5"  />
         <result property="catgory" column="catgory"  />
         <result property="donateId" column="donate_id"  />
         <result property="donateName" column="user_name"  />
@@ -53,8 +55,8 @@
     </select>
 
     <insert id="add" parameterType="com.zyyu.ucp.model.po.CorpusPo">
-        INSERT INTO tb_corpus(id,content,catgory,donate_id,create_time,update_time)
-               VALUES(#{id},#{content},#{catgory},#{donateId},#{createTime},#{updateTime})
+        INSERT INTO tb_corpus(id,content,content_md5,catgory,donate_id,create_time,update_time)
+               VALUES(#{id},#{content},#{contentMD5},#{catgory},#{donateId},#{createTime},#{updateTime})
     </insert>
 
     <update id="update" parameterType="com.zyyu.ucp.model.po.CorpusPo" >

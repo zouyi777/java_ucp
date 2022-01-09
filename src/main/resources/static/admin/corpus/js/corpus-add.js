@@ -24,8 +24,7 @@ $(document).ready(function () {
             }
             let exitContent= isContentExit(content);
             if(exitContent){
-                let exitContent =
-                layer.msg("此语料已存在！"+exitContent.getcontent,{icon:5,time:2000});
+                layer.msg("此语料已存在！",{icon:5,time:3000});
                 return false;
             }
 
@@ -87,17 +86,17 @@ function initCorpusCatgory() {
  * @returns {boolean}
  */
 function isContentExit(content) {
-    let isExit = false;
+    let exitContent = false;
     let options = {
         url:'/admin/corpus/isContentExit?content='+content,
         isAsync:false, //采用同步请求
         onSuccess:function (res) {
-            isExit = res.data;
+            exitContent = res.data;
         },
         onFailure:function (res) {
             alert(res.message);
         }
     }
     ucp.ajaxRequest.get(options);
-    return isExit;
+    return exitContent;
 }

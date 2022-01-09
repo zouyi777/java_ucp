@@ -115,10 +115,7 @@ public class AdminCorpusController extends BaseController {
             paramCorpus.setContentMD5(MD5Util.getMD5(content));
 
             CorpusVo corpusVo = corpusService.getVoByContentMD5(paramCorpus);
-            if(corpusVo==null){
-                return success(false);
-            }
-            return success(true);
+            return success(corpusVo);
         }
         return fail(ResultEnum.PARAM_BLANK);
     }
