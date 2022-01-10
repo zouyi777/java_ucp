@@ -83,6 +83,35 @@ function initData(curPage){
 }
 
 /**
+ * 搜索查询语料
+ * @param curPage
+ */
+function searchCorpus(curPage){
+    let parms = {
+        pageInfo:{
+            currentPage:curPage
+        },
+        condition:{
+            content:$("input[name='keyword']").val()
+        }
+    };
+    let options = {
+        url:'admin/corpus/search_corpus',
+        data:parms,
+        onSuccess:function (res) {
+            renderData(res.data);
+            if(isFirstLoad){
+                showPage(res.data.totalPage);
+            }
+        },
+        onFailure:function (res) {
+            alert(res.message);
+        }
+    };
+    ucp.ajaxRequest.post(options);
+}
+
+/**
  * 模板渲染
  */
 function renderData(result){
@@ -98,8 +127,17 @@ function renderData(result){
  * 注意：这种是事件绑定不要写在列表事件中，不然会被多次注册
  */
 function intEvent() {
+    //新增语料
     $("#addCorpus").click(function () {
         x_admin_show('新增语料','corpus-add.html','600','500');
+    });
+    //点击搜索
+    $("#searCorpus").click(function (event) {
+        curPage = 1;
+        isFirstLoad  = true;
+        searchCorpus(curPage);
+        //阻止表单提交，不然会刷新界面
+        event.preventDefault();
     });
 }
 /**

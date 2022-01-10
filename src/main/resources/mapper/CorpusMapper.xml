@@ -42,6 +42,20 @@
         limit #{startIndex},#{pageSize}
     </select>
 
+    <select id="searchCorpus" parameterType="com.zyyu.ucp.model.vo.SearchConditionVo" resultMap="resultMapVo">
+        SELECT c.id,c.content,c.catgory,c.donate_id,c.create_time,c.update_time,u.user_name
+        FROM tb_corpus c,tb_user u
+        WHERE c.donate_id = u.id
+        AND   c.content like "%"#{condition.content}"%"
+        limit #{pageInfo.startIndex},#{pageInfo.pageSize}
+    </select>
+
+    <select id="searchCorpusCount" parameterType="com.zyyu.ucp.model.vo.SearchConditionVo" resultType="Integer">
+        SELECT count(c.id)
+        FROM tb_corpus c
+        WHERE c.content like "%"#{condition.content}"%"
+    </select>
+
     <select id="getTotalCount"  resultType="Integer">
         SELECT count(*) FROM tb_corpus
     </select>
