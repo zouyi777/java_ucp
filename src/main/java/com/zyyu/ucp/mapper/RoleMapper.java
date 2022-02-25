@@ -6,7 +6,7 @@ import com.zyyu.ucp.model.vo.RoleVo;
 
 import java.util.List;
 
-public interface RoleMapper extends BaseMapper<RolePo> {
+public interface RoleMapper extends BaseMapper<RolePo,RoleVo> {
 
     /**
      * 根据roleCode获取角色

@@ -6,7 +6,7 @@ import com.zyyu.ucp.model.vo.AdministratorVo;
 
 import java.util.List;
 
-public interface AdministratorMapper extends BaseMapper<AdministratorPo> {
+public interface AdministratorMapper extends BaseMapper<AdministratorPo,AdministratorVo> {
 
     /**
      * 管理员登录

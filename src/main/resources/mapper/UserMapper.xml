@@ -54,7 +54,7 @@
     <update id="update" parameterType="com.zyyu.ucp.model.po.UserPo" >
         UPDATE tb_user SET user_name=#{userName},user_state=#{state},user_nickname=#{nickName},user_id_number=#{idNumber},
                            user_realname=#{realName},user_birthday=#{birthday},user_gender=#{gender},user_mobile_phone=#{mobilePhone},
-                           user_email=#{email},user_email=#{email},user_address=#{address},user_slef_word=#{slefWord},update_time=#{updateTime}
+                           user_email=#{email},user_address=#{address},user_slef_word=#{slefWord},update_time=#{updateTime}
         WHERE id=#{id}
     </update>
 
@@ -73,4 +73,69 @@
     <select id="getByEmail" parameterType="String" resultMap="resultMap">
         SELECT * FROM tb_user WHERE user_email = #{email}
     </select>
+
+    <!--条件查询-->
+    <select id="searchByCondition" parameterType="com.zyyu.ucp.model.vo.SearchConditionUserVo" resultMap="resultMap">
+        SELECT * FROM tb_user
+        <if test="(userName != null and userName !='') or (mobilePhone != null and mobilePhone !='')
+                  or (email != null and email !='') or (createTimeStart != null and createTimeStart !='' and createTimeEnd !=null and createTimeEnd !='')">
+             WHERE
+        </if>
+
+        <if test="userName != null and userName !=''">
+            user_name = #{userName}
+        </if>
+        <if test="mobilePhone != null and mobilePhone !=''">
+            <if test="userName != null and userName !=''">
+                AND
+            </if>
+            user_mobile_phone = #{mobilePhone}
+        </if>
+        <if test="email != null and email !=''">
+            <if test="mobilePhone != null and mobilePhone !=''">
+                AND
+            </if>
+            user_email = #{email}
+        </if>
+        <if test="createTimeStart != null and createTimeStart !='' and createTimeEnd !=null and createTimeEnd !=''">
+            <if test="email != null and email !=''">
+                AND
+            </if>
+            date(create_time) between #{createTimeStart} and #{createTimeEnd}
+        </if>
+        ORDER BY create_time DESC
+        limit #{pageInfo.startIndex},#{pageInfo.pageSize}
+    </select>
+
+    <!--条件查询统计数量-->
+    <select id="searchByConditionCount" parameterType="com.zyyu.ucp.model.vo.SearchConditionUserVo" resultType="Integer">
+        SELECT count(id) FROM tb_user
+        <if test="(userName != null and userName !='') or (mobilePhone != null and mobilePhone !='')
+                  or (email != null and email !='') or (createTimeStart != null and createTimeStart !='' and createTimeEnd !=null and createTimeEnd !='')">
+            WHERE
+        </if>
+
+        <if test="userName != null and userName !=''">
+            user_name = #{userName}
+        </if>
+        <if test="mobilePhone != null and mobilePhone !=''">
+            <if test="userName != null and userName !=''">
+                AND
+            </if>
+            user_mobile_phone = #{mobilePhone}
+        </if>
+        <if test="email != null and email !=''">
+            <if test="mobilePhone != null and mobilePhone !=''">
+                AND
+            </if>
+            user_email = #{email}
+        </if>
+        <if test="createTimeStart != null and createTimeStart !='' and createTimeEnd !=null and createTimeEnd !=''">
+            <if test="email != null and email !=''">
+                AND
+            </if>
+            date(create_time) between #{createTimeStart} and #{createTimeEnd}
+        </if>
+    </select>
+
 </mapper>

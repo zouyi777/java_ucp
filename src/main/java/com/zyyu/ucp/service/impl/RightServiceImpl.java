@@ -3,6 +3,7 @@ package com.zyyu.ucp.service.impl;
 import com.zyyu.ucp.model.PageInfo;
 import com.zyyu.ucp.mapper.RightMapper;
 import com.zyyu.ucp.model.po.RightPo;
+import com.zyyu.ucp.model.vo.SearchConditionBaseVo;
 import com.zyyu.ucp.service.RightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,5 +57,15 @@ public class RightServiceImpl implements RightService {
         List dataList = rightMapper.getAllByPage(pageInfo);
         pageInfo.setDataList(dataList);
         return pageInfo;
+    }
+
+    @Override
+    public PageInfo searchByCondition(SearchConditionBaseVo searchConditionVo) {
+        return null;
+    }
+
+    @Override
+    public Integer searchByConditionCount(SearchConditionBaseVo searchConditionVo) {
+        return null;
     }
 }

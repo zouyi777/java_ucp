@@ -6,7 +6,8 @@ import com.zyyu.ucp.controller.BaseController;
 import com.zyyu.ucp.enums.CorpusCatgoryEnum;
 import com.zyyu.ucp.enums.ResultEnum;
 import com.zyyu.ucp.model.po.CorpusPo;
-import com.zyyu.ucp.model.vo.SearchConditionVo;
+import com.zyyu.ucp.model.vo.SearchConditionCorpusVo;
+import com.zyyu.ucp.model.vo.SearchConditionBaseVo;
 import com.zyyu.ucp.service.CorpusService;
 import com.zyyu.ucp.model.vo.CorpusVo;
 import com.zyyu.ucp.utils.MD5Util;
@@ -122,8 +123,8 @@ public class AdminCorpusController extends BaseController {
     }
 
     @PostMapping(value = "/search_corpus")
-    public Result searchCorpus(@RequestBody SearchConditionVo searchConditionVo){
-        PageInfo pageInfo = corpusService.searchCorpus(searchConditionVo);
+    public Result searchCorpus(@RequestBody SearchConditionCorpusVo searchConditionVo){
+        PageInfo pageInfo = corpusService.searchByCondition(searchConditionVo);
         return success(pageInfo);
     }
 }

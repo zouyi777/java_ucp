@@ -96,24 +96,22 @@ function initData(curPage){
  * @param curPage
  */
 function searchCorpus(curPage){
-    let createTimeMin = $('#LAY_demorange_s').val();
-    let createTimeMax = $('#LAY_demorange_e').val();
-    if(createTimeMin && !createTimeMax){
+    let createTimeStart = $('#LAY_demorange_s').val();
+    let createTimeEnd = $('#LAY_demorange_e').val();
+    if(createTimeStart && !createTimeEnd){
         layer.msg("请选择结束日期！",{icon:5,time:2000});return false;
     }
-    if(createTimeMax && !createTimeMin){
+    if(createTimeEnd && !createTimeStart){
         layer.msg("请选择开始日期！",{icon:5,time:2000});return false;
     }
     let parms = {
         pageInfo:{
             currentPage:curPage
         },
-        condition:{
-            content:$("input[name='keyword']").val(),
-            donateName:$("input[name='donateName']").val(),
-            createTimeMin:createTimeMin,
-            createTimeMax:createTimeMax
-        }
+        content:$("input[name='keyword']").val(),
+        donateName:$("input[name='donateName']").val(),
+        createTimeStart:createTimeStart,
+        createTimeEnd:createTimeEnd
     };
     let options = {
         url:'admin/corpus/search_corpus',
@@ -152,7 +150,7 @@ function intEvent() {
         x_admin_show('新增语料','corpus-add.html','600','500');
     });
     //点击搜索
-    $("#searCorpus").click(function (event) {
+    $("#searchCorpus").click(function (event) {
 
         pageX.curPage = 1;
         pageX.isFirstLoad  = true;

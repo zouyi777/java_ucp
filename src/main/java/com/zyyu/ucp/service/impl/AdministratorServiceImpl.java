@@ -3,6 +3,7 @@ package com.zyyu.ucp.service.impl;
 import com.zyyu.ucp.model.PageInfo;
 import com.zyyu.ucp.mapper.AdministratorMapper;
 import com.zyyu.ucp.model.po.AdministratorPo;
+import com.zyyu.ucp.model.vo.SearchConditionBaseVo;
 import com.zyyu.ucp.service.AdministratorService;
 import com.zyyu.ucp.model.vo.AdministratorVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +63,15 @@ public class AdministratorServiceImpl implements AdministratorService {
 
         pageInfo.setDataList(administratorVoList);
         return pageInfo;
+    }
+
+    @Override
+    public PageInfo searchByCondition(SearchConditionBaseVo searchConditionVo) {
+        return null;
+    }
+
+    @Override
+    public Integer searchByConditionCount(SearchConditionBaseVo searchConditionVo) {
+        return null;
     }
 }

@@ -1,5 +1,8 @@
-var curPage=1;
-var isFirstLoad=true;
+var pageX = {
+    curPage:1,
+    isFirstLoad:true,
+    isSearch:false
+}
 /**
  * 初始化
  */
@@ -23,15 +26,19 @@ $(document).ready(function(){
                 //跳转页码时调用
                 jump: function (pagerInfo,first){ //obj为当前页的属性和方法，第一次加载first为true
                     if(first) return;
-                    isFirstLoad = false;
-                    initData(pagerInfo.curr);
+                    pageX.isFirstLoad = false;
+                    if(pageX.isSearch){
+                        searchUser(pagerInfo.curr);
+                    }else{
+                        initData(pagerInfo.curr);
+                    }
                 }
             });
         }
 
         var start = {
-            min: laydate.now(),
-            max: '2099-06-16 23:59:59',
+            min: '2020-01-01 0:0:0',
+            max: '2099-12-31 23:59:59',
             istoday: false,
             choose: function (datas) {
                 end.min = datas; //开始日选好后，重置结束日的最小日期
@@ -40,8 +47,8 @@ $(document).ready(function(){
         };
 
         var end = {
-            min: laydate.now(),
-            max: '2099-06-16 23:59:59',
+            min: '2020-01-01 0:0:0',
+            max: '2099-12-31 23:59:59',
             istoday: false,
             choose: function (datas) {
                 start.max = datas; //结束日选好后，重置开始日的最大日期
@@ -57,7 +64,7 @@ $(document).ready(function(){
             laydate(end);
         }
 
-        initData(curPage);//初始化
+        initData(pageX.curPage);//初始化
     });
     intEvent();
 });
@@ -71,7 +78,48 @@ function initData(curPage){
         data:parms,
         onSuccess:function (res) {
             renderData(res.data);
-            if(isFirstLoad){
+            if(pageX.isFirstLoad){
+                showPage(res.data.totalPage);
+            }
+        },
+        onFailure:function (res) {
+            alert(res.message);
+        }
+    };
+    ucp.ajaxRequest.post(options);
+}
+
+/**
+ * 搜索查询用户
+ * @param curPage
+ */
+function searchUser(curPage){
+
+    let createTimeStart = $('#LAY_demorange_s').val();
+    let createTimeEnd = $('#LAY_demorange_e').val();
+    if(createTimeStart && !createTimeEnd){
+        layer.msg("请选择结束日期！",{icon:5,time:2000});return false;
+    }
+    if(createTimeEnd && !createTimeStart){
+        layer.msg("请选择开始日期！",{icon:5,time:2000});return false;
+    }
+
+    let parms = {
+        pageInfo:{
+            currentPage:curPage
+        },
+        userName:$("input[name='userName']").val(),
+        mobilePhone:$("input[name='mobilePhone']").val(),
+        email:$("input[name='email']").val(),
+        createTimeStart:createTimeStart,
+        createTimeEnd:createTimeEnd
+    };
+    let options = {
+        url:'admin/user/search_user',
+        data:parms,
+        onSuccess:function (res) {
+            renderData(res.data);
+            if(pageX.isFirstLoad){
                 showPage(res.data.totalPage);
             }
         },
@@ -101,6 +149,17 @@ function intEvent() {
     //添加用户弹框
     $("#addUser").click(function () {
         x_admin_show('新增用户','user-add.html','600','500');
+    });
+    //点击搜索
+    $("#searchUser").click(function (event) {
+
+        pageX.curPage = 1;
+        pageX.isFirstLoad  = true;
+        pageX.isSearch = true;
+
+        searchUser(pageX.curPage);
+        //阻止表单提交，不然会刷新界面
+        event.preventDefault();
     });
 }
 /**
@@ -155,7 +214,7 @@ function initListItemEvent(){
                 url:'/admin/user/delete?userId='+userId,
                 onSuccess:function (res) {
                     layer.msg('已删除!', {icon: 1, time: 1000});
-                    initData(curPage);
+                    initData(pageX.curPage);
                 },
                 onFailure:function (res) {
                     alert(res.message);

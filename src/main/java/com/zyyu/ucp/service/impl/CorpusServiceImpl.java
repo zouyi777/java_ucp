@@ -3,7 +3,7 @@ package com.zyyu.ucp.service.impl;
 import com.zyyu.ucp.model.PageInfo;
 import com.zyyu.ucp.mapper.CorpusMapper;
 import com.zyyu.ucp.model.po.CorpusPo;
-import com.zyyu.ucp.model.vo.SearchConditionVo;
+import com.zyyu.ucp.model.vo.SearchConditionBaseVo;
 import com.zyyu.ucp.service.CorpusService;
 import com.zyyu.ucp.utils.DateTimeUtil;
 import com.zyyu.ucp.utils.UniqueKeyUtil;
@@ -75,19 +75,19 @@ public class CorpusServiceImpl implements CorpusService {
     }
 
 	@Override
-    public PageInfo searchCorpus(SearchConditionVo searchConditionVo) {
+    public PageInfo searchByCondition(SearchConditionBaseVo searchConditionVo) {
         PageInfo pageInfo = searchConditionVo.getPageInfo();
         //设置总数
-        Integer totalCount = corpusMapper.searchCorpusCount(searchConditionVo);
+        Integer totalCount = corpusMapper.searchByConditionCount(searchConditionVo);
         pageInfo.setTotalCount(totalCount);
         //设置数据
-        List<CorpusVo> dataList = corpusMapper.searchCorpus(searchConditionVo);
+        List<CorpusVo> dataList = corpusMapper.searchByCondition(searchConditionVo);
         pageInfo.setDataList(dataList);
         return pageInfo;
     }
 
     @Override
-    public Integer searchCorpusCount(SearchConditionVo searchConditionVo) {
-        return corpusMapper.searchCorpusCount(searchConditionVo);
+    public Integer searchByConditionCount(SearchConditionBaseVo searchConditionVo) {
+        return corpusMapper.searchByConditionCount(searchConditionVo);
     }
 }

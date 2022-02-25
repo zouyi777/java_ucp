@@ -6,7 +6,7 @@ import com.zyyu.ucp.model.vo.WorksVo;
 
 import java.util.List;
 
-public interface WorksMapper extends BaseMapper<WorksPo>{
+public interface WorksMapper extends BaseMapper<WorksPo,WorksVo>{
 
     List<WorksVo> getVoByPage(PageInfo pageInfo);
 

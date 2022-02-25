@@ -1,6 +1,7 @@
 package com.zyyu.ucp.service;
 
 import com.zyyu.ucp.model.PageInfo;
+import com.zyyu.ucp.model.vo.SearchConditionBaseVo;
 
 import java.util.List;
 
@@ -23,4 +24,8 @@ public interface BaseService<T> {
     Integer getTotalCount();
 
     PageInfo getAllByPage(PageInfo pageInfo);
+
+    PageInfo searchByCondition(SearchConditionBaseVo searchConditionVo);
+
+    Integer searchByConditionCount(SearchConditionBaseVo searchConditionVo);
 }

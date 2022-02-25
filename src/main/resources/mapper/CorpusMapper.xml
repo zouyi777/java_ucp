@@ -44,36 +44,36 @@
     </select>
 
     <!--条件查询-->
-    <select id="searchCorpus" parameterType="com.zyyu.ucp.model.vo.SearchConditionVo" resultMap="resultMapVo">
+    <select id="searchByCondition" parameterType="com.zyyu.ucp.model.vo.SearchConditionCorpusVo" resultMap="resultMapVo">
         SELECT c.id,c.content,c.catgory,c.donate_id,c.create_time,c.update_time,u.user_name
         FROM tb_corpus c,tb_user u
         WHERE c.donate_id = u.id
-        <if test="condition.content != null and condition.content !=''">
-            AND   c.content like "%"#{condition.content}"%"
+        <if test="content != null and content !=''">
+            AND   c.content like "%"#{content}"%"
         </if>
-        <if test="condition.donateName != null and condition.donateName !=''">
-            AND   u.user_name = #{condition.donateName}
+        <if test="donateName != null and donateName !=''">
+            AND   u.user_name = #{donateName}
         </if>
-        <if test="condition.createTimeMin != null and condition.createTimeMin !='' and condition.createTimeMax !=null and condition.createTimeMax !=''">
-            AND  date(c.create_time) between #{condition.createTimeMin} and #{condition.createTimeMax}
+        <if test="createTimeStart != null and createTimeStart !='' and createTimeEnd !=null and createTimeEnd !=''">
+            AND  date(c.create_time) between #{createTimeStart} and #{createTimeEnd}
         </if>
         ORDER BY c.create_time DESC
         limit #{pageInfo.startIndex},#{pageInfo.pageSize}
     </select>
 
     <!--条件查询统计数量-->
-    <select id="searchCorpusCount" parameterType="com.zyyu.ucp.model.vo.SearchConditionVo" resultType="Integer">
+    <select id="searchByConditionCount" parameterType="com.zyyu.ucp.model.vo.SearchConditionCorpusVo" resultType="Integer">
         SELECT count(c.id)
         FROM tb_corpus c,tb_user u
         WHERE c.donate_id = u.id
-        <if test="condition.content != null and condition.content !=''">
-            AND   c.content like "%"#{condition.content}"%"
+        <if test="content != null and content !=''">
+            AND   c.content like "%"#{content}"%"
         </if>
-        <if test="condition.donateName != null and condition.donateName !=''">
-            AND   u.user_name = #{condition.donateName}
+        <if test="donateName != null and donateName !=''">
+            AND   u.user_name = #{donateName}
         </if>
-        <if test="condition.createTimeMin != null and condition.createTimeMin !='' and condition.createTimeMax !=null and condition.createTimeMax !=''">
-            AND  date(c.create_time) between #{condition.createTimeMin} and #{condition.createTimeMax}
+        <if test="createTimeStart != null and createTimeStart !='' and createTimeEnd !=null and createTimeEnd !=''">
+            AND  date(c.create_time) between #{createTimeStart} and #{createTimeEnd}
         </if>
     </select>
 

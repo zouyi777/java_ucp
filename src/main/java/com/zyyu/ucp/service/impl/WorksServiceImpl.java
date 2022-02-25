@@ -4,6 +4,7 @@ import com.zyyu.ucp.ServerConfig;
 import com.zyyu.ucp.model.PageInfo;
 import com.zyyu.ucp.mapper.WorksMapper;
 import com.zyyu.ucp.model.po.WorksPo;
+import com.zyyu.ucp.model.vo.SearchConditionBaseVo;
 import com.zyyu.ucp.service.WorksService;
 import com.zyyu.ucp.utils.DateTimeUtil;
 import com.zyyu.ucp.utils.FileHandleUtil;
@@ -78,5 +79,15 @@ public class WorksServiceImpl implements WorksService {
         }
         pageInfo.setDataList(dataList);
         return pageInfo;
+    }
+
+    @Override
+    public PageInfo searchByCondition(SearchConditionBaseVo searchConditionVo) {
+        return null;
+    }
+
+    @Override
+    public Integer searchByConditionCount(SearchConditionBaseVo searchConditionVo) {
+        return null;
     }
 }

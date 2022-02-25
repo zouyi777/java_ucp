@@ -3,6 +3,7 @@ package com.zyyu.ucp.service.impl;
 import com.zyyu.ucp.model.PageInfo;
 import com.zyyu.ucp.mapper.RoleMapper;
 import com.zyyu.ucp.model.po.RolePo;
+import com.zyyu.ucp.model.vo.SearchConditionBaseVo;
 import com.zyyu.ucp.service.RoleService;
 import com.zyyu.ucp.utils.DateTimeUtil;
 import com.zyyu.ucp.utils.UniqueKeyUtil;
@@ -44,6 +45,16 @@ public class RoleServiceImpl implements RoleService {
         pageInfo.setTotalCount(getTotalCount());
         pageInfo.setDataList(roleMapper.getVoByPage(pageInfo));
         return pageInfo;
+    }
+
+    @Override
+    public PageInfo searchByCondition(SearchConditionBaseVo searchConditionVo) {
+        return null;
+    }
+
+    @Override
+    public Integer searchByConditionCount(SearchConditionBaseVo searchConditionVo) {
+        return null;
     }
 
     @Override

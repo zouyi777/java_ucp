@@ -6,6 +6,7 @@ import com.zyyu.ucp.enums.GenderEnum;
 import com.zyyu.ucp.enums.AccountStateEnum;
 import com.zyyu.ucp.model.po.UserPo;
 import com.zyyu.ucp.mapper.UserMapper;
+import com.zyyu.ucp.model.vo.SearchConditionBaseVo;
 import com.zyyu.ucp.service.RoleService;
 import com.zyyu.ucp.service.UserService;
 import com.zyyu.ucp.utils.DateTimeUtil;
@@ -95,6 +96,31 @@ public class UserServiceImpl implements UserService {
         }
         pageInfo.setDataList(userVoList);
         return pageInfo;
+    }
+
+    @Override
+    public PageInfo searchByCondition(SearchConditionBaseVo searchConditionVo) {
+        PageInfo pageInfo = searchConditionVo.getPageInfo();
+        Integer count = userMapper.searchByConditionCount(searchConditionVo);
+        pageInfo.setTotalCount(count);
+
+        List<UserPo> userPoList = userMapper.searchByCondition(searchConditionVo);
+        List<UserVo> userVoList = new ArrayList<>();
+        if(userPoList!=null && userPoList.size()>0){
+            Mapper dozerMapper = new DozerBeanMapper();
+            for(UserPo userPo:userPoList){
+                UserVo userVo = dozerMapper.map(userPo, UserVo.class);
+                userVo.setAvatar(FileHandleUtil.getImageWholeUrl(serverConfig.getBaseUrl(),userVo.getAvatar()));
+                userVoList.add(userVo);
+            }
+        }
+        pageInfo.setDataList(userVoList);
+        return pageInfo;
+    }
+
+    @Override
+    public Integer searchByConditionCount(SearchConditionBaseVo searchConditionVo) {
+        return userMapper.searchByConditionCount(searchConditionVo);
     }
 
     @Override

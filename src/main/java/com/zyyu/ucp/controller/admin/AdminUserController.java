@@ -5,7 +5,9 @@ import com.zyyu.ucp.model.PageInfo;
 import com.zyyu.ucp.model.Result;
 import com.zyyu.ucp.controller.BaseController;
 import com.zyyu.ucp.enums.ResultEnum;
+import com.zyyu.ucp.model.vo.SearchConditionUserVo;
 import com.zyyu.ucp.model.po.UserPo;
+import com.zyyu.ucp.model.vo.SearchConditionBaseVo;
 import com.zyyu.ucp.service.UserService;
 import com.zyyu.ucp.model.vo.UserVo;
 import org.apache.commons.lang3.StringUtils;
@@ -111,6 +113,12 @@ public class AdminUserController extends BaseController {
             return success(true);
         }
         return fail(ResultEnum.PARAM_BLANK);
+    }
+
+    @PostMapping(value = "/search_user")
+    public Result searchCorpus(@RequestBody SearchConditionUserVo searchConditionVo){
+        PageInfo pageInfo = userService.searchByCondition(searchConditionVo);
+        return success(pageInfo);
     }
 
 }
