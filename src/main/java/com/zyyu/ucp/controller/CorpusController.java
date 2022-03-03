@@ -3,6 +3,7 @@ package com.zyyu.ucp.controller;
 import com.zyyu.ucp.model.PageInfo;
 import com.zyyu.ucp.model.Result;
 import com.zyyu.ucp.enums.CorpusCatgoryEnum;
+import com.zyyu.ucp.model.vo.SearchConditionCorpusVo;
 import com.zyyu.ucp.service.CorpusService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,5 +29,11 @@ public class CorpusController extends BaseController {
     public Result getCorpusCatgory(){
         CorpusCatgoryEnum[] values= CorpusCatgoryEnum.values();
         return success(values);
+    }
+
+    @PostMapping(value = "/search_list")
+    public Result searchCorpusList(@RequestBody SearchConditionCorpusVo searchConditionVo){
+        PageInfo pageInfo = corpusService.searchByCondition(searchConditionVo);
+        return success(pageInfo);
     }
 }
