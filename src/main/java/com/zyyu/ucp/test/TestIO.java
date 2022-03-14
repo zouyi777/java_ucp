@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * java IO
  */
-public class IOTest {
+public class TestIO {
 
     public static void main(String[] args) throws IOException {
 

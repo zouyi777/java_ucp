@@ -30,7 +30,8 @@ public class ServerConfig implements ApplicationListener<WebServerInitializedEve
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
-        return address.getHostAddress();
+        return "120.24.147.111";
+//        return address.getHostAddress();
     }
 
     /**
