@@ -47,16 +47,16 @@
     // alert(getUser())
 
     //3、匿名函数
-    // (function (num) {
-    //
-    //      alert("匿名函数"+num);
-    //
-    //      //匿名函数嵌套匿名函数
-    //     (function (num1) {
-    //         alert("匿名函数嵌套匿名函数"+num1);
-    //     })(num)
-    //
-    // })(1);
+    (function (num) {
+
+         alert("匿名函数"+num);
+
+         //匿名函数嵌套匿名函数
+        (function (num1) {
+            alert("匿名函数嵌套匿名函数"+num1);
+        })(num)
+
+    })(1);
     //4、匿名函数传对象
     // (function (exports) {
     //     var userName = 'zouyi';
