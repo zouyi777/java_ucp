@@ -1,8 +1,8 @@
 package org.zouyi.common.test
 
-import com.zyyu.ucp.test.CATGORY_EDOC
-import com.zyyu.ucp.test.TestKotlinClass
-import com.zyyu.ucp.test.TestKotlinObject
+import com.zyyu.ucp.test.kotlin.CATGORY_EDOC
+import com.zyyu.ucp.test.kotlin.TestKotlinClass
+import com.zyyu.ucp.test.kotlin.TestKotlinObject
 
 /**
  * Kotlin的第一种main函数入口
@@ -26,12 +26,12 @@ object TestKotlinMain {
         //1、Kotlin创建对象并调用成员变量和方法
         var testKotlinClass = TestKotlinClass()
 
-        System.out.println("调用成员变量："+TestKotlinClass.tag)
+        System.out.println("调用成员变量："+ TestKotlinClass.tag)
         System.out.println("调用成员变量："+testKotlinClass.age)
         System.out.println("调用成员方法："+testKotlinClass.getMyName())
 
         //2、Kotlin直接调用对象，并调用方法
-        System.out.println("直接调用对象："+TestKotlinObject.getMyCondition())
+        System.out.println("直接调用对象："+ TestKotlinObject.getMyCondition())
 
         //调用顶级属性，CATGORY_EDOC来自TestKotlinClass文件
         System.out.println(CATGORY_EDOC)

@@ -1,4 +1,4 @@
-package com.zyyu.ucp.test;
+package com.zyyu.ucp.test.multithread;
 
 import com.zyyu.ucp.controller.BaseController;
 import com.zyyu.ucp.model.Result;

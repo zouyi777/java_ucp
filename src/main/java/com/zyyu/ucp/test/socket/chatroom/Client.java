@@ -1,7 +1,9 @@
 package com.zyyu.ucp.test.socket.chatroom;
 
 import java.io.*;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.Scanner;
 
 /**
@@ -15,7 +17,12 @@ public class Client {
     public static void main(String[] args) {
         Socket socket=null;
         try {
-            socket = new Socket("127.0.0.1",1859);
+            //Socket第一种方式连接
+//            socket = new Socket("127.0.0.1",1859);
+            //Socket第二种方式连接
+            socket = new Socket();
+            SocketAddress address = new InetSocketAddress("127.0.0.1",1859);
+            socket.connect(address);
 
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             System.out.println("请输入用户名：");

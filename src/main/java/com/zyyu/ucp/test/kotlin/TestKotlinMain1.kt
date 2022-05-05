@@ -1,6 +1,6 @@
 @file:JvmName("TestKotlin1")
 
-package com.zyyu.ucp.test
+package com.zyyu.ucp.test.kotlin
 
 /**
  *  Kotlin的另外一种main函数入口

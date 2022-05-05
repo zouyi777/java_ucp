@@ -3,8 +3,6 @@ package com.zyyu.ucp.test;
 import com.zyyu.ucp.utils.MD5Util;
 import com.zyyu.ucp.utils.StringUcpUtil;
 
-import static com.zyyu.ucp.test.TestKotlinClassKt.CATGORY_EDOC;
-
 public class TestString {
 
     public static void main(String[] args) {

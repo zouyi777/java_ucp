@@ -1,4 +1,4 @@
-package com.zyyu.ucp.test;
+package com.zyyu.ucp.test.datastructure;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

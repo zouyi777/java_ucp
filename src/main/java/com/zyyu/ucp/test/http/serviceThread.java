@@ -44,7 +44,7 @@ public class serviceThread extends Thread {
 
             /**
              * 每次请求结束就把socket关闭，这就是http短链接，无状态协议的体现。
-             * 如果俩个请求都通过一个socket来写数据,那么这个就是http长连接,
+             * 如果“俩个请求都通过一个socket来写数据,那么这个就是http长连接”,
              * 如果你写一个简单http服务器,那你实现的就不是长连接,每次请求都把socket.close()了
              * 所以判断一个http请求是不是长连接就是判断socket.close有没有执行
              */
