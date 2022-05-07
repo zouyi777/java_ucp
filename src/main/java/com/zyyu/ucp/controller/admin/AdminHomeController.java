@@ -18,6 +18,8 @@ import com.zyyu.ucp.model.Result;
 import com.zyyu.ucp.model.vo.AdministratorVo;
 import com.zyyu.ucp.model.vo.SystemInfoVo;
 import com.zyyu.ucp.model.vo.TopCardVo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.slf4j.Logger;
@@ -28,6 +30,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
+@Api(value = "后台管理首页")
 @RestController
 @RequestMapping("/admin")
 public class AdminHomeController extends BaseController {
@@ -68,7 +71,7 @@ public class AdminHomeController extends BaseController {
         return success(map);
     }
 
-
+    @ApiOperation(value = "后台管理员登录")
     @PostMapping(value = "/login")
     public Result login(@RequestBody AdminLoginVo adminLoginVo){
         Mapper dozerMapper = new DozerBeanMapper();
