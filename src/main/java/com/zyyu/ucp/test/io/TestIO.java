@@ -29,9 +29,12 @@ public class TestIO {
         fileReader.read();
         FileWriter fileWriter = new FileWriter(filePathOut);
 
+        //临时byte数组
         byte[] b = new byte[21];
+        //先将输入流拷贝到byte临时数组
         while (fileInputStream.read(b)>0){
             System.out.println(new String(b));
+            //再将byte临时数组拷贝到输出流
             fileOutputStream.write(b);
         }
         fileInputStream.close();
