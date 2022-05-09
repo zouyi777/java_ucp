@@ -12,7 +12,7 @@ public class HttpServer {
 
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(1860);
-        Socket socket = new Socket();
+        Socket socket;
         while (true){
             System.out.println("正在监听------");
             socket = serverSocket.accept();
