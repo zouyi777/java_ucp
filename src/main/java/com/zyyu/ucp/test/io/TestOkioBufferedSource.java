@@ -8,6 +8,8 @@ import java.io.IOException;
 
 /**
  * 对比BufferedInputStream和OkioBufferedSource的读取文件的时间
+ * BufferedInputStream --> BufferedOutputStream，需要经过“两次数据拷贝”
+ * 而Okio的BufferedSource --> BufferedSink，底层使用双向循环链表，只需要“一次数据拷贝”
  */
 public class TestOkioBufferedSource {
 
