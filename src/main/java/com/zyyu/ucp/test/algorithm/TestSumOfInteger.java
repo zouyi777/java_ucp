@@ -12,6 +12,7 @@ public class TestSumOfInteger {
         int target = 9;
 
         long start = System.currentTimeMillis();
+        System.out.println(start);
         System.out.println(simple(nums,target));
         long end = System.currentTimeMillis();
         System.out.println("花费时间="+ (end - start));
