@@ -9,5 +9,14 @@ public class TestKotlinMainJava {
 
         //java直接调用kotlin的顶级属性const
         System.out.println(com.zyyu.ucp.test.kotlin.TestKotlinClassKt.CATGORY_EDOC);
+
+//        System.out.println(getNameIndex("11a33"));
+        System.out.println(getNameIndex(null));
+    }
+
+
+    private static int getNameIndex(String args){
+        int index = args.indexOf("a");
+        return index;
     }
 }

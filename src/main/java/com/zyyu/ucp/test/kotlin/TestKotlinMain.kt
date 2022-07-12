@@ -24,7 +24,9 @@ object TestKotlinMain {
         System.out.println("常量的声明:"+ACTION_SHOW)
 
         //1、Kotlin创建对象并调用成员变量和方法
-        var testKotlinClass = TestKotlinClass()
+//        var testKotlinClass = TestKotlinClass()
+        //2、使用kotlin静态方法创建对象
+        var testKotlinClass = TestKotlinClass.getInstance()
 
         System.out.println("调用成员变量："+ TestKotlinClass.tag)
         System.out.println("调用成员变量："+testKotlinClass.age)
@@ -35,6 +37,32 @@ object TestKotlinMain {
 
         //调用顶级属性，CATGORY_EDOC来自TestKotlinClass文件
         System.out.println(CATGORY_EDOC)
+
+//        var index = getNameIndex("11a22")
+//        var index = getNameIndex(null!!)
+        var index = getNameIndex1(null)
+        print(index)
     }
 
+
+    private fun getNameIndex(args: String): Int {
+        if(args!=null){
+            return args.indexOf("a")
+        }
+        return -1
+
+    }
+
+    private fun getNameIndex1(args: String?): Int {
+        if(args!=null){
+            return args.indexOf("a")
+        }
+        return -1
+
+    }
+
+
+    override fun toString(): String {
+        return super.toString()
+    }
 }
